@@ -32,10 +32,10 @@ namespace DAO
         public DataProvider() { }
         public DataTable ExcuteQuery(string query, object[] parameter = null)
         {
-            using(SqlCommand command = new SqlCommand(conn))
-            {
-                string[] stringQuery = query.Split(' ');
-                int j = 0;
+            string[] stringQuery = query.Split(' ');
+            int j = 0;
+            using (SqlCommand command = new SqlCommand(conn))
+            {               
                 foreach(var i in stringQuery)
                 {
                     if(i.Contains('@'))
@@ -53,15 +53,14 @@ namespace DAO
             }
         }
 
-        public int ExcuteNonQuery(string query, object[] parameter = null, string action = null)
+        public int ExcuteNonQuery(string query, object[] parameter = null)
         {
+            string[] stringQuery = query.Split(' ');
+            int j = 0;
             int count = 0;
 
             using (SqlCommand command = new SqlCommand(conn))
-            {
-                string[] stringQuery = query.Split(' ');
-
-                int j = 0;
+            {              
                 foreach (var i in stringQuery)
                 {
                     if (i.Contains('@'))
@@ -71,25 +70,31 @@ namespace DAO
                     }
                 }
 
-                SqlDataAdapter da = new SqlDataAdapter();
-                switch (action)
-                {
-                    case "Insert":
-                        da.InsertCommand = command;
-                        break;
-                    case "Delete":
-                        da.DeleteCommand = command;
-                        break;
-                    case "Update":
-                        da.UpdateCommand = command;
-                        break;
-                }
-
-                DataTable data = new DataTable();
-
-                return count;
+                count = command.ExecuteNonQuery();               
             }
 
+            return count;
         }
+
+        public object ExcuteScalar(string query, object[] parameter = null)
+        {
+            string[] stringQuery = query.Split(' ');
+            int j = 0;
+            using (SqlCommand command = new SqlCommand(conn))
+            {           
+                foreach (var i in stringQuery)
+                {
+                    if (i.Contains('@'))
+                    {
+                        command.Parameters.AddWithValue(i, parameter[j]);
+                        ++j;
+                    }
+                }
+                object count = command.ExecuteScalar().ToString();
+                return count;
+            }
+        }
+
+        
     }
 }

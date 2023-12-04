@@ -1,7 +1,7 @@
 ﻿namespace DAO
 {
-    public class Class1
+    public class class1
     {
-
+        
     }
 }
