@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace DAO
 {
@@ -30,7 +31,7 @@ namespace DAO
         public DataProvider() { }
         public DataTable ExcuteQuery(string query, object[] parameter = null)
         {
-            using( sqlco)
+            using(SqlCommand )
         }
     }
 }
