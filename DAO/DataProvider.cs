@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Data.Common;
 
@@ -13,7 +13,7 @@ namespace DAO
 {
     public class DataProvider
     {
-        private string conn = "Server=tcp:quizgame.database.windows.net,1433;Initial Catalog=QuizGame;Persist Security Info=False;User ID=ohka39;Password=12303123AbC@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private string connString = "Server=tcp:quizgame.database.windows.net,1433;Initial Catalog=QuizGame;Persist Security Info=False;User ID=ohka39;Password=12303123AbC@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         private static DataProvider instance;
 
         public static DataProvider Instance { 
@@ -32,41 +32,48 @@ namespace DAO
         public DataProvider() { }
         public DataTable ExcuteQuery(string query, object[] parameter = null)
         {
-            string[] stringQuery = query.Split(' ');
-            int j = 0;
-            using (SqlCommand command = new SqlCommand(conn))
-            {               
-                foreach(var i in stringQuery)
+            DataTable data = new DataTable();
+            SqlConnection conn = new SqlConnection(connString);
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {        
+                if(parameter != null)
                 {
-                    if(i.Contains('@'))
+                    string[] stringQuery = query.Split(' ');
+                    int j = 0;
+                    foreach (var i in stringQuery)
                     {
-                        command.Parameters.AddWithValue(i, parameter[j]);
-                        ++j;
-                    }    
+                        if (i.Contains('@'))
+                        {
+                            command.Parameters.AddWithValue(i, parameter[j]);
+                            ++j;
+                        }
+                    }
                 }
-
+                
                 SqlDataAdapter da = new SqlDataAdapter(command);
-                DataTable data = new DataTable();
 
                 da.Fill(data);
-                return data;
             }
+            return data;
         }
 
         public int ExcuteNonQuery(string query, object[] parameter = null)
         {
-            string[] stringQuery = query.Split(' ');
-            int j = 0;
             int count = 0;
-
-            using (SqlCommand command = new SqlCommand(conn))
-            {              
-                foreach (var i in stringQuery)
+            SqlConnection conn = new SqlConnection(connString);
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                if (parameter != null)
                 {
-                    if (i.Contains('@'))
+                    string[] stringQuery = query.Split(' ');
+                    int j = 0;
+                    foreach (var i in stringQuery)
                     {
-                        command.Parameters.AddWithValue(i, parameter[j]);
-                        ++j;
+                        if (i.Contains('@'))
+                        {
+                            command.Parameters.AddWithValue(i, parameter[j]);
+                            ++j;
+                        }
                     }
                 }
 
@@ -78,23 +85,27 @@ namespace DAO
 
         public object ExcuteScalar(string query, object[] parameter = null)
         {
-            string[] stringQuery = query.Split(' ');
-            int j = 0;
-            using (SqlCommand command = new SqlCommand(conn))
-            {           
-                foreach (var i in stringQuery)
+            object data;
+            SqlConnection conn = new SqlConnection(connString);
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                if (parameter != null)
                 {
-                    if (i.Contains('@'))
+                    string[] stringQuery = query.Split(' ');
+                    int j = 0;
+                    foreach (var i in stringQuery)
                     {
-                        command.Parameters.AddWithValue(i, parameter[j]);
-                        ++j;
+                        if (i.Contains('@'))
+                        {
+                            command.Parameters.AddWithValue(i, parameter[j]);
+                            ++j;
+                        }
                     }
                 }
-                object count = command.ExecuteScalar().ToString();
-                return count;
+                data = command.ExecuteScalar();
             }
-        }
 
-        
+            return data;
+        }
     }
 }

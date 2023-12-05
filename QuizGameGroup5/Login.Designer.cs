@@ -81,7 +81,9 @@
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Admin", "Teacher", "Student" });
             comboBox1.Location = new Point(138, 17);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(104, 23);
@@ -106,6 +108,7 @@
             exitButton.TabIndex = 2;
             exitButton.Text = "Thoát";
             exitButton.UseVisualStyleBackColor = true;
+            exitButton.Click += exitButton_Click;
             // 
             // button2
             // 
@@ -140,6 +143,7 @@
             // 
             pwdTXB.Location = new Point(138, 7);
             pwdTXB.Name = "pwdTXB";
+            pwdTXB.PasswordChar = '*';
             pwdTXB.Size = new Size(469, 23);
             pwdTXB.TabIndex = 2;
             // 
@@ -189,6 +193,8 @@
             Controls.Add(panel1);
             Name = "Login";
             Text = "Form1";
+            FormClosing += Login_FormClosing;
+            Load += Login_Load;
             panel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();

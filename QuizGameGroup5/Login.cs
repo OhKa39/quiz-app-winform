@@ -1,4 +1,8 @@
+﻿using System.Data;
+using System.Diagnostics;
+using BUS;
 using GUI;
+using ENUM;
 
 namespace QuizGameGroup5
 {
@@ -21,7 +25,28 @@ namespace QuizGameGroup5
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            string username = usernameTXB.Text;
+            string password = pwdTXB.Text;
+            int role = comboBox1.SelectedIndex + 1;
+            DataTable sessionInfomation = LoginBus.
+                                          Instance.
+                                          getUserInformation(username, password, role);
+            if (sessionInfomation.Rows.Count > 0)
+            {
+                this.Hide();
+                MainForm mainForm = new MainForm();
+                mainForm.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Sai thông tin đăng nhập",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -35,6 +60,32 @@ namespace QuizGameGroup5
             CreateAccount createAccountForm = new CreateAccount();
             createAccountForm.ShowDialog();
             this.Show();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = 0;
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show(
+                "Bạn muốn thoát chương trình chứ ?",
+                "Thoát chương trình",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question
+            );
+
+            if (dr == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+                return;
+            }
         }
     }
 }
