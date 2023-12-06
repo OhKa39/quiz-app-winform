@@ -60,27 +60,34 @@ namespace DAO
         public int ExcuteNonQuery(string query, object[] parameter = null)
         {
             int count = 0;
-            SqlConnection conn = new SqlConnection(connString);
-            using (SqlCommand command = new SqlCommand(query, conn))
+            using (SqlConnection conn = new SqlConnection(connString))
             {
-                if (parameter != null)
+                try
                 {
-                    string[] stringQuery = query.Split(' ');
-                    int j = 0;
-                    foreach (var i in stringQuery)
+                    SqlCommand command = new SqlCommand(query, conn);
+                    if (parameter != null)
                     {
-                        if (i.Contains('@'))
+                        string[] stringQuery = query.Split(' ');
+                        int j = 0;
+                        foreach (var i in stringQuery)
                         {
-                            command.Parameters.AddWithValue(i, parameter[j]);
-                            ++j;
+                            if (i.Contains('@'))
+                            {
+                                command.Parameters.AddWithValue(i, parameter[j]);
+                                ++j;
+                            }
                         }
                     }
+
+                    command.Connection.Open();
+                    count = command.ExecuteNonQuery();
+                    return count;
                 }
-
-                count = command.ExecuteNonQuery();               
+                catch(SqlException e)
+                {
+                    throw new Exception("Something is wrong", e);
+                }                              
             }
-
-            return count;
         }
 
         public object ExcuteScalar(string query, object[] parameter = null)

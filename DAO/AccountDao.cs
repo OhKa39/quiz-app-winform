@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 
 namespace DAO
@@ -38,7 +40,26 @@ namespace DAO
 
         public int createUser(string username, string fullName, byte[] password, int role)
         {
-            return 1;
+            int rowAffected = 0;
+            string query = (
+                "createAccount @RoleID , @FullName , @Username , @Password"
+            );
+            try
+            {
+                rowAffected = DataProvider
+                    .Instance
+                    .ExcuteNonQuery(
+                        query,
+                        new object[] { role, fullName, username, password }
+                    );
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e);
+                return 0;
+            }
+
+            return rowAffected;
         }
     }
 }

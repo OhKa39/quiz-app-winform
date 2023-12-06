@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
             panel7 = new Panel();
             roleComboBox = new ComboBox();
             label5 = new Label();
@@ -58,6 +61,9 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label8);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(label6);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel6);
             panel1.Controls.Add(panel5);
@@ -68,6 +74,36 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(610, 536);
             panel1.TabIndex = 0;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Arial", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            label8.Location = new Point(244, 75);
+            label8.Name = "label8";
+            label8.Size = new Size(288, 15);
+            label8.TabIndex = 7;
+            label8.Text = "* Ít nhất 8 kí tự, không chứa các kí tự đặc biệt ở đầu\r\n";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            label7.Location = new Point(244, 154);
+            label7.Name = "label7";
+            label7.Size = new Size(293, 15);
+            label7.TabIndex = 6;
+            label7.Text = "*Chữ cái đầu viết hoa, không chứa các kí tự đặc biệt\r\n";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Arial", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            label6.Location = new Point(244, 231);
+            label6.Name = "label6";
+            label6.Size = new Size(309, 30);
+            label6.TabIndex = 2;
+            label6.Text = "* Ít nhất 8 kí tự và chứa ít nhất 1 kí tự đặc biệt, 1 kí tự in \r\n   hoa, 1 kí tự thường và 1 chữ số\r\n";
             // 
             // panel7
             // 
@@ -82,7 +118,7 @@
             // 
             roleComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             roleComboBox.FormattingEnabled = true;
-            roleComboBox.Items.AddRange(new object[] { "Admin", "Teacher", "Student" });
+            roleComboBox.Items.AddRange(new object[] { "Teacher", "Student" });
             roleComboBox.Location = new Point(312, 25);
             roleComboBox.Name = "roleComboBox";
             roleComboBox.Size = new Size(121, 23);
@@ -143,6 +179,7 @@
             // 
             passwordcheckTXB.Location = new Point(227, 15);
             passwordcheckTXB.Name = "passwordcheckTXB";
+            passwordcheckTXB.PasswordChar = '*';
             passwordcheckTXB.Size = new Size(299, 23);
             passwordcheckTXB.TabIndex = 1;
             passwordcheckTXB.TextChanged += passwordcheckTXB_TextChanged;
@@ -170,6 +207,7 @@
             // 
             passwordTXB.Location = new Point(227, 15);
             passwordTXB.Name = "passwordTXB";
+            passwordTXB.PasswordChar = '*';
             passwordTXB.Size = new Size(299, 23);
             passwordTXB.TabIndex = 1;
             passwordTXB.TextChanged += passwordTXB_TextChanged;
@@ -249,6 +287,7 @@
             Text = "Form1";
             Load += CreateAccount_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             panel6.ResumeLayout(false);
@@ -284,5 +323,8 @@
         private Panel panel7;
         private Label label5;
         private ComboBox roleComboBox;
+        private Label label6;
+        private Label label8;
+        private Label label7;
     }
 }

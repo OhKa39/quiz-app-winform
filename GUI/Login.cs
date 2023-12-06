@@ -59,6 +59,8 @@ namespace QuizGameGroup5
             this.Hide();
             CreateAccount createAccountForm = new CreateAccount();
             createAccountForm.ShowDialog();
+            usernameTXB.Text = "";
+            pwdTXB.Text = "";
             this.Show();
         }
 

@@ -8,6 +8,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BUS;
+using ENUM;
 
 namespace GUI
 {
@@ -88,11 +90,40 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string username = usernameTXB.Text;
-            string password = passwordTXB.Text;
-            string passwordCheckAgain = passwordcheckTXB.Text;
-            string fullname = fullnameTXB.Text;
-            int role = roleComboBox.SelectedIndex + 1;
+            string username = usernameTXB.Text.Trim();
+            string password = passwordTXB.Text.Trim();
+            string fullname = fullnameTXB.Text.Trim();
+            int role = 0;
+            for (int i = 0; i < 3; ++i)
+            {
+                if (Enum.GetName(typeof(Role), i) as string == roleComboBox.Text)
+                {
+                    role = i + 1;
+                    break;
+                }
+            }
+
+            bool isSuccess = CreateAccountBus
+                .Instance
+                .CreateAccount(username, password, fullname, role);
+
+            if (isSuccess)
+            {
+                MessageBox.Show(
+                    "Đăng ký thành công",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+                this.Hide();
+            }
+            else
+                MessageBox.Show(
+                    "Đăng ký thất bại",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -129,7 +160,6 @@ namespace GUI
             }
 
         }
-        #endregion
 
         private void passwordcheckTXB_TextChanged(object sender, EventArgs e)
         {
@@ -182,5 +212,6 @@ namespace GUI
                 dovalidation();
             }
         }
+        #endregion
     }
 }

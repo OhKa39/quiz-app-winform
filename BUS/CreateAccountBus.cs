@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using DAO;
 
 namespace BUS
 {
@@ -25,9 +27,17 @@ namespace BUS
             }
         }
 
-        public bool CreateAccount(string username, string password, string passwordDouble, string fullname, int role)
+        public bool CreateAccount(string username, string password, string fullname, int role)
         {
-            return true;
+            var encodePassword = new UnicodeEncoding().GetBytes(password);
+            var sha = SHA256.Create();
+            byte[] passwordHash = sha.ComputeHash(encodePassword);
+
+            int rowAffected = AccountDao
+                .Instance
+                .createUser(username, fullname, passwordHash, role);
+
+            return rowAffected == 1;
         }
     }
 }
