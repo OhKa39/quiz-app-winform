@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel2 = new Panel();
-            label1 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
             dataGridView1 = new DataGridView();
+            panel2 = new Panel();
             button4 = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
+            label1 = new Label();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -48,6 +48,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(542, 405);
             panel1.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(542, 405);
+            dataGridView1.TabIndex = 4;
             // 
             // panel2
             // 
@@ -60,32 +69,15 @@
             panel2.Size = new Size(291, 405);
             panel2.TabIndex = 0;
             // 
-            // label1
+            // button4
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(619, 23);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(41, 25);
-            button1.Name = "button1";
-            button1.Size = new Size(205, 47);
-            button1.TabIndex = 1;
-            button1.Text = "Làm bài";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(41, 125);
-            button2.Name = "button2";
-            button2.Size = new Size(205, 47);
-            button2.TabIndex = 2;
-            button2.Text = "Gửi đề thi";
-            button2.UseVisualStyleBackColor = true;
+            button4.Location = new Point(41, 322);
+            button4.Name = "button4";
+            button4.Size = new Size(205, 47);
+            button4.TabIndex = 4;
+            button4.Text = "Đăng xuất ";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -97,24 +89,34 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // dataGridView1
+            // button2
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(542, 405);
-            dataGridView1.TabIndex = 4;
+            button2.Location = new Point(41, 125);
+            button2.Name = "button2";
+            button2.Size = new Size(205, 47);
+            button2.TabIndex = 2;
+            button2.Text = "Gửi đề thi";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
-            // button4
+            // button1
             // 
-            button4.Location = new Point(41, 322);
-            button4.Name = "button4";
-            button4.Size = new Size(205, 47);
-            button4.TabIndex = 4;
-            button4.Text = "Đăng xuất ";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            button1.Location = new Point(41, 25);
+            button1.Name = "button1";
+            button1.Size = new Size(205, 47);
+            button1.TabIndex = 1;
+            button1.Text = "Làm bài";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(619, 23);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
             // 
             // MainForm
             // 
@@ -125,10 +127,11 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MainForm";
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using BUS;
 using GUI;
 using ENUM;
+using DTO;
 
 namespace QuizGameGroup5
 {
@@ -33,8 +34,9 @@ namespace QuizGameGroup5
                                           getUserInformation(username, password, role);
             if (sessionInfomation.Rows.Count > 0)
             {
+                Account loginSession = new Account(sessionInfomation.Rows[0]);
                 this.Hide();
-                MainForm mainForm = new MainForm();
+                MainForm mainForm = new MainForm(loginSession);
                 mainForm.ShowDialog();
                 this.Show();
             }

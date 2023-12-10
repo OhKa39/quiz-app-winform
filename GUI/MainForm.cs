@@ -7,13 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
 
 namespace GUI
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        private Account account;
+        public MainForm(Account _account)
         {
+            account = _account;
             InitializeComponent();
         }
 
@@ -24,6 +27,23 @@ namespace GUI
 
         private void button4_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SendTest sendtestForm = new SendTest(account);
+            sendtestForm.ShowDialog();
+            this.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ChooseTest chooseTest = new ChooseTest(account);
+            chooseTest.ShowDialog();
+            this.Show();
 
         }
     }

@@ -284,6 +284,7 @@
             ClientSize = new Size(663, 577);
             Controls.Add(panel1);
             Name = "CreateAccount";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += CreateAccount_Load;
             panel1.ResumeLayout(false);
