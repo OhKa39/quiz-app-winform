@@ -114,10 +114,20 @@ as
 
 select Username from [Account] 
 
-create proc findAllQuestionByUsername
+alter proc findAllQuestionByUsername
 (
-	@username nvarchar(255)
+	@username nvarchar(255),
+	@pagenumber int, 
+	@rowsofpage int
 )
 as
 	select [QuestionID], [QuestionDetail], [IsOK], [IsTest], [DifficultName]
+	from [Question], [DifficultLevel], [Account] 
+	where [Question].[DifficultLevelID] = [DifficultLevel].[DifficultLevelID]
+	and [Question].[AccountID] = [Account].[AccountID]
+	and [Username] = @username 
+	order by [QuestionID]
+	OFFSET (@pagenumber-1)*@rowsofpage ROWS
+	FETCH NEXT @rowsofpage ROWS ONLY
+go
 

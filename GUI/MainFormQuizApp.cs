@@ -30,7 +30,7 @@ namespace GUI
         {
 
             guna2CustomGradientPanel1.Controls.Clear();
-            Control uc = new TeacherPage();
+            Control uc = new TeacherPage(account);
             uc.Dock = DockStyle.Fill;
             guna2CustomGradientPanel1.Controls.Add(uc);
         }

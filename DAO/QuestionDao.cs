@@ -25,12 +25,12 @@ namespace DAO
 
         public QuestionDao() { }
 
-        public async Task<DataTable> loadQuestionByUser(string username)
+        public async Task<DataTable> loadQuestionByUser(string username, int page, int offset)
         {
-            string query = "findAllQuestionByUsername @username";
+            string query = "findAllQuestionByUsername @username , @pagenumber , @rowsofpage";
             DataTable data = await DataProvider
                 .Instance
-                .ExcuteQuery(query, new object[] { username });
+                .ExcuteQuery(query, new object[] { username, page, offset});
             return data;
         }
 

@@ -39,5 +39,12 @@ namespace BUS
             return data;
         }
 
+
+        public async Task<DataTable> loadQuestionByUser(string username, int page, int offset)
+        {
+
+            DataTable data = await QuestionDao.Instance.loadQuestionByUser(username, page, offset);
+            return data;
+        }
     }
 }

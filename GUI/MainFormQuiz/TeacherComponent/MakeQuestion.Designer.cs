@@ -48,6 +48,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2ComboBox5 = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
@@ -61,7 +67,12 @@
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             guna2ComboBox7 = new Guna.UI2.WinForms.Guna2ComboBox();
+            guna2vScrollBar2 = new Guna.UI2.WinForms.Guna2VScrollBar();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2ComboBox6 = new Guna.UI2.WinForms.Guna2ComboBox();
+            guna2ComboBox8 = new Guna.UI2.WinForms.Guna2ComboBox();
+            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,7 +93,7 @@
             guna2Panel1.Location = new Point(0, 0);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            guna2Panel1.Size = new Size(580, 645);
+            guna2Panel1.Size = new Size(570, 645);
             guna2Panel1.TabIndex = 12;
             // 
             // guna2ComboBox5
@@ -117,7 +128,7 @@
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2Button2.Size = new Size(181, 54);
             guna2Button2.TabIndex = 1;
-            guna2Button2.Text = "guna2Button2";
+            guna2Button2.Text = "Gửi";
             // 
             // guna2vScrollBar1
             // 
@@ -243,9 +254,9 @@
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Location = new Point(586, 143);
+            flowLayoutPanel1.Location = new Point(570, 134);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(501, 502);
+            flowLayoutPanel1.Size = new Size(502, 508);
             flowLayoutPanel1.TabIndex = 11;
             // 
             // guna2ComboBox7
@@ -260,16 +271,43 @@
             guna2ComboBox7.ForeColor = Color.FromArgb(68, 88, 112);
             guna2ComboBox7.ItemHeight = 30;
             guna2ComboBox7.Items.AddRange(new object[] { "--Chủ đề--" });
-            guna2ComboBox7.Location = new Point(598, 85);
+            guna2ComboBox7.Location = new Point(570, 54);
             guna2ComboBox7.Name = "guna2ComboBox7";
             guna2ComboBox7.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            guna2ComboBox7.Size = new Size(474, 36);
+            guna2ComboBox7.Size = new Size(502, 36);
             guna2ComboBox7.TabIndex = 13;
+            // 
+            // guna2vScrollBar2
+            // 
+            guna2vScrollBar2.InUpdate = false;
+            guna2vScrollBar2.LargeChange = 10;
+            guna2vScrollBar2.Location = new Point(1076, 134);
+            guna2vScrollBar2.Name = "guna2vScrollBar2";
+            guna2vScrollBar2.ScrollbarSize = 10;
+            guna2vScrollBar2.Size = new Size(10, 511);
+            guna2vScrollBar2.TabIndex = 0;
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.CustomizableEdges = customizableEdges19;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.Font = new Font("Segoe UI", 9F);
+            guna2Button1.ForeColor = Color.White;
+            guna2Button1.Image = Properties.Resources.icons8_right_arrow_48;
+            guna2Button1.Location = new Point(1004, 96);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            guna2Button1.Size = new Size(70, 32);
+            guna2Button1.TabIndex = 15;
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // guna2ComboBox6
             // 
             guna2ComboBox6.BackColor = Color.Transparent;
-            guna2ComboBox6.CustomizableEdges = customizableEdges19;
+            guna2ComboBox6.CustomizableEdges = customizableEdges21;
             guna2ComboBox6.DrawMode = DrawMode.OwnerDrawFixed;
             guna2ComboBox6.DropDownStyle = ComboBoxStyle.DropDownList;
             guna2ComboBox6.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -278,26 +316,76 @@
             guna2ComboBox6.ForeColor = Color.FromArgb(68, 88, 112);
             guna2ComboBox6.ItemHeight = 30;
             guna2ComboBox6.Items.AddRange(new object[] { "--Sách--" });
-            guna2ComboBox6.Location = new Point(598, 16);
+            guna2ComboBox6.Location = new Point(570, 3);
             guna2ComboBox6.Name = "guna2ComboBox6";
-            guna2ComboBox6.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            guna2ComboBox6.Size = new Size(151, 36);
-            guna2ComboBox6.TabIndex = 14;
+            guna2ComboBox6.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            guna2ComboBox6.Size = new Size(243, 36);
+            guna2ComboBox6.TabIndex = 9;
+            // 
+            // guna2ComboBox8
+            // 
+            guna2ComboBox8.BackColor = Color.Transparent;
+            guna2ComboBox8.CustomizableEdges = customizableEdges23;
+            guna2ComboBox8.DrawMode = DrawMode.OwnerDrawFixed;
+            guna2ComboBox8.DropDownStyle = ComboBoxStyle.DropDownList;
+            guna2ComboBox8.FocusedColor = Color.FromArgb(94, 148, 255);
+            guna2ComboBox8.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            guna2ComboBox8.Font = new Font("Segoe UI", 10F);
+            guna2ComboBox8.ForeColor = Color.FromArgb(68, 88, 112);
+            guna2ComboBox8.ItemHeight = 30;
+            guna2ComboBox8.Items.AddRange(new object[] { "--Độ Khó--", "Dễ", "Trung Bình", "Khó" });
+            guna2ComboBox8.Location = new Point(958, 3);
+            guna2ComboBox8.Name = "guna2ComboBox8";
+            guna2ComboBox8.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            guna2ComboBox8.Size = new Size(114, 36);
+            guna2ComboBox8.TabIndex = 9;
+            // 
+            // guna2Button3
+            // 
+            guna2Button3.CustomizableEdges = customizableEdges25;
+            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button3.Font = new Font("Segoe UI", 9F);
+            guna2Button3.ForeColor = Color.White;
+            guna2Button3.Image = Properties.Resources.icons8_left_arrow_48;
+            guna2Button3.Location = new Point(570, 96);
+            guna2Button3.Name = "guna2Button3";
+            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            guna2Button3.Size = new Size(70, 32);
+            guna2Button3.TabIndex = 16;
+            guna2Button3.Click += guna2Button3_Click;
+            // 
+            // guna2HtmlLabel2
+            // 
+            guna2HtmlLabel2.BackColor = Color.Transparent;
+            guna2HtmlLabel2.Location = new Point(817, 104);
+            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            guna2HtmlLabel2.Size = new Size(15, 17);
+            guna2HtmlLabel2.TabIndex = 17;
+            guna2HtmlLabel2.Text = "01";
             // 
             // MakeQuestion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(guna2HtmlLabel2);
+            Controls.Add(guna2Button3);
+            Controls.Add(guna2ComboBox8);
+            Controls.Add(guna2ComboBox6);
+            Controls.Add(guna2Button1);
+            Controls.Add(guna2vScrollBar2);
             Controls.Add(guna2Panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(guna2ComboBox7);
-            Controls.Add(guna2ComboBox6);
             Name = "MakeQuestion";
             Size = new Size(1090, 645);
             Load += MakeQuestion_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -315,6 +403,11 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private FlowLayoutPanel flowLayoutPanel1;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox7;
+        private Guna.UI2.WinForms.Guna2VScrollBar guna2vScrollBar2;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox6;
+        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox8;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
     }
 }
