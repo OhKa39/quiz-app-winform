@@ -26,39 +26,69 @@ namespace DAO
 
         public AccountDao() { }
 
-        public DataTable getUserInformation(string username, byte[] password, int role)
+        public async Task<DataTable> getUserInformation(string username, byte[] password)
         {
             string query = (
-                "getUserInformation @UserName , @Password , @Role"
+                "getUserInformation @userName , @password"
             );
 
-            DataTable data = DataProvider
+            DataTable data = await DataProvider
             .Instance
-                .ExcuteQuery(query, new object[]{ username, password, role});
+                .ExcuteQuery(query, new object[] { username, password});
             return data;
         }
 
-        public int createUser(string username, string fullName, byte[] password, int role)
+        public async Task <int> createUser
+        (
+            string username, 
+            string fullName, 
+            byte[] password, 
+            string role, 
+            int isMale, 
+            byte[] image,
+            DateTime DOB,
+            string grade,
+            string email
+        )
         {
-            int rowAffected = 0;
             string query = (
-                "createAccount @RoleID , @FullName , @Username , @Password"
+                "createAccount @username , @email , @fullname , @password , @DOB , @roleName " +
+                ", @className , @isMale , @image"
             );
             try
             {
-                rowAffected = DataProvider
+                int rowAffected = await DataProvider
                     .Instance
                     .ExcuteNonQuery(
                         query,
-                        new object[] { role, fullName, username, password }
+                        new object[] 
+                        {
+                            username, email, fullName, password, 
+                            DOB, role, grade, isMale, image
+                        }
                     );
+                return rowAffected;
             }
             catch(Exception e)
             {
                 Debug.WriteLine(e);
                 return 0;
             }
+        }
 
+        public async Task<int?> getUserName(string username)
+        {
+            int? rowAffected = 0;
+            string query = "Select COUNT([Username]) from [Account] where [Username] = @Username";
+            rowAffected = await DataProvider.Instance.ExcuteScalar(query, new object[] { username });
+            return rowAffected;
+        }
+
+        public async Task<int?> getEmail(string email)
+        {
+            int? rowAffected = 0;
+            string query = "Select COUNT([Email]) from [Account] where [Email] = @Email";
+            rowAffected = await DataProvider.Instance.ExcuteScalar(query, new object[] { email });
             return rowAffected;
         }
     }

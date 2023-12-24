@@ -47,12 +47,19 @@ namespace GUI
 
         private void LogForm_Load(object sender, EventArgs e)
         {
-            guna2Panel1.Controls.Add(new LoginModule());
+            Control login = new LoginModule();
+            login.Dock = DockStyle.Fill;
+            guna2Panel1.Controls.Add(login);
         }
 
         private void guna2ControlBox2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void LogForm_Click(object sender, EventArgs e)
+        {
+            guna2Panel1.Focus();
         }
     }
 }

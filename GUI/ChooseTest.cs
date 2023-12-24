@@ -14,31 +14,31 @@ namespace GUI
 {
     public partial class ChooseTest : Form
     {
-        private Account account;
+        //private AccountResponse account;
         private List<Subject> subjects = new List<Subject>();
-        public ChooseTest(Account _account)
+        public ChooseTest()
         {
             InitializeComponent();
-            account = _account;
+            //account = _account;
         }
 
         #region OWN METHOD
         public void loadSubjects()
         {
-            DataTable data = SendTestBus
-                .Instance
-                .loadSubject();
-            foreach (var row in data.Rows)
-            {
-                Subject subject = new Subject((DataRow)row);
-                subjects.Add(subject);
-            }
+            //DataTable data = SendTestBus
+            //    .Instance
+            //    .loadSubject();
+            //foreach (var row in data.Rows)
+            //{
+            //    Subject subject = new Subject((DataRow)row);
+            //    subjects.Add(subject);
+            //}
 
-            var listOfSubjectName = from subject in subjects
-                                    select subject.SubjectName1;
+            //var listOfSubjectName = from subject in subjects
+            //                        select subject.SubjectName1;
 
-            comboBox1.DataSource = listOfSubjectName
-                .ToList<string>();
+            //comboBox1.DataSource = listOfSubjectName
+            //    .ToList<string>();
         }
         #endregion  
 
@@ -50,15 +50,15 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var selectSubject = from subject in subjects
-                                where subject.SubjectName1 == comboBox1.Text
-                                select subject.SubjectID1;
-            int subjectChoose = selectSubject.ToList<int>()[0];
-            int questionType = comboBox2.SelectedIndex;
-            this.Hide();
-            TestForm tf = new TestForm(account, subjectChoose, questionType);
-            tf.ShowDialog();
-            this.Show();
+            //var selectSubject = from subject in subjects
+            //                    where subject.SubjectName1 == comboBox1.Text
+            //                    select subject.SubjectID1;
+            //int subjectChoose = selectSubject.ToList<int>()[0];
+            //int questionType = comboBox2.SelectedIndex;
+            //this.Hide();
+            //TestForm tf = new TestForm(account, subjectChoose, questionType);
+            //tf.ShowDialog();
+            //this.Show();
         }
     }
 }

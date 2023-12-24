@@ -42,6 +42,7 @@
             guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(components);
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // guna2Panel1
@@ -66,7 +67,7 @@
             guna2ControlBox1.Cursor = Cursors.Hand;
             guna2ControlBox1.CustomizableEdges = customizableEdges3;
             guna2ControlBox1.FillColor = Color.Transparent;
-            guna2ControlBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2ControlBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             guna2ControlBox1.ForeColor = Color.Black;
             guna2ControlBox1.HoverState.FillColor = Color.Tomato;
             guna2ControlBox1.IconColor = Color.White;
@@ -85,7 +86,7 @@
             guna2ControlBox2.Cursor = Cursors.Hand;
             guna2ControlBox2.CustomizableEdges = customizableEdges5;
             guna2ControlBox2.FillColor = Color.Transparent;
-            guna2ControlBox2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2ControlBox2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             guna2ControlBox2.ForeColor = Color.Black;
             guna2ControlBox2.HoverState.FillColor = Color.FromArgb(152, 116, 168);
             guna2ControlBox2.IconColor = Color.White;
@@ -100,12 +101,17 @@
             // guna2DragControl1
             // 
             guna2DragControl1.DockIndicatorTransparencyValue = 0.6D;
+            guna2DragControl1.TargetControl = this;
             guna2DragControl1.UseTransparentDrag = true;
+            // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
             // 
             // LogForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1280, 720);
             Controls.Add(guna2ControlBox2);
             Controls.Add(guna2ControlBox1);
@@ -116,6 +122,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LogForm";
             Load += LogForm_Load;
+            Click += LogForm_Click;
             ResumeLayout(false);
         }
 
@@ -126,5 +133,6 @@
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
+        public System.Windows.Forms.Timer timer1;
     }
 }

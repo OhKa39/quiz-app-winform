@@ -91,7 +91,7 @@
             button3.TabIndex = 4;
             button3.Text = "Sửa";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            //button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -101,7 +101,6 @@
             button2.TabIndex = 3;
             button2.Text = "Thêm";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -111,7 +110,6 @@
             button1.TabIndex = 2;
             button1.Text = "Quay lại";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // dataGridView1
             // 
@@ -301,7 +299,7 @@
             label1.Size = new Size(87, 24);
             label1.TabIndex = 4;
             label1.Text = "Câu hỏi";
-            label1.Click += label1_Click;
+            //label1.Click += label1_Click;
             // 
             // SendTest
             // 
@@ -312,7 +310,7 @@
             Name = "SendTest";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SendTest";
-            Load += SendTest_Load;
+            //Load += SendTest_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

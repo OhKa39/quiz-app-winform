@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Data.Common;
 
@@ -13,7 +13,7 @@ namespace DAO
 {
     public class DataProvider
     {
-        private string connString = "Server=tcp:quizgame.database.windows.net,1433;Initial Catalog=QuizGame;Persist Security Info=False;User ID=ohka39;Password=12303123AbC@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private string connString = @"Data Source=ADMIN;Initial Catalog=QuizAppG5;Integrated Security=True";
         private static DataProvider instance;
 
         public static DataProvider Instance { 
@@ -30,7 +30,7 @@ namespace DAO
         }
 
         public DataProvider() { }
-        public DataTable ExcuteQuery(string query, object[] parameter = null)
+        public async Task<DataTable> ExcuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();
             SqlConnection conn = new SqlConnection(connString);
@@ -52,14 +52,14 @@ namespace DAO
                 
                 SqlDataAdapter da = new SqlDataAdapter(command);
 
-                da.Fill(data);
+                await Task.Run(() => da.Fill(data));
             }
             return data;
         }
 
-        public int ExcuteNonQuery(string query, object[] parameter = null)
+        public async Task<int> ExcuteNonQuery(string query, object[] parameter = null, IProgress<int> progress = null)
         {
-            int count = 0;
+            int data = 0;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 try
@@ -80,8 +80,8 @@ namespace DAO
                     }
 
                     command.Connection.Open();
-                    count = command.ExecuteNonQuery();
-                    return count;
+                    await Task.Run(() => data = (int)command.ExecuteNonQuery());
+                    return data;
                 }
                 catch(SqlException e)
                 {
@@ -90,12 +90,12 @@ namespace DAO
             }
         }
 
-        public object ExcuteScalar(string query, object[] parameter = null)
+        public async Task<int?> ExcuteScalar(string query, object[] parameter = null)
         {
-            object data;
-            SqlConnection conn = new SqlConnection(connString);
-            using (SqlCommand command = new SqlCommand(query, conn))
+            int? data = null;
+            using (SqlConnection conn = new SqlConnection(connString))
             {
+                SqlCommand command = new SqlCommand(query, conn);
                 if (parameter != null)
                 {
                     string[] stringQuery = query.Split(' ');
@@ -109,7 +109,8 @@ namespace DAO
                         }
                     }
                 }
-                data = command.ExecuteScalar();
+                command.Connection.Open();
+                await Task.Run(() => data = (int?)command.ExecuteScalar());
             }
 
             return data;

@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.8.1" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.6" />
   </ItemGroup>
 
@@ -16,6 +17,8 @@
     <ProjectReference Include="..\BUS\BUS.csproj" />
     <ProjectReference Include="..\DTO\DTO.csproj" />
     <ProjectReference Include="..\ENUM\ENUM.csproj" />
+    <ProjectReference Include="..\Utils\Utils.csproj" />
+    <ProjectReference Include="..\ValidateRules\ValidateRules.csproj" />
   </ItemGroup>
 
   <ItemGroup>

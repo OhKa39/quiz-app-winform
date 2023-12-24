@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BUS", "BUS\BUS.csproj", "{2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ENUM", "ENUM\ENUM.csproj", "{AB93A4AD-4B54-4BBE-9D82-6C2E8470E117}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "Utils\Utils.csproj", "{FD05B1C7-30C0-4ED6-940B-8E8250C7A1BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidateRules", "ValidateRules\ValidateRules.csproj", "{209780B1-A97A-4D1A-8A26-94FD6C4F1483}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{AB93A4AD-4B54-4BBE-9D82-6C2E8470E117}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB93A4AD-4B54-4BBE-9D82-6C2E8470E117}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB93A4AD-4B54-4BBE-9D82-6C2E8470E117}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD05B1C7-30C0-4ED6-940B-8E8250C7A1BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD05B1C7-30C0-4ED6-940B-8E8250C7A1BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD05B1C7-30C0-4ED6-940B-8E8250C7A1BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD05B1C7-30C0-4ED6-940B-8E8250C7A1BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{209780B1-A97A-4D1A-8A26-94FD6C4F1483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{209780B1-A97A-4D1A-8A26-94FD6C4F1483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{209780B1-A97A-4D1A-8A26-94FD6C4F1483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{209780B1-A97A-4D1A-8A26-94FD6C4F1483}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

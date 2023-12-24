@@ -29,10 +29,10 @@ namespace BUS
 
         public ChooseTestBus() { }
 
-        public DataTable loadSubject()
-        {
-            DataTable data = SubjectDao.Instance.loadSubject();
-            return data;
-        }
+        //public DataTable loadSubject()
+        //{
+        //    DataTable data = SubjectDao.Instance.loadSubject();
+        //    return data;
+        //}
     }
 }

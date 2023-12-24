@@ -15,7 +15,7 @@ namespace GUI
 {
     public partial class TestForm : Form
     {
-        private Account account;
+        private AccountResponse account;
         private int subjectChoose;
         private int questionType;
         private List<QuestionTest> questions = new List<QuestionTest>();
@@ -24,7 +24,7 @@ namespace GUI
         private int page = 1;
         private int timeCount = 60 * 120;
 
-        public TestForm(Account _account, int subjectChoose, int questionType)
+        public TestForm(AccountResponse _account, int subjectChoose, int questionType)
         {
             InitializeComponent();
             account = _account;
@@ -46,29 +46,29 @@ namespace GUI
 
         public void loadQuestions()
         {
-            DataTable data = TestFormBus
-                .Instance
-                .loadQuestionsTest(
-                    NUMBER_QUESTION, 1, subjectChoose, questionType
-                );
+            //DataTable data = TestFormBus
+            //    .Instance
+            //    .loadQuestionsTest(
+            //        NUMBER_QUESTION, 1, subjectChoose, questionType
+            //    );
 
-            if (data.Rows.Count < NUMBER_QUESTION)
-            {
-                MessageBox.Show(
-                        "Kho dữ liệu chưa cập nhật. Hãy quay lại sau nhé",
-                        "Thông báo",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                );
-                this.Hide();
-                return;
-            }
+            //if (data.Rows.Count < NUMBER_QUESTION)
+            //{
+            //    MessageBox.Show(
+            //            "Kho dữ liệu chưa cập nhật. Hãy quay lại sau nhé",
+            //            "Thông báo",
+            //            MessageBoxButtons.OK,
+            //            MessageBoxIcon.Information
+            //    );
+            //    this.Hide();
+            //    return;
+            //}
 
-            foreach (var row in data.Rows)
-            {
-                QuestionTest question = new QuestionTest((DataRow)row);
-                questions.Add(question);
-            }
+            //foreach (var row in data.Rows)
+            //{
+            //    QuestionTest question = new QuestionTest((DataRow)row);
+            //    questions.Add(question);
+            //}
         }
 
         public void updateCurrentPage(int pageNum)

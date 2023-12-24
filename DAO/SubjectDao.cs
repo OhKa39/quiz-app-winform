@@ -28,10 +28,10 @@ namespace DAO
 
         public SubjectDao() { }
 
-        public DataTable loadSubject()
+        public async Task<DataTable> loadSubjectByBookName(string bookname)
         {
-            string query = "SELECT * FROM [SUBJECT]";
-            DataTable data = DataProvider.Instance.ExcuteQuery(query);
+            string query = "SELECT [SubjectName] FROM [SUBJECT], [Book] where [Subject].[BookID] = [Book].[BookID] and [BookName] = @BookName";
+            DataTable data = await DataProvider.Instance.ExcuteQuery(query, new object[] {bookname});
             return data;
         }
     }

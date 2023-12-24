@@ -13,10 +13,10 @@ namespace GUI
 {
     public partial class MainForm : Form
     {
-        private Account account;
-        public MainForm(Account _account)
+        //private AccountResponse account;
+        public MainForm()
         {
-            account = _account;
+            //account = _account;
             InitializeComponent();
         }
 
@@ -32,18 +32,18 @@ namespace GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            SendTest sendtestForm = new SendTest(account);
-            sendtestForm.ShowDialog();
-            this.Show();
+            //this.Hide();
+            //SendTest sendtestForm = new SendTest(account);
+            //sendtestForm.ShowDialog();
+            //this.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ChooseTest chooseTest = new ChooseTest(account);
-            chooseTest.ShowDialog();
-            this.Show();
+            //this.Hide();
+            //ChooseTest chooseTest = new ChooseTest(account);
+            //chooseTest.ShowDialog();
+            //this.Show();
 
         }
     }

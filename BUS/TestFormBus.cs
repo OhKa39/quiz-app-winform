@@ -29,15 +29,15 @@ namespace BUS
 
         public TestFormBus() { }
 
-        public DataTable loadQuestionsTest(
-            int rowNumber, int IsOK, int subjectID, int questionType
-        )
-        {
-            DataTable data = QuestionDao.Instance.loadQuestionsTest(
-                   rowNumber, IsOK, subjectID, questionType
-            );
+        //public DataTable loadQuestionsTest(
+        //    int rowNumber, int IsOK, int subjectID, int questionType
+        //)
+        //{
+        //    DataTable data = QuestionDao.Instance.loadQuestionsTest(
+        //           rowNumber, IsOK, subjectID, questionType
+        //    );
 
-            return data;
-        }
+        //    return data;
+        //}
     }
 }

@@ -26,29 +26,29 @@ namespace QuizGameGroup5
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string username = usernameTXB.Text;
-            string password = pwdTXB.Text;
-            int role = comboBox1.SelectedIndex + 1;
-            DataTable sessionInfomation = LoginBus.
-                                          Instance.
-                                          getUserInformation(username, password, role);
-            if (sessionInfomation.Rows.Count > 0)
-            {
-                Account loginSession = new Account(sessionInfomation.Rows[0]);
-                this.Hide();
-                MainForm mainForm = new MainForm(loginSession);
-                mainForm.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                MessageBox.Show(
-                    "Sai thông tin đăng nhập",
-                    "Lỗi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
+            //string username = usernameTXB.Text;
+            //string password = pwdTXB.Text;
+            //int role = comboBox1.SelectedIndex + 1;
+            //DataTable sessionInfomation = LoginBus.
+            //                              Instance.
+            //                              getUserInformation(username, password, role);
+            //if (sessionInfomation.Rows.Count > 0)
+            //{
+            //    Account loginSession = new Account(sessionInfomation.Rows[0]);
+            //    this.Hide();
+            //    MainForm mainForm = new MainForm(loginSession);
+            //    mainForm.ShowDialog();
+            //    this.Show();
+            //}
+            //else
+            //{
+            //    MessageBox.Show(
+            //        "Sai thông tin đăng nhập",
+            //        "Lỗi",
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Error
+            //    );
+            //}
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,12 +58,12 @@ namespace QuizGameGroup5
 
         private void createAccountButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            CreateAccount createAccountForm = new CreateAccount();
-            createAccountForm.ShowDialog();
-            usernameTXB.Text = "";
-            pwdTXB.Text = "";
-            this.Show();
+            //this.Hide();
+            //CreateAccount createAccountForm = new CreateAccount();
+            //createAccountForm.ShowDialog();
+            //usernameTXB.Text = "";
+            //pwdTXB.Text = "";
+            //this.Show();
         }
 
         private void Login_Load(object sender, EventArgs e)
