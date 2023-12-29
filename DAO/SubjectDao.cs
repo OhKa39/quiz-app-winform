@@ -30,7 +30,7 @@ namespace DAO
 
         public async Task<DataTable> loadSubjectByBookName(string bookname)
         {
-            string query = "SELECT [SubjectName] FROM [SUBJECT], [Book] where [Subject].[BookID] = [Book].[BookID] and [BookName] = @BookName";
+            string query = "SELECT [SubjectName] FROM [SUBJECT], [Book], [BookSubject] where [Subject].[SubjectID] = [BookSubject].[SubjectID] and [Book].[BookID] = [BookSubject].[BookID] and [BookName] = @BookName";
             DataTable data = await DataProvider.Instance.ExcuteQuery(query, new object[] {bookname});
             return data;
         }

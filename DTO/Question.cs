@@ -5,39 +5,43 @@ namespace DTO
     public class Question
     {
         private int questionID;
-        private string? description;
-        private string? subjectName;
-        private string? answer1;
-        private string? answer2;
-        private string? answer3;
-        private string? answer4;
-        private int trueAnswer;
+        private string questionDetail;
+        private string difficultName;
+        private string subjectName; 
+        private DateTime updateAt;
+        private bool isTest;
         private bool isOK;
-        private bool questionType;
+
+        public Question() { }
 
         public Question(DataRow data)
         {
             QuestionID = (int)data["QuestionID"];
-            Description = data["Description"].ToString();
             SubjectName = data["SubjectName"] as string;
-            Answer1 = data["Answer1"].ToString();
-            Answer2 = data["Answer2"].ToString();
-            Answer3 = data["Answer3"].ToString();
-            Answer4 = data["Answer4"].ToString();
-            TrueAnswer = (int)data["TrueAnswer"];
+            QuestionDetail = data["QuestionDetail"] as string;
+            DifficultName = data["DifficultName"] as string;
+            UpdateAt = (DateTime)data["updateAt"];
+            IsTest = (bool)data["IsTest"];
             IsOK = (bool)data["IsOK"];
-            QuestionType = (bool)data["QuestionType"];
+        }
+
+        public Question(Question _question)
+        {
+            QuestionID = _question.QuestionID;
+            SubjectName = _question.SubjectName;
+            QuestionDetail = _question.QuestionDetail;
+            DifficultName = _question.DifficultName;
+            UpdateAt = _question.UpdateAt;
+            IsTest = _question.IsTest;
+            IsOK = _question.IsOK;
         }
 
         public int QuestionID { get => questionID; set => questionID = value; }
-        public string Description { get => description; set => description = value; }
+        public string QuestionDetail { get => questionDetail; set => questionDetail = value; }
+        public string DifficultName { get => difficultName; set => difficultName = value; }
         public string SubjectName { get => subjectName; set => subjectName = value; }
-        public string Answer1 { get => answer1; set => answer1 = value; }
-        public string Answer2 { get => answer2; set => answer2 = value; }
-        public string Answer3 { get => answer3; set => answer3 = value; }
-        public string Answer4 { get => answer4; set => answer4 = value; }
-        public int TrueAnswer { get => trueAnswer; set => trueAnswer = value; }
+        public DateTime UpdateAt { get => updateAt; set => updateAt = value; }
+        public bool IsTest { get => isTest; set => isTest = value; }
         public bool IsOK { get => isOK; set => isOK = value; }
-        public bool QuestionType { get => questionType; set => questionType = value; }
     }
 }

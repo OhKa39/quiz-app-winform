@@ -133,7 +133,7 @@ namespace GUI
             LogForm parent = (LogForm)formPanel.Parent;
             parent.Opacity = 0;
             parent.ShowInTaskbar = false;
-            MainFormQuizApp mfqa = new MainFormQuizApp(acc);
+            MainFormQuiz mfqa = new MainFormQuiz(acc);
             mfqa.ShowDialog();
             parent.Opacity = 1;
             parent.ShowInTaskbar = true;

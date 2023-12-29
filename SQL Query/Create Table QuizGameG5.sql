@@ -36,7 +36,8 @@ create table [Account](
 	[ClassID] int not null,
 	[DOB] datetime not null,
 	[IsBanned] bit default 0,
-	[isMale] bit
+	[isMale] bit,
+	[UpdateAt] datetime default getdate(),
 )
 go
 
@@ -69,13 +70,24 @@ go
 create table [Subject](
 	[SubjectID] int identity primary key,
 	[SubjectName] nvarchar(MAX) not null,
-	[BookID] int
 )
 go
 
-alter table [Subject] 
-add constraint fk_SubjectBook foreign key ([BookID]) 
+create table [BookSubject](
+	[BookID] int,
+	[SubjectID] int
+	primary key([BookID], [SubjectID])
+)
+go
+
+alter table [BookSubject]
+add constraint fk_BookSubjectBook foreign key ([BookID]) 
 references [Book]([BookID])
+go
+
+alter table [BookSubject]
+add constraint fk_BookSubjectSubject foreign key ([SubjectID]) 
+references [Subject]([SubjectID])
 go
 
 create table [DifficultLevel](
@@ -93,6 +105,7 @@ create table [Question](
 	[IsOK] bit default 0,
 	[IsTest] bit not null,
 	[DifficultLevelID] int,
+	[UpdateAt] datetime default getdate(),
 )
 go
 
@@ -121,7 +134,7 @@ go
 
 alter table [Answer] 
 add constraint fk_AnswerQuestion foreign key ([QuestionID]) 
-references [Question]([QuestionID])
+references [Question]([QuestionID]) on delete cascade
 go
 
 create table [QuestionSet](
@@ -131,6 +144,7 @@ create table [QuestionSet](
 	[Time] int not null,
 	[AccountID] int,
 	[CreateAt] datetime default getdate(),
+	[UpdateAt] datetime default getdate()
 )
 go
 
@@ -162,6 +176,8 @@ create table [TestSetManage](
 	[QuestionSetID] int,
 	[ClassID] int,
 	[TestSetManageName] nvarchar(100), 
+	[CreateAt] datetime default getdate(),
+	[UpdateAt] datetime default getdate()
 	primary key([QuestionSetID], [ClassID])
 )
 go
@@ -184,7 +200,7 @@ go
 create table [TestLog](
 	[TestLogID] int identity primary key,
 	[AccountID] int,
-	[QuestionSetManageID] int,
+	[TestSetManageID] int,
 	[Score] float,
 	[CreateAt] datetime default getdate()
 )
@@ -196,18 +212,24 @@ references [Account]([AccountID])
 go
 
 alter table [TestLog] 
-add constraint fk_TestLogQuestionSetManage foreign key ([QuestionSetManageID]) 
-references [QuestionSetManage]([QuestionSetManageID])
+add constraint fk_TestLogTestSetManageID foreign key ([TestSetManageID]) 
+references [TestSetManage]([TestSetManageID])
 go
 
 create table [UserAnswer]
 (
 	[UserAnswerID] int identity primary key,
-	[UserAnswerDetail] nvarchar(MAX),
-	[TestLogID] int
+	[AnswerID] int,
+	[TestLogID] int,
 )
 go
+
+alter table [UserAnswer] alter column [AnswerID] int
 
 alter table [UserAnswer]
 add constraint fk_UserAnswer foreign key([TestLogID])
 references [TestLog]([TestLogID])
+
+alter table [UserAnswer]
+add constraint fk_UserAnswerAnswer foreign key([AnswerID])
+references [Answer]([AnswerID])

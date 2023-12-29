@@ -15,6 +15,7 @@ using Guna.UI2.WinForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Microsoft.IdentityModel.Tokens;
 using BUS;
+using System.Diagnostics;
 
 namespace GUI
 {
@@ -63,6 +64,7 @@ namespace GUI
                 Port = 587,
                 Credentials = new NetworkCredential("bestlolvn21@gmail.com", "raic junn rkuy oaes"),
                 EnableSsl = true,
+                Timeout = 10000
             };
 
             var mailMessage = new MailMessage
@@ -137,15 +139,28 @@ namespace GUI
 
         private async void RegisterComponentStep3_Load(object sender, EventArgs e)
         {
-            guna2TextBox1.DataBindings.Add("Text", this, "A", false, DataSourceUpdateMode.OnPropertyChanged);
-            guna2TextBox2.DataBindings.Add("Text", this, "B", false, DataSourceUpdateMode.OnPropertyChanged);
-            guna2TextBox3.DataBindings.Add("Text", this, "C", false, DataSourceUpdateMode.OnPropertyChanged);
-            guna2TextBox4.DataBindings.Add("Text", this, "D", false, DataSourceUpdateMode.OnPropertyChanged);
-            guna2TextBox5.DataBindings.Add("Text", this, "E", false, DataSourceUpdateMode.OnPropertyChanged);
-            guna2TextBox6.DataBindings.Add("Text", this, "F", false, DataSourceUpdateMode.OnPropertyChanged);
-            gunaTextBoxes[currentTextBox].Focus();
-            time = timeWaitSendMessage;
-            verifyCode = await sendVerifyCode();
+            try
+            {
+                guna2TextBox1.DataBindings.Add("Text", this, "A", false, DataSourceUpdateMode.OnPropertyChanged);
+                guna2TextBox2.DataBindings.Add("Text", this, "B", false, DataSourceUpdateMode.OnPropertyChanged);
+                guna2TextBox3.DataBindings.Add("Text", this, "C", false, DataSourceUpdateMode.OnPropertyChanged);
+                guna2TextBox4.DataBindings.Add("Text", this, "D", false, DataSourceUpdateMode.OnPropertyChanged);
+                guna2TextBox5.DataBindings.Add("Text", this, "E", false, DataSourceUpdateMode.OnPropertyChanged);
+                guna2TextBox6.DataBindings.Add("Text", this, "F", false, DataSourceUpdateMode.OnPropertyChanged);
+                gunaTextBoxes[currentTextBox].Focus();
+                time = timeWaitSendMessage;
+                verifyCode = await sendVerifyCode();
+            }
+            catch( Exception ex )
+            {
+                if (isUnValid == -1)
+                {
+                    currentTextBox = 0;
+                    isUnValid *= -1;
+                    turnValidation(isUnValid);
+                    Debug.WriteLine(ex.Message);
+                }
+            }
 
         }
 
@@ -265,11 +280,11 @@ namespace GUI
             }
             else
                 if (isUnValid == -1)
-            {
-                currentTextBox = 0;
-                isUnValid *= -1;
-                turnValidation(isUnValid);
-            }
+                {
+                    currentTextBox = 0;
+                    isUnValid *= -1;
+                    turnValidation(isUnValid);
+                }
 
         }
     }
