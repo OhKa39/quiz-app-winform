@@ -738,9 +738,10 @@ as
 	where [TestSetManageID] = @testSetID
 go
 
-create proc loadAllUserTestLog(
+alter proc loadAllUserTestLog(
 	@classID int = null,
 	@testSetManageID int = null,
+	@searchBox nvarchar(MAX),
 	@rowsofpage int,
 	@pagenumber int
 )
@@ -754,23 +755,42 @@ begin
 		set @WHERE_SQL += ' and [Class].[ClassID] = @classID'
 	if @testSetManageID is not null
 		set @WHERE_SQL += ' and [TestLog].[TestSetManageID] = @testSetManageID'
+    if COALESCE(@searchBox, '') <> ''
+			set @WHERE_SQL += ' AND [FullName] = @searchBox'
 
 	set @query = '
-		select [FullName],[TestLogID],[TestLog].[CreateAt],[TimeTaken], [ClassName]
+		select [FullName],[TestLogID],[TestLog].[CreateAt],[TimeTaken], 
+		[ClassName], Count(*) OVER() as TotalRecords
 		from [TestLog], [TestSetManage], [Account], [Class]
 		where [TestLog].[AccountID] = [Account].[AccountID]
 		and [Account].[ClassID] = [Class].[ClassID]
 		and [TestLog].[TestSetManageID] = [TestSetManage].[TestSetManageID]'
-		+
-		
-		
-	    
+		+ @WHERE_SQL
+		+ @orderBy
+		+ ' OFFSET (@pagenumber-1)*@rowsofpage ROWS
+			FETCH NEXT @rowsofpage ROWS ONLY'
+
+	declare @params nvarchar(MAX)
+	set @params = '@classID int, @testSetManageID int, @searchBox nvarchar(MAX), 
+	               @rowsofpage int,  @pagenumber int'
+	exec sp_executesql @query, @params,
+					   @classID = @classID,
+					   @testSetManageID = @testSetManageID,
+					   @searchBox = @searchBox,
+					   @rowsofpage = @rowsofpage,
+					   @pagenumber = @pagenumber    
 end
 go
 
-loadAllUserTestLog 1, 1
-
-findAllQuestionSetIDinTestSet '1'
+create proc getClassInTestSetManageClass(
+	@testSetManageID int
+)
+as
+	select [TestSetManageClass].[ClassID], [ClassName]
+	from [TestSetManageClass], [Class]
+	where [TestSetManageClass].[ClassID] = [Class].[ClassID]
+	and [TestSetManageClass].[TestSetManageID] = @testSetManageID
+go
 
 select * from [TestLog]
 select * from [UserAnswer]
