@@ -23,7 +23,7 @@ namespace GUI
             SetStyle(
                 ControlStyles.UserPaint |
                 ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.DoubleBuffer, 
+                ControlStyles.DoubleBuffer,
                 true
             );
             InitializeComponent();

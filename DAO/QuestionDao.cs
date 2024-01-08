@@ -26,16 +26,16 @@ namespace DAO
 
         public QuestionDao() { }
 
-        public async Task<DataTable> loadQuestionByUser
+        public async Task<DataTable> loadQuestionByFilter
         (
             string username, int page, int offset, string questionDetail,
             string difficultName, string subjectName, DateTime from,
-            DateTime To, int? isTest, int? isOK 
+            DateTime To, int? isTest, int? isOK, string questionID 
         )
         {
-            string query = "findAllQuestionByUsername @username , @pagenumber , " +
+            string query = "findAllQuestion @username , @pagenumber , " +
                 "@rowsofpage , @questionDetail , @difficultName , @subjectName , @from"
-                + " , @To , @isTest , @isOK";
+                + " , @To , @isTest , @isOK , @questionID";
             object IfTest = (object) isTest ?? DBNull.Value;
             object IfOK = (object) isOK ?? DBNull.Value;
             DataTable data = await DataProvider
@@ -44,33 +44,10 @@ namespace DAO
                     query, new object[] 
                     {
                         username, page, offset, questionDetail, difficultName,
-                        subjectName, from, To, IfTest, IfOK
+                        subjectName, from, To, IfTest, IfOK, questionID
                     }
                 );
             return data;
-        }
-
-        public async Task<int?> createQuestionByUserID
-        (
-            string questionDetail,
-            string subjectName,
-            string difficultName,
-            int isTest,
-            int userID
-        )
-        {
-            string query = "createQuestion @questionDetail , @subjectName , @difficultName , " +
-                "@isTest , @userID";
-            int? questionID = await DataProvider
-                .Instance
-                .ExcuteScalar(
-                    query,
-                    new object[] {
-                        questionDetail, subjectName, difficultName, isTest,
-                        userID
-                    }
-                );
-            return questionID;
         }
 
         public async Task<int> deleteQuestionByQuestionID
@@ -104,6 +81,27 @@ namespace DAO
                     query,
                     new object[] { questionID, questionDetail, subjectName, difficultName, isTest});
             return rowCount;
+        }
+
+        public async Task<DataTable> loadAllQuestionInQuestionSet(int? questionSetID)
+        {
+            string query = "loadAllQuestionInQuestionSet @questionSetID";
+            object questionID = (object)questionSetID ?? DBNull.Value;
+            DataTable data = await DataProvider.Instance.ExcuteQuery(
+                    query,
+                    new object[] { questionID }
+                );
+            return data;
+        }
+
+        public async Task<DataTable> loadAllQuestionFromTestLog(int testLogID)
+        {
+            string query = "findAllQuestionIDInTestLog @testLogID";
+            DataTable data = await DataProvider.Instance.ExcuteQuery(
+                    query,
+                    new object[] { testLogID }
+                );
+            return data;
         }
     }
 }

@@ -18,6 +18,9 @@ namespace GUI.TestForm
     {
         private int stateIsEdit = -1;
         private Question question;
+
+        public int StateIsEdit { get => stateIsEdit; set => stateIsEdit = value; }
+
         public QuestionDetailList(Question _question)
         {
             question = _question;
@@ -26,11 +29,14 @@ namespace GUI.TestForm
 
         private void QuestionDetailList_Load(object sender, EventArgs e)
         {
+            if (StateIsEdit == 1)
+                guna2Button1.Enabled = false;
             guna2ComboBox4.SelectedIndex = 0;
             guna2ComboBox3.Text = question.DifficultName;
             guna2ComboBox2.Items.Add(question.SubjectName);
             guna2ComboBox2.Text = question.SubjectName;
             guna2ComboBox5.SelectedIndex = question.IsTest == true ? 2 : 1;
+            guna2HtmlLabel3.Text = $"Lần cập nhật gần nhất: {question.UpdateAt}";
         }
 
         private async void guna2Button1_Click(object sender, EventArgs e)
@@ -80,62 +86,79 @@ namespace GUI.TestForm
                     guna2ComboBox2.Items.Add(i["SubjectName"]);
                 }
             }
-            
+
         }
 
         private async void guna2Button2_Click(object sender, EventArgs e)
         {
-            TestFormUI tfUI = (TestFormUI)this.Parent.Parent;
-            string subjectName = guna2ComboBox2.Text;
-            bool isTest = guna2ComboBox5.Text == "Thi" ? true : false;
-            string questionDetail = tfUI.guna2TextBox1.Text;
-            string difficultName = guna2ComboBox3.Text;
-
-            string answerID = "";
-            string isTrue = "";
-            string answerDetail = "";
-            int cnt = tfUI.flowLayoutPanel1.Controls.Count;
-            foreach (AnswerDetailList adl in tfUI.flowLayoutPanel1.Controls)
+            try
             {
-                answerID += adl.AnswerID + ",";
-                isTrue += (adl.IsChecked == true ? 1 : 0) + ",";
-                answerDetail += adl.TextBoxText + ",";
-            }
+                TestFormUI tfUI = (TestFormUI)this.Parent.Parent;
+                string subjectName = guna2ComboBox2.Text;
+                string isTestString = guna2ComboBox5.Text;
+                string questionDetail = tfUI.guna2TextBox1.Text;
+                string difficultName = guna2ComboBox3.Text;
 
-            int? rowAffect = await MainFormQuizAppBus.Instance.UpdateQuestionAndAnswer(
-                question.QuestionID, questionDetail, subjectName, difficultName, isTest,
-                answerID, answerDetail, isTrue
-            );
-            guna2Button1.Enabled = true;
-            guna2Button2.Enabled = false;
-            
-            guna2ComboBox4.Enabled = false;
-            guna2ComboBox3.Enabled = false;
-            guna2ComboBox2.Enabled = false;
-            guna2ComboBox5.Enabled = false;
-            tfUI.guna2TextBox1.Enabled = false;
-            foreach (AnswerDetailList adl in tfUI.flowLayoutPanel1.Controls)
-            {
-                adl.guna2TextBox1.Enabled = false;
-                adl.guna2RadioButton1.Enabled = false;
-                adl.EnableEvent = 1;
+                if (subjectName == "--Chủ đề--" || isTestString == "--Dạng--"
+                   || questionDetail.Trim() == "" || difficultName == "--Độ khó--")
+                    throw new Exception("Không được để trống trường thông tin");
+
+                bool isTest = isTestString == "Thi" ? true : false;
+                string answerID = "";
+                string isTrue = "";
+                string answerDetail = "";
+                int cnt = tfUI.flowLayoutPanel1.Controls.Count;
+
+                foreach (AnswerDetailList adl in tfUI.flowLayoutPanel1.Controls)
+                {
+                    answerID += adl.AnswerID + ",";
+                    isTrue += (adl.IsChecked == true ? 1 : 0) + ",";
+                    if(adl.TextBoxText.Trim() == "")
+                        throw new Exception("Không được để trống trường thông tin");
+                    answerDetail += adl.TextBoxText.Trim() + ",";
+                }
+
+                int rowAffect = await MainFormQuizAppBus.Instance.UpdateQuestionAndAnswer(
+                    question.QuestionID, questionDetail, subjectName, difficultName, isTest,
+                    answerID, answerDetail, isTrue
+                );
+
+                if (rowAffect > 0)
+                {
+                    MessageBox.Show(
+                         "Sửa câu hỏi thành công",
+                         "Information",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Information
+                    );
+                    guna2HtmlLabel3.Text = $"Lần cập nhật gần nhất: {DateTime.Now}";
+                }
+
+                guna2Button1.Enabled = true;
+                guna2Button2.Enabled = false;
+
+                guna2ComboBox4.Enabled = false;
+                guna2ComboBox3.Enabled = false;
+                guna2ComboBox2.Enabled = false;
+                guna2ComboBox5.Enabled = false;
+                tfUI.guna2TextBox1.Enabled = false;
+
+                foreach (AnswerDetailList adl in tfUI.flowLayoutPanel1.Controls)
+                {
+                    adl.guna2TextBox1.Enabled = false;
+                    adl.guna2RadioButton1.Enabled = false;
+                    adl.EnableEvent = 1;
+                }
             }
-            if (rowAffect == cnt)
+            catch(Exception ex)
             {
                 MessageBox.Show(
-                     "Sửa câu hỏi thành công",
-                     "Information",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Information
+                    $"Sửa câu hỏi thất bại: {ex.Message}",
+                    "Thất bại",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
                 );
-                return;
-            }
-
-            MessageBox.Show(
-                    "Sửa câu hỏi thất bại",
-                    "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error
-                );
+            }    
 
         }
     }

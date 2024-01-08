@@ -28,23 +28,6 @@ namespace DAO
 
         public AnswerDao() { }
 
-        public async Task<int?> createAnswerByQuestionID
-        (
-            int? questionID,
-            string answerDetail,
-            string isTrue
-        )
-        {
-            string query = "createAnswer @questionID , @answerDetail , @isTrue";
-            int? count = await DataProvider
-                .Instance
-                .ExcuteScalar(
-                    query,
-                    new object[] { questionID, answerDetail, isTrue}
-                );
-            return count;
-        }
-
         public async Task<DataTable> loadAnswerByQuestionID(int questionID)
         {
             string query = "loadAnswerByQuestionID @questionID";

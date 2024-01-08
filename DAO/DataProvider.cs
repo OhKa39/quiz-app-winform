@@ -33,36 +33,80 @@ namespace DAO
         public async Task<DataTable> ExcuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();
-            SqlConnection conn = new SqlConnection(connString);
-            using (SqlCommand command = new SqlCommand(query, conn))
-            {        
-                if(parameter != null)
+            try
+            {
+                SqlConnection conn = new SqlConnection(connString);
+                using (SqlCommand command = new SqlCommand(query, conn))
                 {
-                    string[] stringQuery = query.Split(' ');
-                    int j = 0;
-                    foreach (var i in stringQuery)
+                    if (parameter != null)
                     {
-                        if (i.Contains('@'))
+                        string[] stringQuery = query.Split(' ');
+                        int j = 0;
+                        foreach (var i in stringQuery)
                         {
-                            command.Parameters.AddWithValue(i, parameter[j]);
-                            ++j;
+                            if (i.Contains('@'))
+                            {
+                                command.Parameters.AddWithValue(i, parameter[j]);
+                                ++j;
+                            }
                         }
                     }
-                }
-                
-                SqlDataAdapter da = new SqlDataAdapter(command);
 
-                await Task.Run(() => da.Fill(data));
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+
+                    await Task.Run(() => da.Fill(data));
+                }
+                return data;
             }
-            return data;
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message, e);
+            }
         }
 
         public async Task<int> ExcuteNonQuery(string query, object[] parameter = null, IProgress<int> progress = null)
         {
             int data = 0;
-            using (SqlConnection conn = new SqlConnection(connString))
+            try
             {
-                try
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        if (parameter != null)
+                        {
+                            string[] stringQuery = query.Split(' ');
+                            int j = 0;
+                            foreach (var i in stringQuery)
+                            {
+                                if (i.Contains('@'))
+                                {
+                                    command.Parameters.AddWithValue(i, parameter[j]);
+                                    ++j;
+                                }
+                            }
+                        }
+
+                        command.Connection.Open();
+                        await Task.Run(() => data = (int)command.ExecuteNonQuery());
+                    }
+                    
+                }
+                return data;
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message, e);
+            }
+        }
+
+        public async Task<int?> ExcuteScalar(string query, object[] parameter = null)
+        {
+            int? data = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connString))
                 {
                     SqlCommand command = new SqlCommand(query, conn);
                     if (parameter != null)
@@ -78,42 +122,15 @@ namespace DAO
                             }
                         }
                     }
-
                     command.Connection.Open();
-                    await Task.Run(() => data = (int)command.ExecuteNonQuery());
-                    return data;
+                    await Task.Run(() => data = (int?)command.ExecuteScalar());
                 }
-                catch(SqlException e)
-                {
-                    throw new Exception("Something is wrong", e);
-                }                              
+                return data;
             }
-        }
-
-        public async Task<int?> ExcuteScalar(string query, object[] parameter = null)
-        {
-            int? data = null;
-            using (SqlConnection conn = new SqlConnection(connString))
+            catch (SqlException e)
             {
-                SqlCommand command = new SqlCommand(query, conn);
-                if (parameter != null)
-                {
-                    string[] stringQuery = query.Split(' ');
-                    int j = 0;
-                    foreach (var i in stringQuery)
-                    {
-                        if (i.Contains('@'))
-                        {
-                            command.Parameters.AddWithValue(i, parameter[j]);
-                            ++j;
-                        }
-                    }
-                }
-                command.Connection.Open();
-                await Task.Run(() => data = (int?)command.ExecuteScalar());
+                throw new Exception(e.Message, e);
             }
-
-            return data;
         }
     }
 }

@@ -207,7 +207,7 @@ namespace GUI
         {
             if
             (
-                ! await showErrorMessage
+                !await showErrorMessage
                 (
                     tempAccount, "Username",
                     guna2HtmlLabel2, guna2TextBox1,
@@ -232,7 +232,7 @@ namespace GUI
         {
             if
             (
-                ! await showErrorMessage
+                !await showErrorMessage
                 (
                     tempAccount, "Email",
                     guna2HtmlLabel3, guna2TextBox2,
@@ -253,7 +253,7 @@ namespace GUI
         {
             if
             (
-                ! await showErrorMessage
+                !await showErrorMessage
                 (
                     tempAccount, "Password",
                     guna2HtmlLabel4, guna2TextBox3,
@@ -283,7 +283,7 @@ namespace GUI
         {
             if
             (
-                ! await showErrorMessage
+                !await showErrorMessage
                 (
                     tempAccount, "PasswordConfirm",
                     guna2HtmlLabel5, guna2TextBox4,
@@ -315,7 +315,7 @@ namespace GUI
             tempAccount.RoleName = (string)guna2ComboBox1.SelectedItem;
             if
             (
-                ! await showErrorMessage
+                !await showErrorMessage
                 (
                     tempAccount, "RoleName",
                     guna2HtmlLabel6, null,
@@ -337,7 +337,7 @@ namespace GUI
             tempAccount.IsMale = (string)guna2ComboBox2.SelectedItem;
             if
             (
-                ! await showErrorMessage
+                !await showErrorMessage
                 (
                     tempAccount, "IsMale",
                     guna2HtmlLabel7, null,

@@ -37,6 +37,7 @@
             // guna2TextBox1
             // 
             guna2TextBox1.AutoScroll = true;
+            guna2TextBox1.BackColor = SystemColors.Control;
             guna2TextBox1.CustomizableEdges = customizableEdges1;
             guna2TextBox1.DefaultText = "";
             guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -45,7 +46,7 @@
             guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             guna2TextBox1.Enabled = false;
             guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 9F);
+            guna2TextBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2TextBox1.ForeColor = Color.Black;
             guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             guna2TextBox1.Location = new Point(50, 1);
@@ -55,7 +56,7 @@
             guna2TextBox1.PlaceholderText = "";
             guna2TextBox1.SelectedText = "";
             guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2TextBox1.Size = new Size(797, 97);
+            guna2TextBox1.Size = new Size(797, 99);
             guna2TextBox1.TabIndex = 0;
             // 
             // guna2RadioButton1
@@ -94,5 +95,6 @@
 
         public Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         public Guna.UI2.WinForms.Guna2RadioButton guna2RadioButton1;
+
     }
 }

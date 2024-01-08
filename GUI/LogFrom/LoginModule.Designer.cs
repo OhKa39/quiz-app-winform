@@ -246,7 +246,7 @@
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Arial", 15.75F, FontStyle.Bold);
             guna2HtmlLabel2.ForeColor = SystemColors.ActiveCaptionText;
-            guna2HtmlLabel2.Location = new Point(105, 533);
+            guna2HtmlLabel2.Location = new Point(107, 533);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(99, 26);
             guna2HtmlLabel2.TabIndex = 12;
@@ -257,7 +257,7 @@
             guna2PictureBox2.CustomizableEdges = customizableEdges13;
             guna2PictureBox2.Image = Properties.Resources.icons8_number_5_96;
             guna2PictureBox2.ImageRotate = 0F;
-            guna2PictureBox2.Location = new Point(63, 573);
+            guna2PictureBox2.Location = new Point(71, 573);
             guna2PictureBox2.Name = "guna2PictureBox2";
             guna2PictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges14;
             guna2PictureBox2.Size = new Size(153, 134);

@@ -363,6 +363,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_test_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-test-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_testmanage_90_checked {
             get {
                 object obj = ResourceManager.GetObject("icons8-testmanage-90-checked", resourceCulture);
@@ -446,6 +456,16 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap warning {
             get {
                 object obj = ResourceManager.GetObject("warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap white_flag {
+            get {
+                object obj = ResourceManager.GetObject("white-flag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

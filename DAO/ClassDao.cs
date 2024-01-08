@@ -32,10 +32,21 @@ namespace DAO
         public async Task<DataTable> loadClassBySchoolYearID(int? id)
         {
             string query = (
-                "SELECT [ClassName] FROM [Class] WHERE " +
+                "SELECT [ClassName], [ClassID] FROM [Class] WHERE " +
                 "[CLASS].[SCHOOLYEARID] = @id"
             );
-            DataTable data = await DataProvider.Instance.ExcuteQuery(query, new object[] { id });
+            DataTable data = await DataProvider
+                .Instance.ExcuteQuery(query, new object[] { id });
+            return data;
+        }
+
+        public async Task<DataTable> loadClassInTestSetManageClass(int testSetManageID)
+        {
+            string query = (
+                "getClassInTestSetManageClass @testSetManageID"
+            );
+            DataTable data = await DataProvider
+                .Instance.ExcuteQuery(query, new object[] { testSetManageID });
             return data;
         }
     }
