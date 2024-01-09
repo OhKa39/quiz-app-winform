@@ -13,7 +13,7 @@ namespace DAO
 {
     public class DataProvider
     {
-        private string connString = @"Data Source=ADMIN;Initial Catalog=QuizAppG5;Integrated Security=True";
+        private string connString = @"Server=tcp:ohka.database.windows.net,1433;Initial Catalog=quizapp;Persist Security Info=False;User ID=ohka1234;Password=12303123AbC@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         private static DataProvider instance;
 
         public static DataProvider Instance { 
