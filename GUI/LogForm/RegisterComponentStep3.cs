@@ -262,30 +262,41 @@ namespace GUI
 
         private async void guna2Button2_Click(object sender, EventArgs e)
         {
-            string confirm = a + b + c + d + E + f;
-            if (confirm == verifyCode)
+            try
             {
-                bool IsSuccess = await Work(
-                        tempAccount.Username, tempAccount.Fullname,
-                        tempAccount.Password, tempAccount.RoleName,
-                        tempAccount.IsMale, tempAccount.ImagePath,
-                        tempAccount.Dateofbirth, tempAccount.Grade,
-                        tempAccount.Email
-                );
-                Panel formPanel = (Panel)(this.Parent);
-                formPanel.Controls.Clear();
-                Control uc = new AfterCreateAccount(IsSuccess);
-                uc.Dock = DockStyle.Fill;
-                formPanel.Controls.Add(uc);
-            }
-            else
-                if (isUnValid == -1)
+                string confirm = a + b + c + d + E + f;
+                if (confirm == verifyCode)
+                {
+                    bool IsSuccess = await Work(
+                            tempAccount.Username, tempAccount.Fullname,
+                            tempAccount.Password, tempAccount.RoleName,
+                            tempAccount.IsMale, tempAccount.ImagePath,
+                            tempAccount.Dateofbirth, tempAccount.Grade,
+                            tempAccount.Email
+                    );
+                    Panel formPanel = (Panel)(this.Parent);
+                    formPanel.Controls.Clear();
+                    Control uc = new AfterCreateAccount(IsSuccess);
+                    uc.Dock = DockStyle.Fill;
+                    formPanel.Controls.Add(uc);
+                }
+                else
+                    if (isUnValid == -1)
                 {
                     currentTextBox = 0;
                     isUnValid *= -1;
                     turnValidation(isUnValid);
                 }
-
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(
+                    $"Đã có lỗi xảy ra: {ex.Message}",
+                    "Thất bại",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }          
         }
     }
 }

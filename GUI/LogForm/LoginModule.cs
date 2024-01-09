@@ -96,47 +96,60 @@ namespace GUI
 
         private async void guna2Button1_Click(object sender, EventArgs e)
         {
-            string username = guna2TextBox1.Text;
-            string password = guna2TextBox2.Text;
-            DataTable data = await LoginBus.Instance.getUserInformation(username, password);
-
-            if (data.Rows.Count <= 0)
+            try
             {
-                if (isUnvalid == -1)
-                {
-                    isUnvalid *= -1;
-                    ShowValidation
-                    (
-                        isUnvalid,
-                        "Có vẻ như bạn đã nhập sai tài khoản hoặc mật khẩu. Hãy thử lại "
-                    );
-                }
-                return;
-            }
+                string username = guna2TextBox1.Text;
+                string password = guna2TextBox2.Text;
+                DataTable data = await LoginBus.Instance.getUserInformation(username, password);
 
-            AccountResponse acc = new AccountResponse(data.Rows[0]);
-            if (acc.IsBanned)
+                if (data.Rows.Count <= 0)
+                {
+                    if (isUnvalid == -1)
+                    {
+                        isUnvalid *= -1;
+                        ShowValidation
+                        (
+                            isUnvalid,
+                            "Có vẻ như bạn đã nhập sai tài khoản hoặc mật khẩu. Hãy thử lại "
+                        );
+                    }
+                    return;
+                }
+
+                AccountResponse acc = new AccountResponse(data.Rows[0]);
+                if (acc.IsBanned)
+                {
+                    if (isUnvalid == -1)
+                    {
+                        isUnvalid *= -1;
+                        ShowValidation
+                        (
+                            isUnvalid,
+                            "Rất tiếc, tài khoản của bạn đã bị vô hiệu hóa. Hãy sử dụng tài khoản khác"
+                        );
+                    }
+                    return;
+                }
+
+                Panel formPanel = (Panel)(this.Parent);
+                LogForm parent = (LogForm)formPanel.Parent;
+                parent.Opacity = 0;
+                parent.ShowInTaskbar = false;
+                MainFormQuiz mfqa = new MainFormQuiz(acc);
+                mfqa.ShowDialog();
+                parent.Opacity = 1;
+                parent.ShowInTaskbar = true;
+            }
+            catch(Exception ex)
             {
-                if (isUnvalid == -1)
-                {
-                    isUnvalid *= -1;
-                    ShowValidation
-                    (
-                        isUnvalid,
-                        "Rất tiếc, tài khoản của bạn đã bị vô hiệu hóa. Hãy sử dụng tài khoản khác"
-                    );
-                }
-                return;
+                MessageBox.Show(
+                    $"Đã có lỗi xảy ra: {ex.Message}",
+                    "Thất bại",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
-
-            Panel formPanel = (Panel)(this.Parent);
-            LogForm parent = (LogForm)formPanel.Parent;
-            parent.Opacity = 0;
-            parent.ShowInTaskbar = false;
-            MainFormQuiz mfqa = new MainFormQuiz(acc);
-            mfqa.ShowDialog();
-            parent.Opacity = 1;
-            parent.ShowInTaskbar = true;
+            
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)

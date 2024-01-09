@@ -943,11 +943,3 @@ begin
 end
 go
 getPercentTestLogHasDone 2
-
-select from [UserAnswer], [TestLog], [Answer]
-where [UserAnswer].[TestLogID] = [TestLog].[TestLogID]
-
-
-select * from [Account]
-
-update [Account] set [RoleID] = 3 where [AccountID] = 2
