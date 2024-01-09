@@ -136,6 +136,7 @@ namespace GUI.MainForm.CreateTest.TestPageManage
             guna2Button6.Size = new Size(76, 32);
             guna2Button6.TabIndex = 32;
             guna2Button6.Text = "Xóa";
+            guna2Button6.Click += guna2Button6_Click;
             // 
             // guna2Button5
             // 

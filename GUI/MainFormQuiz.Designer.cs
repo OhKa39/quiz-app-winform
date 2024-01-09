@@ -47,12 +47,14 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -68,6 +70,7 @@
             guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(components);
+            guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             guna2Panel1.SuspendLayout();
             SuspendLayout();
@@ -97,6 +100,7 @@
             guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2ControlBox1.Size = new Size(45, 30);
             guna2ControlBox1.TabIndex = 0;
+            guna2ControlBox1.Click += guna2ControlBox1_Click;
             // 
             // guna2ControlBox2
             // 
@@ -185,6 +189,7 @@
             guna2Button2.Text = "Luyện tập";
             guna2Button2.TextOffset = new Point(10, 0);
             guna2Button2.UseTransparentBackground = true;
+            guna2Button2.Click += guna2Button2_Click;
             // 
             // guna2Button3
             // 
@@ -271,6 +276,7 @@
             // 
             // guna2Panel1
             // 
+            guna2Panel1.Controls.Add(guna2Button7);
             guna2Panel1.Controls.Add(guna2Button6);
             guna2Panel1.Controls.Add(guna2Button5);
             guna2Panel1.Controls.Add(guna2HtmlLabel2);
@@ -280,12 +286,12 @@
             guna2Panel1.Controls.Add(guna2Button3);
             guna2Panel1.Controls.Add(guna2Button2);
             guna2Panel1.Controls.Add(guna2Button1);
-            guna2Panel1.CustomizableEdges = customizableEdges23;
+            guna2Panel1.CustomizableEdges = customizableEdges25;
             guna2Panel1.Dock = DockStyle.Left;
             guna2Panel1.FillColor = Color.FromArgb(0, 120, 212);
             guna2Panel1.Location = new Point(0, 0);
             guna2Panel1.Name = "guna2Panel1";
-            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges26;
             guna2Panel1.Size = new Size(210, 720);
             guna2Panel1.TabIndex = 0;
             guna2Panel1.Paint += guna2Panel1_Paint;
@@ -299,7 +305,7 @@
             guna2Button6.CheckedState.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2Button6.CheckedState.ForeColor = Color.FromArgb(0, 120, 212);
             guna2Button6.CheckedState.Image = Properties.Resources.icons8_testmanage_90_checked;
-            guna2Button6.CustomizableEdges = customizableEdges19;
+            guna2Button6.CustomizableEdges = customizableEdges21;
             guna2Button6.DisabledState.BorderColor = Color.DarkGray;
             guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -312,7 +318,7 @@
             guna2Button6.ImageOffset = new Point(10, 0);
             guna2Button6.Location = new Point(24, 560);
             guna2Button6.Name = "guna2Button6";
-            guna2Button6.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            guna2Button6.ShadowDecoration.CustomizableEdges = customizableEdges22;
             guna2Button6.Size = new Size(163, 43);
             guna2Button6.TabIndex = 7;
             guna2Button6.Text = "Phê duyệt ";
@@ -329,7 +335,7 @@
             guna2Button5.CheckedState.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2Button5.CheckedState.ForeColor = Color.FromArgb(0, 120, 212);
             guna2Button5.CheckedState.Image = Properties.Resources.icons8_testmanage_90_checked;
-            guna2Button5.CustomizableEdges = customizableEdges21;
+            guna2Button5.CustomizableEdges = customizableEdges23;
             guna2Button5.DisabledState.BorderColor = Color.DarkGray;
             guna2Button5.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -342,7 +348,7 @@
             guna2Button5.ImageOffset = new Point(10, 0);
             guna2Button5.Location = new Point(24, 470);
             guna2Button5.Name = "guna2Button5";
-            guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges24;
             guna2Button5.Size = new Size(163, 43);
             guna2Button5.TabIndex = 6;
             guna2Button5.Text = "Tạo bài thi";
@@ -366,6 +372,34 @@
             guna2DragControl1.DockIndicatorTransparencyValue = 0.6D;
             guna2DragControl1.TargetControl = this;
             guna2DragControl1.UseTransparentDrag = true;
+            // 
+            // guna2Button7
+            // 
+            guna2Button7.BackColor = Color.Transparent;
+            guna2Button7.BorderRadius = 22;
+            guna2Button7.CheckedState.FillColor = Color.White;
+            guna2Button7.CheckedState.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2Button7.CheckedState.ForeColor = Color.FromArgb(0, 120, 212);
+            guna2Button7.CheckedState.Image = Properties.Resources.icons8_testmanage_90_checked;
+            guna2Button7.CustomizableEdges = customizableEdges19;
+            guna2Button7.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button7.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button7.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button7.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button7.FillColor = Color.FromArgb(0, 120, 212);
+            guna2Button7.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2Button7.ForeColor = Color.White;
+            guna2Button7.ImageAlign = HorizontalAlignment.Left;
+            guna2Button7.ImageOffset = new Point(10, 0);
+            guna2Button7.Location = new Point(24, 665);
+            guna2Button7.Name = "guna2Button7";
+            guna2Button7.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            guna2Button7.Size = new Size(163, 43);
+            guna2Button7.TabIndex = 8;
+            guna2Button7.Text = "Đăng xuất";
+            guna2Button7.TextOffset = new Point(15, 0);
+            guna2Button7.UseTransparentBackground = true;
+            guna2Button7.Click += guna2Button7_Click;
             // 
             // MainFormQuiz
             // 
@@ -406,5 +440,6 @@
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
         private Guna.UI2.WinForms.Guna2Button guna2Button6;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
+        private Guna.UI2.WinForms.Guna2Button guna2Button7;
     }
 }

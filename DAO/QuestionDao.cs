@@ -103,5 +103,41 @@ namespace DAO
                 );
             return data;
         }
+
+        public async Task<DataTable> loadRandomQuestionbySubject(
+            string subjectName, int questionCount
+        )
+        {
+            string query = "loadRandomQuestionbySubject @subjectName , @questionCount";
+            DataTable data = await DataProvider.Instance.ExcuteQuery(
+                    query,
+                    new object[] { subjectName, questionCount }
+                );
+            return data;
+        }
+
+        public async Task<int?> countAllQuestionInTestLog(
+            int testLogID
+        )
+        {
+            string query = "countAllQuestionInTestLog @testLogID";
+            int? data = await DataProvider.Instance.ExcuteScalar(
+                    query,
+                    new object[] { testLogID }
+                );
+            return data;
+        }
+
+        public async Task<int> updateQuestionIsOKByID(
+            string questionID, int state
+        )
+        {
+            string query = "validateQuestionById @questionID , @State";
+            int data = await DataProvider.Instance.ExcuteNonQuery(
+                    query,
+                    new object[] { questionID, state }
+                );
+            return data;
+        }
     }
 }

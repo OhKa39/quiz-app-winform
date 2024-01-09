@@ -39,35 +39,41 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
         private async void guna2Button1_CheckedChanged(object sender, EventArgs e)
         {
             //If is not user edit mode return
-            if (type != 1)
+            if (type != 1 && type != 4)
                 return;
 
             //This's for user edit mode page
             IsChecked = Guna2Button2.Checked;
             if (IsChecked)
             {
-                Control transvertControl = this;
-                while (!(transvertControl is QuestionSetManageP))
+                if(type == 1)
                 {
-                    transvertControl = transvertControl.Parent;
-                }
+                    Control transvertControl = this;
+                    while (!(transvertControl is QuestionSetManageP))
+                    {
+                        transvertControl = transvertControl.Parent;
+                    }
 
-                QuestionSetManageP qtm = (QuestionSetManageP)transvertControl;
-                QuestionListComponentQS qlcqs = (QuestionListComponentQS)qtm
-                    .Guna2Panel2.Controls[0];
-                qlcqs.questionDict.Clear();
-                DataTable questionIDs = await MainFormQuizAppBus
-                    .Instance
-                    .findQuestionIDinQuestionSet(QuestionSetID);
-                string questionID = "";
-                foreach (DataRow dr in questionIDs.Rows)
-                {
-                    qlcqs.questionDict.Add((int)dr["QuestionID"], "");
-                    questionID += ((int)dr["QuestionID"]).ToString() + ",";
+                    QuestionSetManageP qtm = (QuestionSetManageP)transvertControl;
+                    QuestionListComponentQS qlcqs = (QuestionListComponentQS)qtm
+                        .Guna2Panel2.Controls[0];
+
+                    qlcqs.questionDict.Clear();
+
+                    DataTable questionIDs = await MainFormQuizAppBus
+                        .Instance
+                        .findQuestionIDinQuestionSet(QuestionSetID);
+                    string questionID = "";
+
+                    foreach (DataRow dr in questionIDs.Rows)
+                    {
+                        qlcqs.questionDict.Add((int)dr["QuestionID"], "");
+                        questionID += ((int)dr["QuestionID"]).ToString() + ",";
+                    }
+                    questionID = questionID.Substring(0, questionID.Length - 1);
+                    qlcqs.QuestionID = questionID;
+                    qlcqs.updateData();
                 }
-                questionID = questionID.Substring(0, questionID.Length - 1);
-                qlcqs.QuestionID = questionID;
-                qlcqs.updateData();
 
                 foreach (QuestionSetComponent fk in Parent.Controls)
                 {
@@ -76,7 +82,6 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                         if (fk.IsChecked)
                         {
                             fk.IsChecked = false;
-
                         }
                     }
                 }
@@ -85,7 +90,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            if (Type == 1)
+            if (Type == 1 || Type == 4)
                 return;
             using (QuestionPopUp qpp = new QuestionPopUp(QuestionSetID))
                 qpp.ShowDialog();
@@ -94,7 +99,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
         private void QuestionSetComponent_Load(object sender, EventArgs e)
         {
             guna2CheckBox1.Checked = HasInDict == 1 ? true : false;
-            if (type != 1)
+            if (type != 1 & type != 4)
             {
                 guna2Button2.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.DefaultButton;
                 return;

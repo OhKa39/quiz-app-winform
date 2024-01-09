@@ -28,6 +28,9 @@
     <Compile Update="MainForm\CreateTest\TestPageManage\StudentComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="MainForm\Practice\PracticeP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="MainForm\QuestionSetManage\QuestionSetManage.cs">
       <SubType>UserControl</SubType>
     </Compile>

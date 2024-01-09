@@ -38,6 +38,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             guna2ComboBox5.DataBindings.Add("SelectedItem", FilterMember, "IsTest", false, DataSourceUpdateMode.OnPropertyChanged);
             guna2DateTimePicker1.DataBindings.Add("Value", FilterMember, "From", false, DataSourceUpdateMode.OnPropertyChanged);
             guna2DateTimePicker2.DataBindings.Add("Value", FilterMember, "To", false, DataSourceUpdateMode.OnPropertyChanged);
+            guna2ComboBox2.DataBindings.Add("SelectedItem", FilterMember, "TotalQuestion", false, DataSourceUpdateMode.OnPropertyChanged);
             //guna2Button6.Checked = FilterMember.UpdateTimeSort1;
             //guna2Button7.Checked = FilterMember.IsTestSort;
             //guna2Button8.Checked = FilterMember.IsOKSort;
@@ -66,10 +67,12 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             FilterMember.IsOK = "--Tình trạng--";
             FilterMember.From = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture);
             FilterMember.To = DateTime.Today;
+            FilterMember.TotalQuestion = "--Số câu hỏi--";
 
             guna2ComboBox4.SelectedIndex = 0;
             guna2ComboBox5.SelectedIndex = 0;
             guna2ComboBox1.SelectedIndex = 0;
+            guna2ComboBox2.SelectedIndex = 0;
             guna2DateTimePicker1.Value = FilterMember.From;
             guna2DateTimePicker2.Value = FilterMember.To;
         }

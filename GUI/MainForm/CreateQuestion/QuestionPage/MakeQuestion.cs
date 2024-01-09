@@ -53,24 +53,36 @@ namespace GUI.MainForm.QuestionSet.QuestionPage
 
         private async void MakeQuestion_Load(object sender, EventArgs e)
         {
-            QuestionListComponent qlq = new QuestionListComponent(acc);
-            qlq.Dock = DockStyle.Fill;
-            guna2Panel2.Controls.Add(qlq);
-            guna2ComboBox1.SelectedIndex = 0;
-            guna2ComboBox4.SelectedIndex = 0;
-            guna2ComboBox3.SelectedIndex = 0;
-            guna2ComboBox2.SelectedIndex = 0;
-            guna2ComboBox5.SelectedIndex = 0;
-            PanelScrollHelper flowpan1 = new PanelScrollHelper(
-                    flowLayoutPanel2, guna2vScrollBar1, true
-                );
-            DataTable books = await MainFormQuizAppBus.Instance.loadBook();
-            if (books.Rows.Count > 0)
+            try
             {
-                foreach (DataRow i in books.Rows)
+                QuestionListComponent qlq = new QuestionListComponent(acc);
+                qlq.Dock = DockStyle.Fill;
+                guna2Panel2.Controls.Add(qlq);
+                guna2ComboBox1.SelectedIndex = 0;
+                guna2ComboBox4.SelectedIndex = 0;
+                guna2ComboBox3.SelectedIndex = 0;
+                guna2ComboBox2.SelectedIndex = 0;
+                guna2ComboBox5.SelectedIndex = 0;
+                PanelScrollHelper flowpan1 = new PanelScrollHelper(
+                        flowLayoutPanel2, guna2vScrollBar1, true
+                    );
+                DataTable books = await MainFormQuizAppBus.Instance.loadBook();
+                if (books.Rows.Count > 0)
                 {
-                    guna2ComboBox4.Items.Add(i["BookName"]);
+                    foreach (DataRow i in books.Rows)
+                    {
+                        guna2ComboBox4.Items.Add(i["BookName"]);
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(
+                    $"Đã có lỗi xảy ra: {ex.Message}",
+                    "Thất bại",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 
@@ -82,19 +94,31 @@ namespace GUI.MainForm.QuestionSet.QuestionPage
                 return;
             }
 
-            DataTable subject = await MainFormQuizAppBus
-                .Instance
-                .loadSubjectByBookName(guna2ComboBox4.Text);
-
-            if (subject.Rows.Count > 0)
+            try
             {
-                guna2ComboBox2.Items.Clear();
-                guna2ComboBox2.Items.Add("--Chủ đề--");
-                guna2ComboBox2.SelectedIndex = 0;
-                foreach (DataRow i in subject.Rows)
+                DataTable subject = await MainFormQuizAppBus
+                               .Instance
+                               .loadSubjectByBookName(guna2ComboBox4.Text);
+
+                if (subject.Rows.Count > 0)
                 {
-                    guna2ComboBox2.Items.Add(i["SubjectName"]);
+                    guna2ComboBox2.Items.Clear();
+                    guna2ComboBox2.Items.Add("--Chủ đề--");
+                    guna2ComboBox2.SelectedIndex = 0;
+                    foreach (DataRow i in subject.Rows)
+                    {
+                        guna2ComboBox2.Items.Add(i["SubjectName"]);
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(
+                    $"Đã có lỗi xảy ra: {ex.Message}",
+                    "Thất bại",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 

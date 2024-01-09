@@ -89,7 +89,10 @@ namespace GUI.MainForm.Home
                 int? quesTionID = await MainFormQuizAppBus
                     .Instance
                     .randomQuestionSet(testSetID);
-                TestFormUI tfUI = new TestFormUI(2, time, quesTionID, testSetName, questionCount);
+                TestFormUI tfUI = new TestFormUI
+                (
+                    2, time, quesTionID, testSetName, questionCount
+                );
                 tfUI.TestSetManageID = TestSetID;
                 tfUI.IsTest = true;
                 tfUI.Acc = acc;

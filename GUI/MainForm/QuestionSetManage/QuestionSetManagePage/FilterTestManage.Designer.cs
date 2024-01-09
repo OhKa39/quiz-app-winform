@@ -1,4 +1,6 @@
-﻿namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
+﻿using Guna.UI2.WinForms;
+
+namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
 {
     partial class FilterTestManage
     {
@@ -57,27 +59,27 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
-            guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
-            guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
-            guna2DateTimePicker2 = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2ComboBox5 = new Guna.UI2.WinForms.Guna2ComboBox();
-            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2ComboBox4 = new Guna.UI2.WinForms.Guna2ComboBox();
-            guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(components);
-            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
-            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            guna2ComboBox2 = new Guna.UI2.WinForms.Guna2ComboBox();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            guna2ControlBox2 = new Guna2ControlBox();
+            guna2ControlBox1 = new Guna2ControlBox();
+            guna2Button8 = new Guna2Button();
+            guna2Button7 = new Guna2Button();
+            guna2Button6 = new Guna2Button();
+            guna2DateTimePicker2 = new Guna2DateTimePicker();
+            guna2HtmlLabel7 = new Guna2HtmlLabel();
+            guna2Button1 = new Guna2Button();
+            guna2HtmlLabel6 = new Guna2HtmlLabel();
+            guna2ComboBox5 = new Guna2ComboBox();
+            guna2HtmlLabel5 = new Guna2HtmlLabel();
+            guna2ComboBox4 = new Guna2ComboBox();
+            guna2HtmlLabel4 = new Guna2HtmlLabel();
+            guna2DateTimePicker1 = new Guna2DateTimePicker();
+            guna2DragControl1 = new Guna2DragControl(components);
+            guna2HtmlLabel1 = new Guna2HtmlLabel();
+            guna2ComboBox1 = new Guna2ComboBox();
+            guna2Button2 = new Guna2Button();
+            guna2ComboBox2 = new Guna2ComboBox();
+            guna2HtmlLabel2 = new Guna2HtmlLabel();
+            guna2Button3 = new Guna2Button();
             SuspendLayout();
             // 
             // guna2ControlBox2
@@ -399,7 +401,7 @@
             guna2ComboBox2.Font = new Font("Segoe UI", 10F);
             guna2ComboBox2.ForeColor = Color.FromArgb(68, 88, 112);
             guna2ComboBox2.ItemHeight = 30;
-            guna2ComboBox2.Items.AddRange(new object[] { "--Thời gian--", "5", "10", "15", "20", "30", "45", "50", "60", "120", "180" });
+            guna2ComboBox2.Items.AddRange(new object[] { "--Số câu hỏi--", "5", "10", "15", "20", "30", "40", "60" });
             guna2ComboBox2.Location = new Point(275, 253);
             guna2ComboBox2.Name = "guna2ComboBox2";
             guna2ComboBox2.ShadowDecoration.CustomizableEdges = customizableEdges24;
@@ -480,26 +482,36 @@
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
-        private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button8;
-        private Guna.UI2.WinForms.Guna2Button guna2Button7;
-        private Guna.UI2.WinForms.Guna2Button guna2Button6;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker2;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox5;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox4;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
-        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox2;
+        private Guna2ControlBox guna2ControlBox2;
+        private Guna2ControlBox guna2ControlBox1;
+        private Guna2Button guna2Button8;
+        private Guna2Button guna2Button7;
+        private Guna2Button guna2Button6;
+        private Guna2DateTimePicker guna2DateTimePicker2;
+        private Guna2HtmlLabel guna2HtmlLabel7;
+        private Guna2Button guna2Button1;
+        private Guna2HtmlLabel guna2HtmlLabel6;
+        private Guna2ComboBox guna2ComboBox5;
+        private Guna2HtmlLabel guna2HtmlLabel5;
+        private Guna2ComboBox guna2ComboBox4;
+        private Guna2HtmlLabel guna2HtmlLabel4;
+        private Guna2DateTimePicker guna2DateTimePicker1;
+        private Guna2DragControl guna2DragControl1;
+        private Guna2ComboBox guna2ComboBox1;
+        private Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna2Button guna2Button2;
+        private Guna2Button guna2Button3;
+        private Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna2ComboBox guna2ComboBox2;
+
+        public Guna2ComboBox Guna2ComboBox4
+        {
+            get => guna2ComboBox4;
+        }
+
+        public Guna2ComboBox Guna2ComboBox5
+        {
+            get => guna2ComboBox5;
+        }
     }
 }

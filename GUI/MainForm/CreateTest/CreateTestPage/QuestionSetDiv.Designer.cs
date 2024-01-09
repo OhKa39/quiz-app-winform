@@ -34,8 +34,8 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetDivPage
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            guna2Panel1 = new Guna2Panel();
+            guna2Panel2 = new Guna2Panel();
             SuspendLayout();
             // 
             // guna2Panel1
@@ -73,8 +73,8 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetDivPage
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna2Panel guna2Panel1;
+        private Guna2Panel guna2Panel2;
 
         public Guna2Panel Guna2Panel1
         {

@@ -33,6 +33,7 @@ namespace GUI.MainForm.CreateTest.TestPageManage
         public int TotalTime { get => totalTime; set => totalTime = value; }
         public string TestSetName { get => testSetName; set => testSetName = value; }
         public AccountResponse Acc { get => acc; set => acc = value; }
+        public string SearchBox { get => searchBox; set => searchBox = value; }
 
         public StudentComponent()
         {
@@ -81,7 +82,7 @@ namespace GUI.MainForm.CreateTest.TestPageManage
                 DataTable question = await MainFormQuizAppBus
                     .Instance
                     .loadAllUserTestLog(
-                        classID, TestSetID, searchBox, offset, page
+                        classID, TestSetID, SearchBox, offset, page
                 );
 
                 if (question.Rows.Count > 0)
@@ -148,7 +149,12 @@ namespace GUI.MainForm.CreateTest.TestPageManage
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(
+                    $"Đã có lỗi xảy ra: {ex.Message}",
+                    "Thất bại",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 
@@ -188,7 +194,7 @@ namespace GUI.MainForm.CreateTest.TestPageManage
         private async void guna2TextBox3_TextChanged(object sender, EventArgs e)
         {
             int delayMilliseconds = 200;
-            searchBox = guna2TextBox3.Text;
+            SearchBox = guna2TextBox3.Text;
             await Task.Delay(delayMilliseconds);
 
             if (checkIsTextBoxUnchanged(page))

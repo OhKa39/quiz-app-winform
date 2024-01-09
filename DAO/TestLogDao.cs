@@ -90,5 +90,33 @@ namespace DAO
                 );
             return data;
         }
+
+        public async Task<DataTable> loadAllPracticeTestLog(
+            int accountID,
+            int rowsofpage,
+            int pagenumber
+        )
+        {
+            string query = "loadAllPracticeTestLog @accountID , " +
+                "@rowsofpage , @pagenumber";
+            DataTable data = await DataProvider.Instance.ExcuteQuery(
+                    query,
+                    new object[] { accountID, rowsofpage, pagenumber }
+                );
+            return data;
+        }
+
+        public async Task<DataTable> getPercenTestLogDone(
+            int accountID
+        )
+        {
+            string query = "getPercentTestLogHasDone @accountID";
+            DataTable data = await DataProvider.Instance.ExcuteQuery(
+                    query,
+                    new object[] { accountID}
+                );
+            return data;
+        }
+
     }
 }

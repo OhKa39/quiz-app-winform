@@ -36,11 +36,24 @@ namespace GUI.MainFormQuizApp
         private bool isTest = false;
         private int alreadyClose = -1;
         private UserControl formParentCall;
+        private DataTable questions = null;
 
         public TestFormUI(int _formStyle, Question _question)
         {
             FormStyle = _formStyle;
             question = _question;
+            InitializeComponent();
+        }
+
+        public TestFormUI(
+            int _formStyle, int _timeTaken,
+            string _testsetName, int _questionCount
+        )
+        {
+            formStyle = _formStyle;
+            timeTaken = _timeTaken * 60;
+            TestSetName = _testsetName;
+            questionCount = _questionCount;
             InitializeComponent();
         }
 
@@ -81,6 +94,7 @@ namespace GUI.MainFormQuizApp
         public string TestSetName { get => testSetName; set => testSetName = value; }
         public List<PairQuestion> Pairs { get => pairs; set => pairs = value; }
         public UserControl FormParentCall { get => formParentCall; set => formParentCall = value; }
+        public DataTable Questions { get => questions; set => questions = value; }
 
         #region ownmethod
         public void updateGUI()
@@ -150,9 +164,12 @@ namespace GUI.MainFormQuizApp
                 qDL.Dock = DockStyle.Fill;
                 guna2Panel1.Controls.Add(qDL);
                 guna2TextBox1.Text = question.QuestionDetail;
-                DataTable dt = await MainFormQuizAppBus.Instance.loadAnswerByQuestionID(question.QuestionID);
+
+                DataTable dt = await MainFormQuizAppBus
+                    .Instance.loadAnswerByQuestionID(question.QuestionID);
                 int numAnswer = dt.Rows.Count;
                 AnswerDetailList[] adl = new AnswerDetailList[numAnswer];
+
                 for (int i = 0; i < numAnswer; ++i)
                 {
                     adl[i] = new AnswerDetailList();
@@ -168,95 +185,123 @@ namespace GUI.MainFormQuizApp
 
             if (FormStyle == 2)
             {
-                TimeConst = timeTaken;
-                UserChoices = new List<int>(new int[questionCount]);
-                Flags = new List<bool>(new bool[questionCount]);
-                timer1.Start();
-                guna2Button2.Visible = true;
-                guna2Button3.Visible = true;
-                guna2Button1.Visible = true;
-                guna2Panel2.Visible = true;
-                guna2HtmlLabel1.Text = TestSetName;
-                QuestionButtonList uc = new QuestionButtonList();
-                uc.QuestionCount = questionCount;
-                uc.Dock = DockStyle.Fill;
-                guna2Panel1.Controls.Add(uc);
-
-                DataTable questions = await MainFormQuizAppBus
-                    .Instance
-                    .loadAllQuestionInQuestionSet(QuestionsetID);
-
-                foreach (DataRow dr in questions.Rows)
+                try
                 {
-                    PairQuestion pq = new PairQuestion(dr);
-                    Pairs.Add(pq);
-                }
+                    TimeConst = timeTaken;
+                    UserChoices = new List<int>(new int[questionCount]);
+                    Flags = new List<bool>(new bool[questionCount]);
+                    timer1.Start();
+                    guna2Button2.Visible = true;
+                    guna2Button3.Visible = true;
+                    guna2Button1.Visible = true;
+                    guna2Panel2.Visible = true;
+                    guna2HtmlLabel1.Text = TestSetName;
+                    QuestionButtonList uc = new QuestionButtonList();
+                    uc.QuestionCount = questionCount;
+                    uc.Dock = DockStyle.Fill;
+                    guna2Panel1.Controls.Add(uc);
 
-                Random random = new Random();
-                int n = Pairs.Count;
-                while (n > 1)
-                {
-                    n--;
-                    int k = random.Next(n + 1);
-                    PairQuestion value = Pairs[k];
-                    Pairs[k] = Pairs[n];
-                    Pairs[n] = value;
-                }
+                    if(questions == null)
+                        questions = await MainFormQuizAppBus
+                            .Instance
+                            .loadAllQuestionInQuestionSet(QuestionsetID);
 
-                foreach (var pair in Pairs)
-                {
-                    List<Answer> ans = new List<Answer>();
-                    DataTable answers = await MainFormQuizAppBus
-                        .Instance.loadAnswerByQuestionID(pair.QuestionID);
-
-                    foreach (DataRow dr in answers.Rows)
+                    foreach (DataRow dr in questions.Rows)
                     {
-                        Answer ansobj = new Answer(dr);
-                        ans.Add(ansobj);
+                        PairQuestion pq = new PairQuestion(dr);
+                        Pairs.Add(pq);
                     }
 
-                    //n = ans.Count;
-                    //while (n > 1)
-                    //{
-                    //    n--;
-                    //    int k = random.Next(n + 1);
-                    //    Answer value = ans[k];
-                    //    ans[k] = ans[n];
-                    //    ans[n] = value;
-                    //}
+                    Random random = new Random();
+                    int n = Pairs.Count;
+                    while (n > 1)
+                    {
+                        n--;
+                        int k = random.Next(n + 1);
+                        PairQuestion value = Pairs[k];
+                        Pairs[k] = Pairs[n];
+                        Pairs[n] = value;
+                    }
 
-                    answerOfAnswer.Add(ans);
+                    foreach (var pair in Pairs)
+                    {
+                        List<Answer> ans = new List<Answer>();
+                        DataTable answers = await MainFormQuizAppBus
+                            .Instance.loadAnswerByQuestionID(pair.QuestionID);
+
+                        foreach (DataRow dr in answers.Rows)
+                        {
+                            Answer ansobj = new Answer(dr);
+                            ans.Add(ansobj);
+                        }
+
+                        //n = ans.Count;
+                        //while (n > 1)
+                        //{
+                        //    n--;
+                        //    int k = random.Next(n + 1);
+                        //    Answer value = ans[k];
+                        //    ans[k] = ans[n];
+                        //    ans[n] = value;
+                        //}
+
+                        answerOfAnswer.Add(ans);
+                    }
+
+                    updateGUI();
                 }
-
-                updateGUI();
+                catch(Exception ex)
+                {
+                    MessageBox.Show(
+                        $"Đã có lỗi xảy ra: {ex.Message}",
+                        "Thất bại",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    timer1.Stop();
+                }
             }
 
             if(FormStyle == 3)
             {
-                foreach (var pair in Pairs)
+                try
                 {
-                    List<Answer> ans = new List<Answer>();
-                    DataTable answers = await MainFormQuizAppBus
-                        .Instance.loadAnswerByQuestionID(pair.QuestionID);
-
-                    foreach (DataRow dr in answers.Rows)
+                    foreach (var pair in Pairs)
                     {
-                        Answer ansobj = new Answer(dr);
-                        ans.Add(ansobj);
+                        List<Answer> ans = new List<Answer>();
+                        DataTable answers = await MainFormQuizAppBus
+                            .Instance.loadAnswerByQuestionID(pair.QuestionID);
+
+                        foreach (DataRow dr in answers.Rows)
+                        {
+                            Answer ansobj = new Answer(dr);
+                            ans.Add(ansobj);
+                        }
+                        answerOfAnswer.Add(ans);
                     }
-                    answerOfAnswer.Add(ans);
+
+                    guna2Button3.Visible = true;
+                    guna2Button1.Visible = true;
+                    guna2HtmlLabel1.Text = TestSetName;
+
+                    QuestionButtonList uc = new QuestionButtonList();
+                    uc.IsTest = 1;
+                    uc.QuestionCount = questionCount;
+                    uc.UserChoices = UserChoices;
+                    uc.AnswerOfAnswer = answerOfAnswer;
+                    uc.Dock = DockStyle.Fill;
+                    guna2Panel1.Controls.Add(uc);
+                    updateGUI();
                 }
-                guna2Button3.Visible = true;
-                guna2Button1.Visible = true;
-                guna2HtmlLabel1.Text = TestSetName;
-                QuestionButtonList uc = new QuestionButtonList();
-                uc.IsTest = 1;
-                uc.QuestionCount = questionCount;
-                uc.UserChoices = UserChoices;
-                uc.AnswerOfAnswer = answerOfAnswer;
-                uc.Dock = DockStyle.Fill;
-                guna2Panel1.Controls.Add(uc);
-                updateGUI();
+                catch(Exception ex)
+                {
+                    MessageBox.Show(
+                        $"Đã có lỗi xảy ra: {ex.Message}",
+                        "Thất bại",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }            
             }
         }
 
@@ -321,13 +366,16 @@ namespace GUI.MainFormQuizApp
             
             if (formStyle != 2)
                 return;
+
             if (AlreadyClose == 1)
             {
-                ((TestListComponent)FormParentCall).checkState();
+                if(FormParentCall is TestListComponent)
+                    ((TestListComponent)FormParentCall).checkState();
                 return;
             }
 
-            ((TestListComponent)FormParentCall).checkState();
+            if (FormParentCall is TestListComponent)
+                ((TestListComponent)FormParentCall).checkState();
             QuestionButtonList qbl = (QuestionButtonList)guna2Panel1.Controls[1];
             qbl.Guna2Button1.PerformClick();
 
@@ -336,6 +384,7 @@ namespace GUI.MainFormQuizApp
                 {
                     e.Cancel = true;
                 }
+
             timer1.Stop();
         }
     }

@@ -49,23 +49,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
-            guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             guna2DateTimePicker2 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -117,152 +102,12 @@
             guna2ControlBox1.Size = new Size(45, 30);
             guna2ControlBox1.TabIndex = 46;
             // 
-            // guna2Button8
-            // 
-            guna2Button8.BackColor = Color.Transparent;
-            guna2Button8.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            guna2Button8.CheckedState.BorderColor = Color.Transparent;
-            guna2Button8.CheckedState.CustomBorderColor = Color.Transparent;
-            guna2Button8.CheckedState.FillColor = Color.Transparent;
-            guna2Button8.CheckedState.Image = Properties.Resources.asc;
-            guna2Button8.Cursor = Cursors.Hand;
-            guna2Button8.CustomizableEdges = customizableEdges5;
-            guna2Button8.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button8.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button8.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button8.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button8.FillColor = Color.Transparent;
-            guna2Button8.Font = new Font("Segoe UI", 9F);
-            guna2Button8.ForeColor = Color.White;
-            guna2Button8.Image = Properties.Resources.desc;
-            guna2Button8.ImageSize = new Size(32, 32);
-            guna2Button8.Location = new Point(446, 301);
-            guna2Button8.Name = "guna2Button8";
-            guna2Button8.PressedColor = Color.Transparent;
-            guna2Button8.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2Button8.Size = new Size(64, 45);
-            guna2Button8.TabIndex = 45;
-            guna2Button8.UseTransparentBackground = true;
-            guna2Button8.CheckedChanged += guna2Button8_CheckedChanged;
-            // 
-            // guna2Button7
-            // 
-            guna2Button7.BackColor = Color.Transparent;
-            guna2Button7.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            guna2Button7.CheckedState.BorderColor = Color.Transparent;
-            guna2Button7.CheckedState.CustomBorderColor = Color.Transparent;
-            guna2Button7.CheckedState.FillColor = Color.Transparent;
-            guna2Button7.CheckedState.Image = Properties.Resources.asc;
-            guna2Button7.Cursor = Cursors.Hand;
-            guna2Button7.CustomizableEdges = customizableEdges7;
-            guna2Button7.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button7.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button7.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button7.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button7.FillColor = Color.Transparent;
-            guna2Button7.Font = new Font("Segoe UI", 9F);
-            guna2Button7.ForeColor = Color.White;
-            guna2Button7.Image = Properties.Resources.desc;
-            guna2Button7.ImageSize = new Size(32, 32);
-            guna2Button7.Location = new Point(200, 301);
-            guna2Button7.Name = "guna2Button7";
-            guna2Button7.PressedColor = Color.Transparent;
-            guna2Button7.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2Button7.Size = new Size(64, 45);
-            guna2Button7.TabIndex = 44;
-            guna2Button7.UseTransparentBackground = true;
-            guna2Button7.CheckedChanged += guna2Button7_CheckedChanged;
-            // 
-            // guna2Button6
-            // 
-            guna2Button6.BackColor = Color.Transparent;
-            guna2Button6.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            guna2Button6.CheckedState.BorderColor = Color.Transparent;
-            guna2Button6.CheckedState.CustomBorderColor = Color.Transparent;
-            guna2Button6.CheckedState.FillColor = Color.Transparent;
-            guna2Button6.CheckedState.Image = Properties.Resources.asc;
-            guna2Button6.Cursor = Cursors.Hand;
-            guna2Button6.CustomizableEdges = customizableEdges9;
-            guna2Button6.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button6.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button6.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button6.FillColor = Color.Transparent;
-            guna2Button6.Font = new Font("Segoe UI", 9F);
-            guna2Button6.ForeColor = Color.White;
-            guna2Button6.Image = Properties.Resources.desc;
-            guna2Button6.ImageSize = new Size(32, 32);
-            guna2Button6.Location = new Point(446, 227);
-            guna2Button6.Name = "guna2Button6";
-            guna2Button6.PressedColor = Color.Transparent;
-            guna2Button6.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2Button6.Size = new Size(64, 45);
-            guna2Button6.TabIndex = 43;
-            guna2Button6.UseTransparentBackground = true;
-            guna2Button6.CheckedChanged += guna2Button6_CheckedChanged;
-            // 
-            // guna2Button5
-            // 
-            guna2Button5.BackColor = Color.Transparent;
-            guna2Button5.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            guna2Button5.CheckedState.BorderColor = Color.Transparent;
-            guna2Button5.CheckedState.CustomBorderColor = Color.Transparent;
-            guna2Button5.CheckedState.FillColor = Color.Transparent;
-            guna2Button5.CheckedState.Image = Properties.Resources.asc;
-            guna2Button5.Cursor = Cursors.Hand;
-            guna2Button5.CustomizableEdges = customizableEdges11;
-            guna2Button5.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button5.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button5.FillColor = Color.Transparent;
-            guna2Button5.Font = new Font("Segoe UI", 9F);
-            guna2Button5.ForeColor = Color.White;
-            guna2Button5.Image = Properties.Resources.desc;
-            guna2Button5.ImageSize = new Size(32, 32);
-            guna2Button5.Location = new Point(446, 139);
-            guna2Button5.Name = "guna2Button5";
-            guna2Button5.PressedColor = Color.Transparent;
-            guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2Button5.Size = new Size(64, 45);
-            guna2Button5.TabIndex = 42;
-            guna2Button5.UseTransparentBackground = true;
-            guna2Button5.CheckedChanged += guna2Button5_CheckedChanged;
-            // 
-            // guna2Button4
-            // 
-            guna2Button4.BackColor = Color.Transparent;
-            guna2Button4.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            guna2Button4.CheckedState.BorderColor = Color.Transparent;
-            guna2Button4.CheckedState.CustomBorderColor = Color.Transparent;
-            guna2Button4.CheckedState.FillColor = Color.Transparent;
-            guna2Button4.CheckedState.Image = Properties.Resources.asc;
-            guna2Button4.Cursor = Cursors.Hand;
-            guna2Button4.CustomizableEdges = customizableEdges13;
-            guna2Button4.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button4.FillColor = Color.Transparent;
-            guna2Button4.Font = new Font("Segoe UI", 9F);
-            guna2Button4.ForeColor = Color.White;
-            guna2Button4.Image = Properties.Resources.desc;
-            guna2Button4.ImageSize = new Size(32, 32);
-            guna2Button4.Location = new Point(444, 51);
-            guna2Button4.Name = "guna2Button4";
-            guna2Button4.PressedColor = Color.Transparent;
-            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2Button4.Size = new Size(64, 45);
-            guna2Button4.TabIndex = 41;
-            guna2Button4.UseTransparentBackground = true;
-            guna2Button4.CheckedChanged += guna2Button4_CheckedChanged;
-            // 
             // guna2DateTimePicker2
             // 
             guna2DateTimePicker2.BorderColor = Color.Blue;
             guna2DateTimePicker2.Checked = true;
             guna2DateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            guna2DateTimePicker2.CustomizableEdges = customizableEdges15;
+            guna2DateTimePicker2.CustomizableEdges = customizableEdges5;
             guna2DateTimePicker2.FillColor = Color.FromArgb(94, 148, 255);
             guna2DateTimePicker2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2DateTimePicker2.ForeColor = SystemColors.ButtonFace;
@@ -271,7 +116,7 @@
             guna2DateTimePicker2.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             guna2DateTimePicker2.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             guna2DateTimePicker2.Name = "guna2DateTimePicker2";
-            guna2DateTimePicker2.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            guna2DateTimePicker2.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2DateTimePicker2.Size = new Size(163, 36);
             guna2DateTimePicker2.TabIndex = 39;
             guna2DateTimePicker2.Value = new DateTime(2023, 12, 27, 14, 8, 3, 279);
@@ -288,7 +133,7 @@
             // 
             // guna2Button1
             // 
-            guna2Button1.CustomizableEdges = customizableEdges17;
+            guna2Button1.CustomizableEdges = customizableEdges7;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -297,7 +142,7 @@
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Location = new Point(171, 355);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2Button1.Size = new Size(180, 45);
             guna2Button1.TabIndex = 36;
             guna2Button1.Text = "Đặt lại filter";
@@ -316,7 +161,7 @@
             // guna2ComboBox5
             // 
             guna2ComboBox5.BackColor = Color.Transparent;
-            guna2ComboBox5.CustomizableEdges = customizableEdges19;
+            guna2ComboBox5.CustomizableEdges = customizableEdges9;
             guna2ComboBox5.DrawMode = DrawMode.OwnerDrawFixed;
             guna2ComboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
             guna2ComboBox5.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -327,7 +172,7 @@
             guna2ComboBox5.Items.AddRange(new object[] { "--Dạng--", "Luyện tập", "Thi" });
             guna2ComboBox5.Location = new Point(42, 305);
             guna2ComboBox5.Name = "guna2ComboBox5";
-            guna2ComboBox5.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            guna2ComboBox5.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2ComboBox5.Size = new Size(163, 36);
             guna2ComboBox5.TabIndex = 34;
             // 
@@ -344,7 +189,7 @@
             // guna2ComboBox4
             // 
             guna2ComboBox4.BackColor = Color.Transparent;
-            guna2ComboBox4.CustomizableEdges = customizableEdges21;
+            guna2ComboBox4.CustomizableEdges = customizableEdges11;
             guna2ComboBox4.DrawMode = DrawMode.OwnerDrawFixed;
             guna2ComboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
             guna2ComboBox4.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -355,7 +200,7 @@
             guna2ComboBox4.Items.AddRange(new object[] { "--Tình trạng--", "Chưa được duyệt", "Đã được duyệt" });
             guna2ComboBox4.Location = new Point(293, 305);
             guna2ComboBox4.Name = "guna2ComboBox4";
-            guna2ComboBox4.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            guna2ComboBox4.ShadowDecoration.CustomizableEdges = customizableEdges12;
             guna2ComboBox4.Size = new Size(163, 36);
             guna2ComboBox4.TabIndex = 32;
             // 
@@ -403,7 +248,7 @@
             // 
             guna2DateTimePicker1.Checked = true;
             guna2DateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            guna2DateTimePicker1.CustomizableEdges = customizableEdges23;
+            guna2DateTimePicker1.CustomizableEdges = customizableEdges13;
             guna2DateTimePicker1.FillColor = Color.FromArgb(94, 148, 255);
             guna2DateTimePicker1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2DateTimePicker1.ForeColor = SystemColors.ButtonFace;
@@ -412,7 +257,7 @@
             guna2DateTimePicker1.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             guna2DateTimePicker1.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = customizableEdges14;
             guna2DateTimePicker1.Size = new Size(150, 36);
             guna2DateTimePicker1.TabIndex = 27;
             guna2DateTimePicker1.Value = new DateTime(2023, 12, 27, 14, 8, 3, 279);
@@ -420,7 +265,7 @@
             // guna2ComboBox3
             // 
             guna2ComboBox3.BackColor = Color.Transparent;
-            guna2ComboBox3.CustomizableEdges = customizableEdges25;
+            guna2ComboBox3.CustomizableEdges = customizableEdges15;
             guna2ComboBox3.DrawMode = DrawMode.OwnerDrawFixed;
             guna2ComboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             guna2ComboBox3.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -431,14 +276,14 @@
             guna2ComboBox3.Items.AddRange(new object[] { "--Độ khó--", "Dễ", "Trung Bình", "Khó" });
             guna2ComboBox3.Location = new Point(334, 55);
             guna2ComboBox3.Name = "guna2ComboBox3";
-            guna2ComboBox3.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            guna2ComboBox3.ShadowDecoration.CustomizableEdges = customizableEdges16;
             guna2ComboBox3.Size = new Size(122, 36);
             guna2ComboBox3.TabIndex = 26;
             // 
             // guna2ComboBox2
             // 
             guna2ComboBox2.BackColor = Color.Transparent;
-            guna2ComboBox2.CustomizableEdges = customizableEdges27;
+            guna2ComboBox2.CustomizableEdges = customizableEdges17;
             guna2ComboBox2.DrawMode = DrawMode.OwnerDrawFixed;
             guna2ComboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             guna2ComboBox2.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -449,14 +294,14 @@
             guna2ComboBox2.Items.AddRange(new object[] { "--Chủ đề--" });
             guna2ComboBox2.Location = new Point(42, 143);
             guna2ComboBox2.Name = "guna2ComboBox2";
-            guna2ComboBox2.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            guna2ComboBox2.ShadowDecoration.CustomizableEdges = customizableEdges18;
             guna2ComboBox2.Size = new Size(414, 36);
             guna2ComboBox2.TabIndex = 25;
             // 
             // guna2ComboBox1
             // 
             guna2ComboBox1.BackColor = Color.Transparent;
-            guna2ComboBox1.CustomizableEdges = customizableEdges29;
+            guna2ComboBox1.CustomizableEdges = customizableEdges19;
             guna2ComboBox1.DrawMode = DrawMode.OwnerDrawFixed;
             guna2ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             guna2ComboBox1.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -467,7 +312,7 @@
             guna2ComboBox1.Items.AddRange(new object[] { "--Sách--" });
             guna2ComboBox1.Location = new Point(42, 55);
             guna2ComboBox1.Name = "guna2ComboBox1";
-            guna2ComboBox1.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            guna2ComboBox1.ShadowDecoration.CustomizableEdges = customizableEdges20;
             guna2ComboBox1.Size = new Size(222, 36);
             guna2ComboBox1.TabIndex = 24;
             guna2ComboBox1.SelectedIndexChanged += guna2ComboBox1_SelectedIndexChanged;
@@ -486,11 +331,6 @@
             ClientSize = new Size(507, 411);
             Controls.Add(guna2ControlBox2);
             Controls.Add(guna2ControlBox1);
-            Controls.Add(guna2Button8);
-            Controls.Add(guna2Button7);
-            Controls.Add(guna2Button6);
-            Controls.Add(guna2Button5);
-            Controls.Add(guna2Button4);
             Controls.Add(guna2DateTimePicker2);
             Controls.Add(guna2HtmlLabel7);
             Controls.Add(guna2Button1);
@@ -519,11 +359,6 @@
 
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button8;
-        private Guna.UI2.WinForms.Guna2Button guna2Button7;
-        private Guna.UI2.WinForms.Guna2Button guna2Button6;
-        private Guna.UI2.WinForms.Guna2Button guna2Button5;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;

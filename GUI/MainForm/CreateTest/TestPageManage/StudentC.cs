@@ -72,7 +72,12 @@ namespace GUI.MainForm.CreateTest.TestPageManage
             get => timeTaken;
             set
             {
-                guna2HtmlLabel4.Text = $"Thời gian làm bài: {value}";
+                guna2HtmlLabel4.Text = String.Format
+                (
+                    "Thời gian làm bài: {0:00}:{1:00}p",
+                    (int)(value / 60),
+                    value % 60
+                );
                 timeTaken = value;
             }
         }

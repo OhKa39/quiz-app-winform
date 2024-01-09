@@ -259,7 +259,6 @@ namespace GUI.MainForm.QuestionSet.QuestionTestPage
             guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.Enabled = false;
             guna2Button2.FillColor = Color.LimeGreen;
             guna2Button2.Font = new Font("Segoe UI", 9F);
             guna2Button2.ForeColor = Color.White;
@@ -270,6 +269,7 @@ namespace GUI.MainForm.QuestionSet.QuestionTestPage
             guna2Button2.TabIndex = 41;
             guna2Button2.Text = "OK";
             guna2Button2.Visible = false;
+            guna2Button2.Click += guna2Button2_Click;
             // 
             // QuestionListComponentQS
             // 

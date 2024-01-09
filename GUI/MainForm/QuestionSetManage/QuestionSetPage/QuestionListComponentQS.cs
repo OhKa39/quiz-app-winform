@@ -83,6 +83,7 @@ namespace GUI.MainForm.QuestionSet.QuestionTestPage
                 string difficultName = filtermember.DifficultName != "--Độ khó--" ? filtermember.DifficultName : "";
                 string subjectName = filtermember.SubjectName != "--Chủ đề--" ? filtermember.SubjectName : "";
                 int? IsTest = filtermember.IsTest != "--Dạng--" ? (filtermember.IsTest == "Thi" ? 1 : 0) : null;
+                int? IsOK = filtermember.IsOK != "--Tình trạng--" ? (filtermember.IsOK == "Đã được duyệt" ? 1 : 0) : null;
                 guna2HtmlLabel1.Text = $"Số câu hỏi đã chọn: {questionDict.Count}";
 
                 DataTable question = await MainFormQuizAppBus
@@ -90,7 +91,7 @@ namespace GUI.MainForm.QuestionSet.QuestionTestPage
                     .loadQuestionForQuestionSet(
                         page, offset, searchBox, difficultName,
                         subjectName, filtermember.From,
-                        filtermember.To, IsTest, QuestionID
+                        filtermember.To, IsTest, IsOK, QuestionID
                 );
 
                 if (question.Rows.Count > 0)
@@ -141,6 +142,11 @@ namespace GUI.MainForm.QuestionSet.QuestionTestPage
                 "Text", this, "SearchBox",
                 false, DataSourceUpdateMode.OnPropertyChanged
             );
+
+            if (Type != 3)
+            {
+                filtermember.IsOK = "Đã được duyệt";
+            }
 
             if (Type == 3)
             {
@@ -194,6 +200,8 @@ namespace GUI.MainForm.QuestionSet.QuestionTestPage
         {
             using (FilterQS filterControl = new FilterQS(filtermember))
             {
+                if (Type != 3)
+                    filterControl.Guna2ComboBox4.Enabled = false;
                 filterControl.ShowDialog();
                 filtermember = filterControl.FilterMember;
             }
@@ -258,9 +266,102 @@ namespace GUI.MainForm.QuestionSet.QuestionTestPage
             updateData();
         }
 
-        private void guna2Button6_Click(object sender, EventArgs e)
+        private async void guna2Button6_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string questionIDLists = "";
+                foreach (var item in questionDict)
+                {
+                    questionIDLists += item.Key + ",";
+                }
 
+                if (questionIDLists == "")
+                {
+                    throw new Exception(
+                        "Chưa có câu hỏi nào được chọn"
+                    );
+                }
+
+                questionIDLists = questionIDLists
+                    .Substring(0, questionIDLists.Length - 1);
+                int countRowsAffect = await MainFormQuizAppBus
+                    .Instance
+                    .updateQuestionIsOKByID(questionIDLists, 0);
+
+                if (countRowsAffect == questionIDLists.Split(",").Length)
+                    MessageBox.Show(
+                        "Đổi trạng thái câu hỏi thành công",
+                        "Thành công",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                );
+
+                questionDict.Clear();
+
+                if (checkIsTextBoxUnchanged(page))
+                    return;
+
+                guna2TextBox2.Text = "1";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                        $"Đổi trạng thái bộ đề thất bại: {ex.Message}",
+                        "Thất bại",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                );
+            }
+        }
+
+        private async void guna2Button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string questionIDLists = "";
+                foreach (var item in questionDict)
+                {
+                    questionIDLists += item.Key + ",";
+                }
+
+                if (questionIDLists == "")
+                {
+                    throw new Exception(
+                        "Chưa có câu hỏi nào được chọn"
+                    );
+                }
+
+                questionIDLists = questionIDLists
+                    .Substring(0, questionIDLists.Length - 1);
+                int countRowsAffect = await MainFormQuizAppBus
+                    .Instance
+                    .updateQuestionIsOKByID(questionIDLists, 1);
+
+                if (countRowsAffect == questionIDLists.Split(",").Length)
+                    MessageBox.Show(
+                        "Đổi trạng thái câu hỏi thành công",
+                        "Thành công",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                );
+
+                questionDict.Clear();
+
+                if (checkIsTextBoxUnchanged(page))
+                    return;
+
+                guna2TextBox2.Text = "1";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                        $"Đổi trạng thái bộ đề thất bại: {ex.Message}",
+                        "Thất bại",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                );
+            }
         }
     }
 }

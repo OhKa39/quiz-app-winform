@@ -411,6 +411,7 @@ alter proc findAllQuestionSet(
 	@rowsofpage int,
 	@istest bit = null,
 	@time int = null,
+	@totalQuestion int = null,
 	@from datetime = null,
 	@to datetime = null,
 	@isOK bit = null,
@@ -421,8 +422,9 @@ as
 begin
 		declare @query nvarchar(MAX)
 		set @to = DateAdd(day, 1, @to)
-		declare @WHERE_SQL nvarchar(MAX) = ' where [QuestionSet].[UpdateAt] >= @from and [QuestionSet].[UpdateAt] < @to'
+		declare @WHERE_SQL nvarchar(MAX) = ' and [QuestionSet].[UpdateAt] >= @from and [QuestionSet].[UpdateAt] < @to'
 		declare @orderBy nvarchar(MAX) = ' order by [QuestionSetID]'
+		declare @havingClause nvarchar(MAX) = ''
 
 		if COALESCE(@questionSetID, '') <> ''
 			set @WHERE_SQL += ' AND [QuestionSet].[QuestionSetID] IN (' + @questionSetID + ')'
@@ -439,12 +441,20 @@ begin
 			set @WHERE_SQL += ' AND [Time] = @time'
 		if @AccountID is not null
 			set @WHERE_SQL += ' AND [AccountID] = @AccountID'
+		if @totalQuestion is not null
+			set @havingClause = ' having count([QuestionSetQuestion].[QuestionSetID]) = @totalQuestion'
 
-		set @query = 'SELECT [QuestionSetID], [QuestionSetName], [IsOK],
+		set @query = 'SELECT [QuestionSet].[QuestionSetID], [QuestionSetName], [IsOK],
 					  [Time], [AccountID], [UpdateAt], [IsTest], 
+					  count([QuestionSet].[QuestionSetID]) totalQuestion,
 					  Count(*) OVER() as TotalRecords
-					  from [QuestionSet]'
+					  from [QuestionSet], [QuestionSetQuestion]
+					  where [QuestionSet].[QuestionSetID] = [QuestionSetQuestion].[QuestionSetID]'
 					  + @WHERE_SQL
+					  + ' group by [QuestionSet].[QuestionSetID],
+						  [QuestionSetName], [IsOK],
+						  [Time], [AccountID], [UpdateAt], [IsTest]'
+					  +	@havingClause
 					  + @orderBy
 					  + ' OFFSET (@pagenumber-1)*@rowsofpage ROWS
 							FETCH NEXT @rowsofpage ROWS ONLY'
@@ -455,6 +465,7 @@ begin
 								@rowsofpage int,
 								@istest bit,
 								@time int,
+								@totalQuestion int,
 								@from datetime,
 								@to datetime,
 								@isOK bit,
@@ -465,13 +476,25 @@ begin
 							  @rowsofpage = @rowsofpage,
 							  @istest = @istest,
 							  @time = @time,
+							  @totalQuestion = @totalQuestion,
 							  @from = @from,
 							  @to = @to,
 							  @isOK = @isOK,
 							  @questionSetName = @questionSetName
 	SELECT @Query
 end
-go 
+go
+
+SELECT [QuestionSet].[QuestionSetID], [QuestionSetName], [IsOK],
+					  [Time], [AccountID], [UpdateAt], [IsTest], 
+					  count([QuestionSet].[QuestionSetID]) totalQuestion,
+					  Count(*) OVER() as TotalRecords
+					  from [QuestionSet], [QuestionSetQuestion]
+					  where [QuestionSet].[QuestionSetID] = [QuestionSetQuestion].[QuestionSetID]
+					  group by [QuestionSet].[QuestionSetID],
+					  [QuestionSetName], [IsOK],
+					  [Time], [AccountID], [UpdateAt], [IsTest]
+					  having count([QuestionSetQuestion].[QuestionSetID]) = 10
 
 create proc countQuestionInQuestionSet(
 	@questionSetID int
@@ -692,6 +715,24 @@ begin
 end
 go
 
+alter proc validateQuestionById(
+	@questionID nvarchar(MAX),
+	@State bit
+)
+as
+begin
+	declare @query nvarchar(MAX)
+	set @query = 'Update [Question] 
+				  Set [IsOK] = @State
+				  WHERE [QuestionID] IN (' + @questionID + ')'
+
+	declare @params nvarchar(MAX)
+	set @params = '@State bit'
+	EXEC sp_executesql @query, @params,
+	                   @State = @State
+end
+go
+
 alter proc loadAllTestSet(
 	@accountID int = null,
 	@searchBox nvarchar(MAX) = null,
@@ -707,7 +748,10 @@ begin
 	if @accountID is not null
 		set @WHERE_SQL += ' AND [TestSetManage].[AccountID] = @accountID'
 	if COALESCE(@searchBox, '') <> ''
-			set @WHERE_SQL += ' AND [TestSetManageName] = @searchBox'
+	begin
+		set @searchBox += '%'
+		set @WHERE_SQL += ' AND [TestSetManageName] like @searchBox'
+	end
 	set @query = 'select [TestSetManageID], [TestSetManage].[AccountID],
 					[TestSetManageName], [TestSetManage].[CreateAt],
 					[TotalQuestion], [Time], [UserName],
@@ -756,7 +800,10 @@ begin
 	if @testSetManageID is not null
 		set @WHERE_SQL += ' and [TestLog].[TestSetManageID] = @testSetManageID'
     if COALESCE(@searchBox, '') <> ''
-			set @WHERE_SQL += ' AND [FullName] = @searchBox'
+	begin
+		set @searchBox += '%'
+		set @WHERE_SQL += ' AND [FullName] like @searchBox'
+	end
 
 	set @query = '
 		select [FullName],[TestLogID],[TestLog].[CreateAt],[TimeTaken], 
@@ -792,14 +839,115 @@ as
 	and [TestSetManageClass].[TestSetManageID] = @testSetManageID
 go
 
-select * from [TestLog]
-select * from [UserAnswer]
+create proc deleteTestSetById(
+	@TestSetID nvarchar(MAX)
+)
+as
+begin
+	declare @query nvarchar(MAX)
+	set @query = 'DELETE FROM [TestSetManage] WHERE [TestSetManageID] IN (' + @TestSetID + ')'
+	EXEC sp_executesql @query
+end
+go
 
-delete from [UserAnswer]
+create proc loadRandomQuestionbySubject(
+	@subjectName nvarchar(MAX),
+	@questionCount int
+)
+as
+begin
+	declare @subjectID int
+	select @subjectID = [SubjectID] from [Subject]
+						where [SubjectName] = @subjectName
 
-delete from [TestLog]
+	select top (@questionCount) [QuestionDetail], [QuestionID]
+	from [Question], [Subject]
+	where [Question].[SubjectID] = [Subject].[SubjectID]
+	and [Subject].[SubjectID] = @subjectID
+end
+go
 
-dbcc checkident([TestLog], Reseed, 0)
+alter proc loadAllPracticeTestLog(
+	@accountID int = null,
+	@rowsofpage int,
+	@pagenumber int
+)
+as
+begin
+	declare @query nvarchar(MAX)
+	declare @WHERE_SQL nvarchar(MAX) = ' and 1=1'
+	declare @orderBy nvarchar(MAX) = ' order by [TestLog].[CreateAt] DESC'
 
-select * from [answer]
+	if @accountID is not null
+		set @WHERE_SQL += ' and [TestLog].[AccountID] = @accountID'
 
+	set @query = '
+		select [FullName],[TestLogID],[TestLog].[CreateAt],[TimeTaken], 
+		[ClassName], Count(*) OVER() as TotalRecords
+		from [TestLog], [Account], [Class]
+		where [TestLog].[AccountID] = [Account].[AccountID]
+		and [Account].[ClassID] = [Class].[ClassID]
+		and [TestLog].[IsTest] = 0'
+		+ @WHERE_SQL
+		+ @orderBy
+		+ ' OFFSET (@pagenumber-1)*@rowsofpage ROWS
+			FETCH NEXT @rowsofpage ROWS ONLY'
+
+	declare @params nvarchar(MAX)
+	set @params = '@accountID int,
+	               @rowsofpage int,  @pagenumber int'
+	exec sp_executesql @query, @params,
+					   @accountID = @accountID,
+					   @rowsofpage = @rowsofpage,
+					   @pagenumber = @pagenumber    
+end
+go
+
+create proc countAllQuestionInTestLog(
+	@testLogID int
+)
+as
+	select count([QuestionID])
+	from UserAnswer
+	where [UserAnswer].[TestLogID] = @testLogID
+
+loadAllPracticeTestLog '1', 25, 1
+go
+
+alter proc getPercentTestLogHasDone(
+	@AccountID int
+)
+as
+begin
+	declare @query nvarchar(MAX) = '
+	select Convert(float, haveDone) / Count([TestSetManageClass].[ClassID])
+	as percentDone
+	from(
+		SELECT COUNT([AccountID]) as haveDone, [AccountID]
+		FROM [TestLog]
+		WHERE [TESTLOG].[AccountID] = @AccountID
+		and [Testlog].[IsTest] = 1
+		GROUP BY [AccountID]
+	) subquery,
+	[Account], [Class], [TestSetManageClass]
+	where subquery.[AccountID] = [Account].[AccountID]
+	and [Account].[ClassID] = [Class].[ClassID]
+	AND [TestSetManageClass].[ClassID] = [Class].[ClassID]
+	group by [TestSetManageClass].[ClassID], subquery.haveDone'
+
+	declare @params nvarchar(MAX)
+	set @params = '@AccountID int'
+
+	exec sp_executesql @query, @params,
+					   @AccountID = @AccountID
+end
+go
+getPercentTestLogHasDone 2
+
+select from [UserAnswer], [TestLog], [Answer]
+where [UserAnswer].[TestLogID] = [TestLog].[TestLogID]
+
+
+select * from [Account]
+
+update [Account] set [RoleID] = 3 where [AccountID] = 2

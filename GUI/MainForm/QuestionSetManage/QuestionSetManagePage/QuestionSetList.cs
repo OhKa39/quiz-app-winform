@@ -90,17 +90,23 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
 
         public async void updateData()
         {
-            int? Time = filtermember.Time != "--Thời gian--" ? Int32.Parse(filtermember.Time) : null;
-            int? IsTest = filtermember.IsTest != "--Dạng--" ? (filtermember.IsTest == "Thi" ? 1 : 0) : null;
-            int? IsOK = filtermember.IsOK != "--Tình trạng--" ? (filtermember.IsOK == "Đã được duyệt" ? 1 : 0) : null;
+            int? Time = filtermember.Time != "--Thời gian--" 
+                ? Int32.Parse(filtermember.Time) : null;
+            int? IsTest = filtermember.IsTest != "--Dạng--" 
+                ? (filtermember.IsTest == "Thi" ? 1 : 0) : null;
+            int? IsOK = filtermember.IsOK != "--Tình trạng--" 
+                ? (filtermember.IsOK == "Đã được duyệt" ? 1 : 0) : null;
             int? accountID = (type == 1) ? acc.AccountID : null;
+            int? TotalQuestion = filtermember.TotalQuestion != "--Số câu hỏi--" 
+                ? Int32.Parse(filtermember.TotalQuestion) : null;
             guna2HtmlLabel1.Text = $"Số câu hỏi đã chọn: {questionSetDict.Count}";
 
             DataTable question = await MainFormQuizAppBus
                 .Instance
                 .loadQuestionSetByUser(
-                    accountID, page, offset, IsTest, Time, filtermember.From,
-                    filtermember.To, IsOK, searchBox, QuestionSetID
+                    accountID, page, offset, IsTest, Time, TotalQuestion, 
+                    filtermember.From, filtermember.To, IsOK,
+                    searchBox, QuestionSetID
                 );
 
 
@@ -156,9 +162,21 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             PanelScrollHelper flowpan2 = new PanelScrollHelper(
                     flowLayoutPanel1, guna2vScrollBar2, true
                 );
+            if(type == 2 || type == 4)
+                filtermember.IsOK = "Đã được duyệt";
+
+            if (type == 4)
+                filtermember.IsTest = "Luyện tập";
+
             guna2TextBox2.Text = page.ToString();
-            guna2TextBox3.DataBindings.Add("Text", this, "SearchBox", false, DataSourceUpdateMode.OnPropertyChanged);
-            if (type == 2)
+
+            guna2TextBox3.DataBindings.Add
+            (
+                "Text", this, 
+                "SearchBox", false, DataSourceUpdateMode.OnPropertyChanged
+            );
+
+            if (type == 2 || type == 4)
             {
                 guna2Button6.Visible = false;
                 guna2Button2.Visible = false;
@@ -186,9 +204,16 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
         {
             using (FilterTestManage filterControl = new FilterTestManage(filtermember))
             {
+                if(type == 2 || type == 4)
+                    filterControl.Guna2ComboBox4.Enabled = false;
+
+                if(type == 4)
+                    filterControl.Guna2ComboBox5.Enabled = false;
+
                 filterControl.ShowDialog();
                 filtermember = filterControl.FilterMember;
             }
+
             if (checkIsTextBoxUnchanged(page))
                 return;
 
@@ -199,7 +224,6 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
         {
             if (int.TryParse(guna2TextBox2.Text, out int result))
             {
-                // Update the int value if parsing is successful
                 page = result;
                 updateData();
             }
@@ -451,7 +475,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                 catch (Exception ex)
                 {
                     MessageBox.Show(
-                            $"Xóa bộ đề thất bại: {ex.Message}: {ex.StackTrace}",
+                            $"Xóa bộ đề thất bại: {ex.Message}",
                             "Thất bại",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error
@@ -500,7 +524,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                 catch (Exception ex)
                 {
                     MessageBox.Show(
-                            $"Đổi trạng thái bộ đề đề thất bại: {ex.Message}",
+                            $"Đổi trạng thái bộ đề thất bại: {ex.Message}",
                             "Thất bại",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error

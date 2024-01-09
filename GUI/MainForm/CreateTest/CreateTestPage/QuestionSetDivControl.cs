@@ -101,7 +101,7 @@ namespace GUI.MainForm.QuestionSetManage
                             " thời gian làm bài bạn đã lựa chọn"
                         );
 
-                    if (itemString[0] != questionCountString)
+                    if (itemString[1] != questionCountString)
                         throw new Exception(
                             "Bộ đề có tổng số câu hỏi không phù hợp với" +
                             " tổng số câu hỏi bạn đã lựa chọn"

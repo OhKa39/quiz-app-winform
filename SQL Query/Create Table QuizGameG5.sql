@@ -202,11 +202,11 @@ create table [TestSetManageQuestionSet]
 
 alter table [TestSetManageQuestionSet] 
 add constraint fk_TestSetManageClass_QuestionSet foreign key ([QuestionSetID]) 
-references [QuestionSet]([QuestionSetID])
+references [QuestionSet]([QuestionSetID]) on delete cascade
 
 alter table [TestSetManageQuestionSet] 
 add constraint fk_TestSetManageQuestionSet_TestSetManage foreign key ([TestSetManageID]) 
-references [TestSetManage]([TestSetManageID])
+references [TestSetManage]([TestSetManageID]) on delete cascade
 end
 
 begin /* TestSetManageClass Table */
@@ -219,11 +219,11 @@ create table [TestSetManageClass]
 
 alter table [TestSetManageClass] 
 add constraint fk_TestSetManageClass_Class foreign key ([ClassID]) 
-references [Class]([ClassID])
+references [Class]([ClassID]) on delete cascade
 
 alter table [TestSetManageClass] 
 add constraint fk_TestSetManageClass_TestSetManage foreign key ([TestSetManageID]) 
-references [TestSetManage]([TestSetManageID])
+references [TestSetManage]([TestSetManageID]) on delete cascade
 end
 
 begin /* TestLog Table */
@@ -242,7 +242,7 @@ references [Account]([AccountID])
 
 alter table [TestLog] 
 add constraint fk_TestLogTestSetManage foreign key ([TestSetManageID]) 
-references [TestSetManage]([TestSetManageID])
+references [TestSetManage]([TestSetManageID]) on delete cascade
 end
 
 begin /* UserAnswer Table */
@@ -256,8 +256,8 @@ create table [UserAnswer]
 )
 
 alter table [UserAnswer]
-add constraint fk_UserAnswer foreign key([TestLogID])
-references [TestLog]([TestLogID])
+add constraint fk_UserAnswerTestLog foreign key([TestLogID])
+references [TestLog]([TestLogID]) on delete cascade
 
 alter table [UserAnswer]
 add constraint fk_UserAnswerAnswer foreign key([AnswerID])

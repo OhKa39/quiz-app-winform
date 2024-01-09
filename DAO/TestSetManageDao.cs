@@ -78,5 +78,19 @@ namespace DAO
 
             return data;
         }
+
+        public async Task<int> deleteTestSetByID
+        (
+            string TestSetID 
+        )
+        {
+            string query = "deleteTestSetById @TestSetID";
+            int data = await DataProvider.Instance.ExcuteNonQuery(
+                query,
+                new object[] { TestSetID }
+            );
+
+            return data;
+        }
     }
 }

@@ -110,8 +110,12 @@ namespace GUI.MainForm.CreateTest.TestPageManage
             get => time;
             set
             {
-                totalQuestion = value;
-                guna2HtmlLabel3.Text = $"Thời gian: {value}";
+                time = value;
+                guna2HtmlLabel3.Text = String.Format
+                (
+                    "Thời gian: {0:00}p",
+                    value
+                ); ;
             }
         }
         public int TestSetID

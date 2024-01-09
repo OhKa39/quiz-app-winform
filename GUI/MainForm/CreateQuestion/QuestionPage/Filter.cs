@@ -72,11 +72,6 @@ namespace GUI.MainForm.QuestionSet.QuestionPage
             guna2ComboBox5.DataBindings.Add("SelectedItem", FilterMember, "IsTest", false, DataSourceUpdateMode.OnPropertyChanged);
             guna2DateTimePicker1.DataBindings.Add("Value", FilterMember, "From", false, DataSourceUpdateMode.OnPropertyChanged);
             guna2DateTimePicker2.DataBindings.Add("Value", FilterMember, "To", false, DataSourceUpdateMode.OnPropertyChanged);
-            guna2Button4.Checked = FilterMember.DifficultNameSort;
-            guna2Button5.Checked = FilterMember.SubjectSort;
-            guna2Button6.Checked = FilterMember.UpdateTimeSort1;
-            guna2Button7.Checked = FilterMember.IsTestSort;
-            guna2Button8.Checked = FilterMember.IsOKSort;
         }
 
         private async void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,32 +101,6 @@ namespace GUI.MainForm.QuestionSet.QuestionPage
                 }
             }
         }
-
-        private void guna2Button4_CheckedChanged(object sender, EventArgs e)
-        {
-            FilterMember.DifficultNameSort = guna2Button4.Checked;
-        }
-
-        private void guna2Button5_CheckedChanged(object sender, EventArgs e)
-        {
-            FilterMember.SubjectSort = guna2Button5.Checked;
-        }
-
-        private void guna2Button6_CheckedChanged(object sender, EventArgs e)
-        {
-            FilterMember.UpdateTimeSort1 = guna2Button6.Checked;
-        }
-
-        private void guna2Button7_CheckedChanged(object sender, EventArgs e)
-        {
-            FilterMember.IsTestSort = guna2Button7.Checked;
-        }
-
-        private void guna2Button8_CheckedChanged(object sender, EventArgs e)
-        {
-            FilterMember.IsOKSort = guna2Button8.Checked;
-        }
-
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {

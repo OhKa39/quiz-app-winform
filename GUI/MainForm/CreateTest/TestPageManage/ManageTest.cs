@@ -92,7 +92,7 @@ namespace GUI.MainForm.CreateTest.TestPageManage
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    $"Đã có lỗi xảy ra: {ex.Message}: {ex.StackTrace}",
+                    $"Đã có lỗi xảy ra: {ex.Message}",
                     "Thất bại",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -192,6 +192,55 @@ namespace GUI.MainForm.CreateTest.TestPageManage
             }
             guna2Button5.Text = "Chọn tất cả";
             isTurnOn *= -1;
+        }
+
+        private async void guna2Button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string testSetIDLists = "";
+                foreach (var item in testSetDict)
+                {
+                    testSetIDLists += item.Key.ToString() + ",";
+                }
+
+                if (testSetIDLists == "")
+                {
+                    throw new Exception(
+                        "Chưa chọn bài thi để xóa"
+                    );
+                }
+
+                testSetIDLists = testSetIDLists
+                    .Substring(0, testSetIDLists.Length - 1);
+                int countRowsAffect = await MainFormQuizAppBus
+                    .Instance
+                    .deleteTestSetByID(testSetIDLists);
+
+                if (countRowsAffect > 0)
+                    MessageBox.Show(
+                        "Xóa bài thi thành công",
+                        "Thành công",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                );
+
+                testSetDict.Clear();
+
+                if (checkIsTextBoxUnchanged(page))
+                    return;
+
+                guna2TextBox2.Text = "1";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                        $"Xóa bài thi thất bại: {ex.Message}",
+                        "Thất bại",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                );
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace DTO
         private DateTime to = DateTime.Today;
         private string isTest = "--Dạng--";
         private string isOK = "--Tình trạng--";
+        private string totalQuestion = "--Số câu hỏi--";
 
         public FilterQuestionSet() { }
         public FilterQuestionSet(FilterQuestionSet _filter)
@@ -25,6 +26,7 @@ namespace DTO
             To = _filter.To;
             IsTest = _filter.IsTest;
             IsOK = _filter.IsOK;
+            TotalQuestion = _filter.TotalQuestion;
         }
 
         public string QuestionSetName { get => questionSetName; set => questionSetName = value; }
@@ -33,5 +35,6 @@ namespace DTO
         public DateTime To { get => to; set => to = value; }
         public string IsTest { get => isTest; set => isTest = value; }
         public string IsOK { get => isOK; set => isOK = value; }
+        public string TotalQuestion { get => totalQuestion; set => totalQuestion = value; }
     }
 }

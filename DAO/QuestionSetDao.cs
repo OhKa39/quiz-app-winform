@@ -55,7 +55,8 @@ namespace DAO
                 int rowsofpage ,
                 int? isTest ,
                 int? time,
-                DateTime from ,
+                int? totalQuestion,
+                DateTime from,
                 DateTime to ,
                 int? isOK ,
                 string questionSetName,
@@ -63,19 +64,20 @@ namespace DAO
         )
         {
             string query = "findAllQuestionSet @AccountID , " +
-                "@pagenumber , @rowsofpage , @isTest , @time , @from , " +
+                "@pagenumber , @rowsofpage , @isTest , @time , @totalQuestion , @from , " +
                 "@to , @isOK , @questionSetName , @questionSetID";
             object Time = (object)time ?? DBNull.Value;
             object IfTest = (object)isTest ?? DBNull.Value;
             object IfOK = (object)isOK ?? DBNull.Value;
             object AccountIDCheckNull = (object)isOK ?? DBNull.Value;
+            object totalQues = (object)totalQuestion ?? DBNull.Value;
             DataTable data = await DataProvider
                 .Instance
                 .ExcuteQuery(
                     query,
                     new object[] {
                         AccountIDCheckNull, pagenumber, rowsofpage, IfTest, Time,
-                        from, to, IfOK, questionSetName, questionSetID
+                        totalQues, from, to, IfOK, questionSetName, questionSetID
                     }
                 );
             return data;

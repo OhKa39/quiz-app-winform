@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DTO;
 using GUI.MainForm.CreateTest;
 using GUI.MainForm.Home;
+using GUI.MainForm.Practice;
 using GUI.MainForm.QuestionSet;
 using GUI.MainForm.QuestionSetManage;
 using GUI.MainForm.ValidateManage;
@@ -68,7 +69,7 @@ namespace GUI
 
         private void MainFormQuizApp_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
         }
 
         private void guna2Button4_Click(object sender, EventArgs e)
@@ -132,6 +133,24 @@ namespace GUI
             Control uc = new ValidateManageP(account);
             uc.Dock = DockStyle.Fill;
             guna2CustomGradientPanel1.Controls.Add(uc);
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            guna2CustomGradientPanel1.Controls.Clear();
+            Control uc = new PracticeP(account);
+            uc.Dock = DockStyle.Fill;
+            guna2CustomGradientPanel1.Controls.Add(uc);
+        }
+
+        private void guna2ControlBox1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

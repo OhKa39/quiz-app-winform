@@ -159,7 +159,7 @@ namespace BUS
         (
             int page, int offset, string questionDetail,
             string difficultName, string subjectName, DateTime from,
-            DateTime To, int? isTest, string questionID
+            DateTime To, int? isTest, int? IsOK, string questionID
         )
         {
 
@@ -168,7 +168,7 @@ namespace BUS
                 .loadQuestionByFilter
                 (
                     "", page, offset, questionDetail, difficultName,
-                    subjectName, from, To, isTest, 1, questionID
+                    subjectName, from, To, isTest, IsOK, questionID
                 );
             return data;
         }
@@ -194,6 +194,7 @@ namespace BUS
                 int rowsofpage,
                 int? isTest,
                 int? time,
+                int? totalQuestion,
                 DateTime from,
                 DateTime to,
                 int? isOK,
@@ -204,7 +205,7 @@ namespace BUS
             DataTable data = await QuestionSetDao
                 .Instance
                 .findAllQuestionSet(
-                        AccountID, pagenumber, rowsofpage, isTest, time,
+                        AccountID, pagenumber, rowsofpage, isTest, time, totalQuestion,
                         from, to, isOK, questionSetName, questionSetID
                 );
             return data;
@@ -367,7 +368,66 @@ namespace BUS
         public async Task<DataTable> loadClassInTestSetManageClass(int testSetManageID)
         {
             DataTable data = await ClassDao
-                .Instance.loadClassInTestSetManageClass(testSetManageID );
+                .Instance.loadClassInTestSetManageClass(testSetManageID);
+            return data;
+        }
+
+        public async Task<int> deleteTestSetByID
+        (
+            string TestSetID
+        )
+        {
+            int data = await TestSetManageDao.Instance.deleteTestSetByID(TestSetID);
+
+            return data;
+        }
+
+        public async Task<DataTable> loadRandomQuestionbySubject(
+            string subjectName, int questionCount
+        )
+        {
+            DataTable data = await QuestionDao.Instance.loadRandomQuestionbySubject
+            (
+                subjectName, questionCount
+            );
+            return data;
+        }
+
+        public async Task<DataTable> loadAllPracticeTestLog(
+            int accountID,
+            int rowsofpage,
+            int pagenumber
+        )
+        {
+            DataTable data = await TestLogDao.Instance.loadAllPracticeTestLog
+            (
+                accountID, rowsofpage, pagenumber
+            );
+            return data;
+        }
+
+        public async Task<int?> countAllQuestionInTestLog(
+            int testLogID
+        )
+        {
+            int? data = await QuestionDao.Instance.countAllQuestionInTestLog(testLogID);
+            return data;
+        }
+
+        public async Task<int> updateQuestionIsOKByID(
+            string questionID, int state
+        )
+        {
+            int data = await QuestionDao
+                .Instance.updateQuestionIsOKByID(questionID, state);
+            return data;
+        }
+
+        public async Task<DataTable> getPercenTestLogDone(
+            int accountID
+        )
+        {
+            DataTable data = await TestLogDao.Instance.getPercenTestLogDone(accountID);
             return data;
         }
     }
