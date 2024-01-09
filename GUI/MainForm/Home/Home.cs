@@ -35,8 +35,6 @@ namespace GUI.MainForm.Home
                 guna2CircleProgressBar1.Minimum = 0;
                 guna2CircleProgressBar1.Maximum = 100;
 
-                guna2CircleProgressBar2.Minimum = 0;
-                guna2CircleProgressBar2.Maximum = 100;
 
                 DataTable percentDone = await MainFormQuizAppBus
                     .Instance.getPercenTestLogDone(acc.AccountID);
