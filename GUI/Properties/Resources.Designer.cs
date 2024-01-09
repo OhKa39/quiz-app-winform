@@ -213,6 +213,26 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_create_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-create-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_create_64_unchecked {
+            get {
+                object obj = ResourceManager.GetObject("icons8-create-64-unchecked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_eye_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-eye-30", resourceCulture);
@@ -266,6 +286,16 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap icons8_left_arrow_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-left-arrow-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_logout_100_uncheck {
+            get {
+                object obj = ResourceManager.GetObject("icons8-logout-100-uncheck", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -386,6 +416,26 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap icons8_testmanage_90_checked {
             get {
                 object obj = ResourceManager.GetObject("icons8-testmanage-90-checked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_tick_100_checked {
+            get {
+                object obj = ResourceManager.GetObject("icons8-tick-100-checked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_tick_100_unchecked {
+            get {
+                object obj = ResourceManager.GetObject("icons8-tick-100-unchecked", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

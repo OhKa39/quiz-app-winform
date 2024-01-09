@@ -13,12 +13,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
 {
-    public partial class AfterCreateAccount : UserControl
+    public partial class NotificationForm : UserControl
     {
         private bool isSuccess;
-        public AfterCreateAccount(bool _isSuccess)
+        private string alert;
+        public NotificationForm(bool _isSuccess, string _alert)
         {
             isSuccess = _isSuccess;
+            alert = _alert;
             InitializeComponent();
         }
 
@@ -29,10 +31,12 @@ namespace GUI
         {
             if (!isSuccess)
             {
-                guna2HtmlLabel1.Text = "Đăng ký không thành công. Hãy thử lại";
+                guna2HtmlLabel1.Text = alert;
                 guna2HtmlLabel1.ForeColor = Color.Red;
                 guna2PictureBox3.Image = Properties.Resources.warning;
             }
+            else
+                guna2HtmlLabel1.Text = alert;
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)

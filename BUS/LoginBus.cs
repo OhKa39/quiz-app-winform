@@ -96,5 +96,15 @@ namespace BUS
             int? rowAffect = await AccountDao.Instance.getEmail(email);
             return rowAffect;
         }
+
+        public async Task<bool> updateUserPassword(string email, string password)
+        {
+            var encodePassword = new UnicodeEncoding().GetBytes(password);
+            var sha = SHA256.Create();
+            byte[] passwordHash = sha.ComputeHash(encodePassword);
+            int rowAffect = await AccountDao
+                .Instance.updateUserPassword(email, passwordHash);
+            return rowAffect == 1;
+        }
     }
 }

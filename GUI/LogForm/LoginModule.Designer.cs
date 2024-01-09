@@ -181,6 +181,7 @@
             label2.Size = new Size(96, 17);
             label2.TabIndex = 8;
             label2.Text = "Quên mật khẩu";
+            label2.Click += label2_Click;
             // 
             // guna2Button1
             // 
@@ -246,7 +247,7 @@
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Arial", 15.75F, FontStyle.Bold);
             guna2HtmlLabel2.ForeColor = SystemColors.ActiveCaptionText;
-            guna2HtmlLabel2.Location = new Point(107, 533);
+            guna2HtmlLabel2.Location = new Point(107, 541);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(99, 26);
             guna2HtmlLabel2.TabIndex = 12;

@@ -61,7 +61,7 @@ namespace GUI.MainForm.QuestionSet.QuestionTestPage
                     IsTest = (bool)row["IsTest"],
                     DifficultName = row["DifficultName"] as string,
                     SubjectName = row["SubjectName"] as string,
-                    UpdateAt = (DateTime)row["UpdateAt"],
+                    UpdateAt = ((DateTime)row["UpdateAt"]).ToLocalTime(),
                     HasInDict = questionDict.ContainsKey((int)row["QuestionID"]) ? 1 : -1,
                     IsNotClick = 1,
                     Type = this.Type

@@ -36,7 +36,7 @@ namespace GUI.TestForm
             guna2ComboBox2.Items.Add(question.SubjectName);
             guna2ComboBox2.Text = question.SubjectName;
             guna2ComboBox5.SelectedIndex = question.IsTest == true ? 2 : 1;
-            guna2HtmlLabel3.Text = $"Lần cập nhật gần nhất: {question.UpdateAt}";
+            guna2HtmlLabel3.Text = $"Lần cập nhật gần nhất: {question.UpdateAt.ToLocalTime()}";
         }
 
         private async void guna2Button1_Click(object sender, EventArgs e)

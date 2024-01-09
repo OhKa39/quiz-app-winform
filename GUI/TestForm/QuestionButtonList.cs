@@ -11,6 +11,7 @@ using BUS;
 using DTO;
 using GUI.MainFormQuizApp;
 using GUI.TestResult;
+using Guna.UI2.WinForms.Helpers;
 using Microsoft.Identity.Client;
 
 namespace GUI.TestForm
@@ -42,7 +43,7 @@ namespace GUI.TestForm
 
             int distance = 75;
             int buttonX = panelCenterX - (guna2Button1.Width / 2);
-            int buttonY = lastItem.Bottom + distance;
+            int buttonY = Math.Min(lastItem.Bottom + distance, 595);
 
             guna2Button1.Location = new System.Drawing.Point(buttonX, buttonY);
         }
@@ -56,6 +57,10 @@ namespace GUI.TestForm
         {
             if (IsTest == 1)
                 guna2Button1.Visible = false;
+
+            PanelScrollHelper flowpan1 = new PanelScrollHelper(
+                        flowLayoutPanel1, guna2vScrollBar1, true
+            );
             List<QuestionButton> btnList = new List<QuestionButton>();
             for (int i = 0; i < questionCount; ++i)
             {
@@ -94,9 +99,9 @@ namespace GUI.TestForm
             string userAnswer = "";
             bool isFullFill = true;
 
-            foreach(int choice in tfUI.UserChoices)
+            foreach (int choice in tfUI.UserChoices)
             {
-                if(choice == 0)
+                if (choice == 0)
                 {
                     isFullFill = false;
                 }
@@ -104,9 +109,9 @@ namespace GUI.TestForm
                 userAnswer += choice.ToString() + ",";
             }
 
-            foreach(bool flag in tfUI.Flags)
+            foreach (bool flag in tfUI.Flags)
             {
-                if(flag)
+                if (flag)
                 {
                     isFullFill = false;
                     break;
@@ -115,9 +120,9 @@ namespace GUI.TestForm
 
             bool ok = false;
 
-            if(tfUI.ForceSent != 1)
+            if (tfUI.ForceSent != 1)
             {
-                if(!isFullFill)
+                if (!isFullFill)
                 {
                     Guna2Button1DialogResult =
                        MessageBox.Show(
@@ -163,7 +168,7 @@ namespace GUI.TestForm
                 int timeTaken = tfUI.TimeConst - tfUI.TimeTaken;
 
                 string questionID = "";
-                foreach(var item in tfUI.Pairs)
+                foreach (var item in tfUI.Pairs)
                 {
                     questionID += item.QuestionID.ToString() + ",";
                 }
@@ -172,11 +177,12 @@ namespace GUI.TestForm
                     .Instance
                     .createTestLog(accoutID, isTest, userAnswer, questionID, timeTaken, testSetManageID);
 
-                if(rowAffect != null)
+                if (rowAffect != null)
                 {
                     int testLogID = (int)rowAffect;
                     TestResultForm trf = new TestResultForm();
                     trf.Acc = tfUI.Acc;
+                    trf.FullName = tfUI.Acc.Fullname;
                     trf.QuestionCount = QuestionCount;
                     trf.TimeTaken = timeTaken;
                     trf.TestSetName = tfUI.TestSetName;
@@ -184,11 +190,11 @@ namespace GUI.TestForm
                     tfUI.AlreadyClose = 1;
                     tfUI.Close();
                     trf.Show();
-                    
-                    
+
+
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     $"Đã có lỗi xảy ra khi nộp bài: {ex.StackTrace}. Hãy thử lại sau",

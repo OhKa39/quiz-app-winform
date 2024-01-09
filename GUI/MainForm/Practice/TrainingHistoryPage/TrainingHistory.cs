@@ -41,7 +41,7 @@ namespace GUI.MainForm.Practice.TrainingHistoryPage
                     TestSetName = $"Bài luyện tập số {(int)row["TestLogID"]}",
                     FullName = row["FullName"] as string,
                     ClassName = row["ClassName"] as string,
-                    CreateAt = (DateTime)row["CreateAt"],
+                    CreateAt = ((DateTime)row["CreateAt"]).ToLocalTime(),
                     TimeTaken = (int)row["TimeTaken"],
                     Acc = acc
                 };

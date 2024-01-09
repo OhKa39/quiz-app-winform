@@ -68,7 +68,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                     IsTest = (bool)row["IsTest"] == true ? "Thi" : "Luyện tập",
                     IsOK = (bool)row["IsOK"],
                     QuestionNumber = count.ToString(),
-                    UpdateAt = (DateTime)row["UpdateAt"],
+                    UpdateAt = ((DateTime)row["UpdateAt"]).ToLocalTime(),
                     HasInDict = QuestionSetDict.ContainsKey((int)row["QuestionSetID"]) ? 1 : -1,
                     Type = this.Type
                 };
@@ -154,6 +154,12 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             }
             return false;
         }
+
+        void resetSelectAllButton()
+        {
+            isTurnOn = -1;
+            guna2Button5.Text = "Chọn tất cả";
+        }
         #endregion
 
         private void QuestionSetList_Load(object sender, EventArgs e)
@@ -214,6 +220,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                 filtermember = filterControl.FilterMember;
             }
 
+            resetSelectAllButton();
             if (checkIsTextBoxUnchanged(page))
                 return;
 
@@ -255,6 +262,8 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             if (page == totalPage)
                 return;
             ++page;
+
+            resetSelectAllButton();
             if (checkIsTextBoxUnchanged(page))
                 return;
             guna2TextBox2.Text = page.ToString();
@@ -265,6 +274,8 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             if (page == 1)
                 return;
             --page;
+
+            resetSelectAllButton();
             if (checkIsTextBoxUnchanged(page))
                 return;
             guna2TextBox2.Text = page.ToString();
@@ -275,6 +286,8 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             int delayMilliseconds = 200;
             searchBox = guna2TextBox3.Text;
             await Task.Delay(delayMilliseconds);
+
+            resetSelectAllButton();
             if (checkIsTextBoxUnchanged(page))
                 return;
             guna2TextBox2.Text = "1";
@@ -282,9 +295,6 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
 
         private void guna2ToggleSwitch1_CheckedChanged(object sender, EventArgs e)
         {
-
-
-
             if (guna2ToggleSwitch1.Checked)
             {
                 guna2Button2.Enabled = true;
@@ -317,6 +327,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                 guna2Button2.Enabled = false;
                 qlcqs.Guna2ToggleSwitch1.Enabled = false;
                 qlcqs.Guna2TextBox2.Text = "1";
+                resetSelectAllButton();
                 updateData();
             }
         }
@@ -414,6 +425,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                     );
 
                     questionSetDict.Clear();
+                    resetSelectAllButton();
 
                     if (checkIsTextBoxUnchanged(page))
                         return;
@@ -466,6 +478,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                     );
 
                     questionSetDict.Clear();
+                    resetSelectAllButton();
 
                     if (checkIsTextBoxUnchanged(page))
                         return;
@@ -515,6 +528,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                     );
 
                     questionSetDict.Clear();
+                    resetSelectAllButton();
 
                     if (checkIsTextBoxUnchanged(page))
                         return;

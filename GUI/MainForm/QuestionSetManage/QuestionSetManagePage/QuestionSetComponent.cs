@@ -190,8 +190,8 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             get => updateAt;
             set
             {
-                updateAt = value;
-                guna2HtmlLabel2.Text = $"Lần cuối sửa đổi: {value}";
+                updateAt = value.ToLocalTime();
+                guna2HtmlLabel2.Text = $"Lần cuối sửa đổi: {value.ToLocalTime()}";
             }
         }
 

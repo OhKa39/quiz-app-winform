@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS;
 using DTO;
+using GUI;
 using Guna.UI2.WinForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -140,7 +141,7 @@ namespace GUI
                 parent.Opacity = 1;
                 parent.ShowInTaskbar = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(
                     $"Đã có lỗi xảy ra: {ex.Message}",
@@ -149,7 +150,7 @@ namespace GUI
                     MessageBoxIcon.Error
                 );
             }
-            
+
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -208,6 +209,15 @@ namespace GUI
                 guna2Button1.PerformClick();
                 e.IsInputKey = true;
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            Panel formPanel = (Panel)(this.Parent);
+            formPanel.Controls.Clear();
+            Control uc = new ForgetPasswordStep1();
+            uc.Dock = DockStyle.Fill;
+            formPanel.Controls.Add(uc);
         }
     }
 }

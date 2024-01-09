@@ -84,7 +84,7 @@ begin
 end
 go
 
-ALTER PROCEDURE CreateAccount
+create PROCEDURE CreateAccount
 (
 	@username NVARCHAR(255),
 	@email NVARCHAR(255),

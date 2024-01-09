@@ -103,7 +103,11 @@ namespace GUI.MainForm.QuestionSet.QuestionPage
         public DateTime UpdateAt
         {
             get => updateAt;
-            set { updateAt = value; question.UpdateAt = value; }
+            set 
+            {
+                updateAt = value.ToLocalTime();
+                question.UpdateAt = value.ToLocalTime(); 
+            }
         }
         public string SubjectName
         {

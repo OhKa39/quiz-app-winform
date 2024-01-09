@@ -48,7 +48,7 @@ namespace GUI.MainForm.CreateTest.TestPageManage
                     TestSetName = row["TestSetManageName"] as string,
                     AccountID = (int)row["AccountID"],
                     AccountName = row["UserName"] as string,
-                    CreatedAt = (DateTime)row["CreateAt"],
+                    CreatedAt = ((DateTime)row["CreateAt"]).ToLocalTime(),
                     TotalQuestion = (int)row["TotalQuestion"],
                     Time = (int)row["Time"],
                     HasInDict = testSetDict.ContainsKey((int)row["TestSetManageID"]) ? 1 : -1,

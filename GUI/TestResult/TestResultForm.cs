@@ -17,6 +17,7 @@ namespace GUI.TestResult
     public partial class TestResultForm : Form
     {
         private AccountResponse acc;
+        private string fullName;
         private int questionCount;
         private int testLogID;
         private string testSetName;
@@ -32,7 +33,6 @@ namespace GUI.TestResult
             set
             {
                 acc = value;
-                guna2HtmlLabel2.Text = acc.Fullname;
             }
         }
         public int QuestionCount
@@ -65,6 +65,15 @@ namespace GUI.TestResult
                     (int)(value / 60),
                     value % 60
                 );
+            }
+        }
+
+        public string FullName { 
+            get => fullName;
+            set
+            {
+                fullName = value;
+                guna2HtmlLabel2.Text = value;
             }
         }
 

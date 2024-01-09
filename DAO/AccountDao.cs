@@ -91,5 +91,13 @@ namespace DAO
             rowAffected = await DataProvider.Instance.ExcuteScalar(query, new object[] { email });
             return rowAffected;
         }
+
+        public async Task<int> updateUserPassword(string email, byte[]password)
+        {
+            string query = "updateUserPassword @email , @password";
+            int rowAffect = await DataProvider
+                .Instance.ExcuteNonQuery(query, new object[] { email, password });
+            return rowAffect;
+        }
     }
 }

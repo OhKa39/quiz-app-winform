@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class AfterCreateAccount
+    partial class NotificationForm
     {
         /// <summary> 
         /// Required designer variable.

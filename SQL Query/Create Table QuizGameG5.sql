@@ -1,6 +1,3 @@
-use [QuizAppG5]
-go
-
 begin /*SchoolYear Table*/
 create table [SchoolYear](
 	[SchoolYearID] int identity primary key,
@@ -165,9 +162,6 @@ create table [QuestionSetQuestion](
 )
 
 alter table [QuestionSetQuestion] 
-drop constraint fk_TestSetQuestionQuestion
-
-alter table [QuestionSetQuestion] 
 add constraint fk_QuestionSetQuestionQuestionSet foreign key ([QuestionSetID]) 
 references [QuestionSet]([QuestionSetID]) on delete cascade
 
@@ -274,7 +268,6 @@ create table [TestLogQuestion](
 	[QuestionID] int,
 	primary key([TestLogID], [QuestionID])
 )
-drop table [TestLogQuestion]
 
 alter table [TestLogQuestion]
 add constraint FK_TestLogQuestionTestLog

@@ -111,16 +111,16 @@ namespace GUI.MainFormQuizApp
                 adl[i].TextBoxText = answerOfAnswer[CurrentQuestion][i].AnswerDetail;
                 char B = (char)('A' + i);
                 adl[i].Label = $"{B}";
-                if(formStyle == 2)
+                if (formStyle == 2)
                 {
                     if (UserChoices[CurrentQuestion] == answerOfAnswer[CurrentQuestion][i].AnswerID)
                         checkIndex = i;
                     adl[i].guna2RadioButton1.Enabled = true;
                     adl[i].EnableEvent = -1;
                     adl[i].Type = 2;
-                }            
+                }
                 adl[i].AnswerID = answerOfAnswer[CurrentQuestion][i].AnswerID;
-                if(formStyle == 3)
+                if (formStyle == 3)
                 {
                     adl[i].guna2RadioButton1.Enabled = false;
                     if (userChoices[CurrentQuestion] == answerOfAnswer[CurrentQuestion][i].AnswerID && userChoices[CurrentQuestion] != 0)
@@ -201,7 +201,7 @@ namespace GUI.MainFormQuizApp
                     uc.Dock = DockStyle.Fill;
                     guna2Panel1.Controls.Add(uc);
 
-                    if(questions == null)
+                    if (questions == null)
                         questions = await MainFormQuizAppBus
                             .Instance
                             .loadAllQuestionInQuestionSet(QuestionsetID);
@@ -250,7 +250,7 @@ namespace GUI.MainFormQuizApp
 
                     updateGUI();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(
                         $"Đã có lỗi xảy ra: {ex.Message}",
@@ -262,7 +262,7 @@ namespace GUI.MainFormQuizApp
                 }
             }
 
-            if(FormStyle == 3)
+            if (FormStyle == 3)
             {
                 try
                 {
@@ -293,7 +293,7 @@ namespace GUI.MainFormQuizApp
                     guna2Panel1.Controls.Add(uc);
                     updateGUI();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(
                         $"Đã có lỗi xảy ra: {ex.Message}",
@@ -301,7 +301,7 @@ namespace GUI.MainFormQuizApp
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
                     );
-                }            
+                }
             }
         }
 
@@ -363,13 +363,13 @@ namespace GUI.MainFormQuizApp
 
         private void TestFormUI_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
             if (formStyle != 2)
                 return;
 
             if (AlreadyClose == 1)
             {
-                if(FormParentCall is TestListComponent)
+                if (FormParentCall is TestListComponent)
                     ((TestListComponent)FormParentCall).checkState();
                 return;
             }
@@ -379,7 +379,7 @@ namespace GUI.MainFormQuizApp
             QuestionButtonList qbl = (QuestionButtonList)guna2Panel1.Controls[1];
             qbl.Guna2Button1.PerformClick();
 
-            if(forceSent == -1)
+            if (forceSent == -1)
                 if (qbl.Guna2Button1DialogResult == DialogResult.Cancel)
                 {
                     e.Cancel = true;

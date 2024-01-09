@@ -84,7 +84,7 @@ namespace GUI.MainFormQuizApp
             guna2ControlBox1.HoverState.FillColor = Color.Tomato;
             guna2ControlBox1.HoverState.IconColor = Color.White;
             guna2ControlBox1.IconColor = Color.Black;
-            guna2ControlBox1.Location = new Point(285, 0);
+            guna2ControlBox1.Location = new Point(284, 1);
             guna2ControlBox1.Name = "guna2ControlBox1";
             guna2ControlBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2ControlBox1.Size = new Size(45, 30);
@@ -221,7 +221,7 @@ namespace GUI.MainFormQuizApp
             guna2Button2.Font = new Font("Segoe UI", 9F);
             guna2Button2.ForeColor = Color.White;
             guna2Button2.Image = Properties.Resources.white_flag;
-            guna2Button2.Location = new Point(128, 58);
+            guna2Button2.Location = new Point(128, 59);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges14;
             guna2Button2.Size = new Size(60, 32);

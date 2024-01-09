@@ -245,7 +245,7 @@ namespace GUI
         {
             Panel formPanel = (Panel)(this.Parent);
             formPanel.Controls.Clear();
-            Control uc = new RegisterComponentStep3(tempAccount, allOK);
+            Control uc = new VerifyEmailStep(tempAccount, allOK);
             uc.Dock = DockStyle.Fill;
             formPanel.Controls.Add(uc);
         }

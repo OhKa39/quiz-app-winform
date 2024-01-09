@@ -19,9 +19,9 @@ using System.Diagnostics;
 
 namespace GUI
 {
-    public partial class RegisterComponentStep3 : UserControl
+    public partial class VerifyEmailStep : UserControl
     {
-        private AccountRequest tempAccount;
+        private AccountRequest tempAccount = null;
         private string verifyCode;
         private List<int> allOK;
         private const int timeWaitSendMessage = 30;
@@ -30,6 +30,7 @@ namespace GUI
         private Guna2TextBox[] gunaTextBoxes;
         private int currentTextBox = 0;
         private int isUnValid = -1;
+        private int type = 1;
 
         public string A { get => a; set => a = value; }
         public string B { get => b; set => b = value; }
@@ -37,8 +38,9 @@ namespace GUI
         public string D { get => d; set => d = value; }
         public string E { get => e; set => e = value; }
         public string F { get => f; set => f = value; }
+        public int Type { get => type; set => type = value; }
 
-        public RegisterComponentStep3(AccountRequest _tempAccount, List<int> _allOK)
+        public VerifyEmailStep(AccountRequest _tempAccount, List<int> _allOK)
         {
             allOK = _allOK;
             tempAccount = _tempAccount;
@@ -52,12 +54,25 @@ namespace GUI
             }
         }
 
+        public VerifyEmailStep(AccountRequest _tempAccount)
+        {
+            tempAccount = _tempAccount;
+            InitializeComponent();
+            gunaTextBoxes = new Guna2TextBox[] { guna2TextBox1, guna2TextBox2, guna2TextBox3, guna2TextBox4, guna2TextBox5, guna2TextBox6 };
+            foreach (var i in gunaTextBoxes)
+            {
+                i.TextChanged += gunaTextBox_TextChanged;
+                i.KeyPress += gunaTextBox_KeyPress;
+                i.PreviewKeyDown += gunaTextBox_PreviewKeyDown;
+            }
+        }
         #region Own Method
         private async Task<string> sendVerifyCode()
         {
             Random rnd = new Random();
             int num = rnd.Next(1, 1000000);
             string verifyCode = num.ToString("D6");
+            string body = null;
 
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
@@ -66,16 +81,25 @@ namespace GUI
                 EnableSsl = true,
                 Timeout = 10000
             };
-
+            if (type == 1)
+                body = 
+                (
+                    "<h1>Mã xác nhận QuizApp</h1>\n" +
+                    "<p>Bạn đã đăng ký tài khoản QuizApp với tài khoản là: " + tempAccount.Username + "</p>\n" +
+                    "<p>Đây là mã xác nhận của bạn: " + verifyCode + "</p>\n"
+                );
+            else
+                body =
+                (
+                    "<h1>Mã xác nhận QuizApp</h1>\n" +
+                    "<p>Bạn đã dùng tính năng quên mật khẩu của QuizApp với email là: " + tempAccount.Email + "</p>\n" +
+                    "<p>Đây là mã xác nhận của bạn: " + verifyCode + "</p>\n"
+                );
             var mailMessage = new MailMessage
             {
                 From = new MailAddress("bestlolvn21@gmail.com"),
                 Subject = "Mã xác nhận QuizApp",
-                Body = (
-                    "<h1>Mã xác nhận QuizApp</h1>\n" +
-                    "<p>Bạn đã đăng ký tài khoản QuizApp với tài khoản là: " + tempAccount.Username + "</p>\n" +
-                    "<p>Đây là mã xác nhận đăng nhập của bạn: " + verifyCode + "</p>\n"
-                ),
+                Body = body,
                 IsBodyHtml = true,
             };
             mailMessage.To.Add(tempAccount.Email);
@@ -267,16 +291,34 @@ namespace GUI
                 string confirm = a + b + c + d + E + f;
                 if (confirm == verifyCode)
                 {
-                    bool IsSuccess = await Work(
+                    Control uc;
+                    Panel formPanel;
+                    if (type == 1)
+                    {
+                        string alert = "";
+                        bool IsSuccess = await Work(
                             tempAccount.Username, tempAccount.Fullname,
                             tempAccount.Password, tempAccount.RoleName,
                             tempAccount.IsMale, tempAccount.ImagePath,
                             tempAccount.Dateofbirth, tempAccount.Grade,
                             tempAccount.Email
-                    );
-                    Panel formPanel = (Panel)(this.Parent);
+                        );
+                        if (!IsSuccess)
+                            alert = "Đăng ký không thành công. Hãy thử lại";
+                        else
+                            alert = "Chúc mừng bạn đã đăng ký thành công. Hãy nhấn nút để quay về trang chủ";
+                        formPanel = (Panel)(this.Parent);
+                        formPanel.Controls.Clear();
+                        uc = new NotificationForm(IsSuccess, alert);
+                        uc.Dock = DockStyle.Fill;
+                        formPanel.Controls.Add(uc);
+                        return;
+                    }
+
+                    formPanel = (Panel)(this.Parent);
                     formPanel.Controls.Clear();
-                    Control uc = new AfterCreateAccount(IsSuccess);
+                    uc = new ForgetPasswordStep2();
+                    ((ForgetPasswordStep2)uc).Email = tempAccount.Email;
                     uc.Dock = DockStyle.Fill;
                     formPanel.Controls.Add(uc);
                 }

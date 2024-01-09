@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="LogForm\ForgetPasswordStep2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="MainForm\CreateTest\CreateTestP.cs">
       <SubType>UserControl</SubType>
     </Compile>

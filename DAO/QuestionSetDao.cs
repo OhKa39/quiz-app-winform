@@ -69,7 +69,7 @@ namespace DAO
             object Time = (object)time ?? DBNull.Value;
             object IfTest = (object)isTest ?? DBNull.Value;
             object IfOK = (object)isOK ?? DBNull.Value;
-            object AccountIDCheckNull = (object)isOK ?? DBNull.Value;
+            object AccountIDCheckNull = (object)AccountID ?? DBNull.Value;
             object totalQues = (object)totalQuestion ?? DBNull.Value;
             DataTable data = await DataProvider
                 .Instance

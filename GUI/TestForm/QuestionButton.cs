@@ -24,9 +24,11 @@ namespace GUI.TestForm
         }
 
         public bool IsCheckPoint { get => isCheckPoint; set => isCheckPoint = value; }
-        public bool IsTrue { 
+        public bool IsTrue
+        {
             get => isTrue;
-            set {
+            set
+            {
                 isTrue = value;
                 guna2Button1.FillColor = (value == true) ? Color.Lime : Color.IndianRed;
                 guna2Button1.ForeColor = Color.White;

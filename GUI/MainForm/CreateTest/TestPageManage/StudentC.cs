@@ -32,7 +32,7 @@ namespace GUI.MainForm.CreateTest.TestPageManage
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             TestResultForm trf = new TestResultForm();
-            trf.Acc = acc;
+            trf.FullName = fullName;
             trf.QuestionCount = QuestionCount;
             trf.TimeTaken = timeTaken;
             trf.TestSetName = TestSetName;
@@ -63,8 +63,8 @@ namespace GUI.MainForm.CreateTest.TestPageManage
             get => createdAt;
             set
             {
-                guna2HtmlLabel3.Text = $"CreatedAt: {value}";
-                createdAt = value;
+                guna2HtmlLabel3.Text = $"CreatedAt: {value.ToLocalTime()}";
+                createdAt = value.ToLocalTime();
             }
         }
         public int TimeTaken

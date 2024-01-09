@@ -48,7 +48,7 @@ namespace GUI.MainForm.QuestionSet.QuestionPage
                     IsTest = (bool)row["IsTest"],
                     DifficultName = row["DifficultName"] as string,
                     SubjectName = row["SubjectName"] as string,
-                    UpdateAt = (DateTime)row["UpdateAt"]
+                    UpdateAt = ((DateTime)row["UpdateAt"]).ToLocalTime()
                 };
 
                 tqlList.Add(tql);

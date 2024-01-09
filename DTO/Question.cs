@@ -20,7 +20,7 @@ namespace DTO
             SubjectName = data["SubjectName"] as string;
             QuestionDetail = data["QuestionDetail"] as string;
             DifficultName = data["DifficultName"] as string;
-            UpdateAt = (DateTime)data["updateAt"];
+            UpdateAt = ((DateTime)data["updateAt"]).ToLocalTime();
             IsTest = (bool)data["IsTest"];
             IsOK = (bool)data["IsOK"];
         }
@@ -31,7 +31,7 @@ namespace DTO
             SubjectName = _question.SubjectName;
             QuestionDetail = _question.QuestionDetail;
             DifficultName = _question.DifficultName;
-            UpdateAt = _question.UpdateAt;
+            UpdateAt = _question.UpdateAt.ToLocalTime();
             IsTest = _question.IsTest;
             IsOK = _question.IsOK;
         }
@@ -40,7 +40,7 @@ namespace DTO
         public string QuestionDetail { get => questionDetail; set => questionDetail = value; }
         public string DifficultName { get => difficultName; set => difficultName = value; }
         public string SubjectName { get => subjectName; set => subjectName = value; }
-        public DateTime UpdateAt { get => updateAt; set => updateAt = value; }
+        public DateTime UpdateAt { get => updateAt; set => updateAt = value.ToLocalTime(); }
         public bool IsTest { get => isTest; set => isTest = value; }
         public bool IsOK { get => isOK; set => isOK = value; }
     }

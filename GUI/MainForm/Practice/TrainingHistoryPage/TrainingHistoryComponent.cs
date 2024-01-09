@@ -53,8 +53,8 @@ namespace GUI.MainForm.Practice.TrainingHistoryPage
             get => createAt;
             set
             {
-                createAt = value;
-                guna2HtmlLabel5.Text = $"CreatedAt: {value}";
+                createAt = value.ToLocalTime();
+                guna2HtmlLabel5.Text = $"CreatedAt: {value.ToLocalTime()}";
             }
         }
         public int TimeTaken

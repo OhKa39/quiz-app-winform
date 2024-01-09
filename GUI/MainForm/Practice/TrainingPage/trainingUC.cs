@@ -148,7 +148,6 @@ namespace GUI.MainForm.Practice.TrainingPage
                     tfUI.IsTest = false;
                     tfUI.Acc = acc;
                     tfUI.FormParentCall = this;
-                    tfUI.AlreadyClose = 1;
                     tfUI.ShowDialog();
                     this.Refresh();
                 }
@@ -182,7 +181,6 @@ namespace GUI.MainForm.Practice.TrainingPage
                     tfUI.IsTest = false;
                     tfUI.Acc = acc;
                     tfUI.FormParentCall = this;
-                    tfUI.AlreadyClose = 1;
                     tfUI.ShowDialog();
                     this.Refresh();
                 }
