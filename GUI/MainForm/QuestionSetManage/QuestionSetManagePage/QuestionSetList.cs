@@ -186,7 +186,6 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             {
                 guna2Button6.Visible = false;
                 guna2Button2.Visible = false;
-                guna2ToggleSwitch1.Visible = false;
                 return;
             }
 
@@ -195,7 +194,6 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                 guna2Button6.Text = "Not OK";
                 guna2Button2.Text = "OK";
                 guna2Button2.Enabled = true;
-                guna2ToggleSwitch1.Visible = false;
                 return;
             }
 
@@ -295,46 +293,66 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
 
         private void guna2ToggleSwitch1_CheckedChanged(object sender, EventArgs e)
         {
+            QuestionSetID = "";
+            foreach (var K in questionSetDict)
+            {
+                QuestionSetID += K.Key.ToString() + ",";
+            }
+
+            if (QuestionSetID.Length > 0)
+                QuestionSetID = QuestionSetID.Substring(0, QuestionSetID.Length - 1);
             if (guna2ToggleSwitch1.Checked)
             {
-                guna2Button2.Enabled = true;
-                foreach (QuestionSetComponent qsc in flowLayoutPanel1.Controls)
-                {
 
-                    qsc.IsEdit = true;
-                    if (qsc.IsChecked)
+                if(type == 1)
+                {
+                    guna2Button2.Enabled = true;
+                    foreach (QuestionSetComponent qsc in flowLayoutPanel1.Controls)
                     {
-                        qlcqs.Guna2ToggleSwitch1.Enabled = true;
-                        qlcqs.Guna2ToggleSwitch1.Checked = true;
-                        qsc.Guna2ComboBox1.Enabled = true;
-                        qsc.Guna2ComboBox2.Enabled = true;
-                        qsc.Guna2ComboBox3.Enabled = true;
-                        qsc.Guna2TextBox1.Enabled = true;
-                        currentEditQSC = qsc;
+
+                        qsc.IsEdit = true;
+                        if (qsc.IsChecked)
+                        {
+                            qlcqs.Guna2ToggleSwitch1.Enabled = true;
+                            qlcqs.Guna2ToggleSwitch1.Checked = true;
+                            qsc.Guna2ComboBox1.Enabled = true;
+                            qsc.Guna2ComboBox2.Enabled = true;
+                            qsc.Guna2ComboBox3.Enabled = true;
+                            qsc.Guna2TextBox1.Enabled = true;
+                            currentEditQSC = qsc;
+                        }
+                        else
+                        {
+                            qsc.Guna2ComboBox1.Enabled = false;
+                            qsc.Guna2ComboBox2.Enabled = false;
+                            qsc.Guna2ComboBox3.Enabled = false;
+                            qsc.Guna2TextBox1.Enabled = false;
+                            qsc.Guna2Button2.Enabled = false;
+                        }
                     }
-                    else
-                    {
-                        qsc.Guna2ComboBox1.Enabled = false;
-                        qsc.Guna2ComboBox2.Enabled = false;
-                        qsc.Guna2ComboBox3.Enabled = false;
-                        qsc.Guna2TextBox1.Enabled = false;
-                        qsc.Guna2Button2.Enabled = false;
-                    }
+                    return;
                 }
+                
+                updateData();
+                return;
             }
             else
             {
-                guna2Button2.Enabled = false;
-                qlcqs.Guna2ToggleSwitch1.Enabled = false;
-                qlcqs.Guna2TextBox2.Text = "1";
+                if(type == 1)
+                {
+                    guna2Button2.Enabled = false;
+                    qlcqs.Guna2ToggleSwitch1.Enabled = false;
+                    qlcqs.Guna2TextBox2.Text = "1";
+                }
                 resetSelectAllButton();
+                QuestionSetID = "";
                 updateData();
             }
         }
 
         private async void guna2Button2_Click(object sender, EventArgs e)
         {
-            if(type == 2)
+            if(type == 1)
             {
                 try
                 {
@@ -370,6 +388,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
                     int count = await MainFormQuizAppBus.Instance.updateQuestionSet(
                         questionSetID, questionSetName, time, isTest, questionID
                     );
+
 
                     if (count > 0)
                     {
@@ -446,7 +465,7 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
 
         private async void guna2Button6_Click(object sender, EventArgs e)
         {
-            if(type == 2)
+            if(type == 1)
             {
                 try
                 {

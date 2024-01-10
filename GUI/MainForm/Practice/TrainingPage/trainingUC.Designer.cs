@@ -180,7 +180,7 @@
             guna2ComboBox1.Font = new Font("Segoe UI", 10F);
             guna2ComboBox1.ForeColor = Color.FromArgb(68, 88, 112);
             guna2ComboBox1.ItemHeight = 30;
-            guna2ComboBox1.Items.AddRange(new object[] { "--Thời gian--", "5", "10", "15", "20", "30", "45", "50", "60", "120", "180" });
+            guna2ComboBox1.Items.AddRange(new object[] { "--Thời gian--", "1", "5", "10", "15", "20", "30", "45", "50", "60", "120", "180" });
             guna2ComboBox1.Location = new Point(185, 331);
             guna2ComboBox1.Name = "guna2ComboBox1";
             guna2ComboBox1.ShadowDecoration.CustomizableEdges = customizableEdges8;

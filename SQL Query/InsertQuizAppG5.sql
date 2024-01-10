@@ -951,3 +951,52 @@ as
 	update [Account] set [Password] = @password
 	where [Email] = @email
 go
+
+alter proc updateQuestionSet
+(
+	@questionSetID INT,
+	@questionSetName NVARCHAR(MAX),
+	@Time bit,
+	@isTest BIT,
+	@questionID NVARCHAR(MAX)
+)
+AS
+BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION;
+
+		UPDATE [QuestionSet]
+		SET [QuestionSetName] = @questionSetName,
+			[UpdateAt] = GETDATE(),
+			[Time] = @Time,
+			[IsTest] = @isTest
+		WHERE [QuestionSetID] = @questionSetID;
+
+		DECLARE @temp1 NVARCHAR(MAX) = @questionID;
+
+		declare @query nvarchar(MAX)
+		set @query = 'DELETE FROM [QuestionSetQuestion] WHERE [QuestionSetID] = @questionSetID'
+		declare @params nvarchar(Max) = '@questionSetID int'
+		EXEC sp_executesql @query, @params,
+						   @questionSetID = @questionSetID
+
+		WHILE (CHARINDEX(',', @temp1) > 0)
+		BEGIN
+			DECLARE @temp2 NVARCHAR(MAX);
+
+			SET @temp2 = LTRIM(RTRIM(SUBSTRING(@temp1, 1, CHARINDEX(',', @temp1) - 1)));
+
+			insert into [QuestionSetQuestion]([QuestionSetID], [QuestionID])
+			values(@questionSetID, @temp2)
+
+			SET @temp1 = LTRIM(RTRIM(SUBSTRING(@temp1, CHARINDEX(',', @temp1) + 1, LEN(@temp1))));
+		END
+
+		COMMIT;
+	END TRY
+	BEGIN CATCH
+		ROLLBACK;
+		THROW;
+	END CATCH;
+END;
+go

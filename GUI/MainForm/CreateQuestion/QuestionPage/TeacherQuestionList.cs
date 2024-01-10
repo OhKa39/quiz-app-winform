@@ -177,7 +177,7 @@ namespace GUI.MainForm.QuestionSet.QuestionPage
             {
                 if (HasInDict == 1)
                     return;
-                if(Type == 1)
+                if(this.Parent.Parent.Parent.Parent is MakeQuestionSet)
                 {
                     MakeQuestionSet mkqs = (MakeQuestionSet)this.Parent.Parent.Parent.Parent;
                     mkqs.g2PB[diff[DifficultName]].Value = mkqs.g2PB[diff[DifficultName]].Value + 1;
@@ -189,10 +189,10 @@ namespace GUI.MainForm.QuestionSet.QuestionPage
             }
             else
             {
-                if(Type == 1)
+                if(this.Parent.Parent.Parent.Parent is MakeQuestionSet)
                 {
-                    MakeQuestionSet mkqs = (MakeQuestionSet)this.Parent.Parent.Parent.Parent;
-                    mkqs.g2PB[diff[DifficultName]].Value = mkqs.g2PB[diff[DifficultName]].Value - 1;
+                        MakeQuestionSet mkqs = (MakeQuestionSet)this.Parent.Parent.Parent.Parent;
+                        mkqs.g2PB[diff[DifficultName]].Value = mkqs.g2PB[diff[DifficultName]].Value - 1; 
                 }
                 qlcqs.questionDict.Remove(questionID);
                 qlcqs.Guna2HtmlLabel1.Text = $"Số câu hỏi đã chọn: {qlcqs.questionDict.Count}";

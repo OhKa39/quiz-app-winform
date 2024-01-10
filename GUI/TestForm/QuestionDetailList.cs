@@ -57,6 +57,9 @@ namespace GUI.TestForm
             DataTable books = await MainFormQuizAppBus.Instance.loadBook();
             if (books.Rows.Count > 0)
             {
+                guna2ComboBox4.Items.Clear();
+                guna2ComboBox4.Items.Add("--Sách--");
+                guna2ComboBox4.SelectedIndex = 0;
                 foreach (DataRow i in books.Rows)
                 {
                     guna2ComboBox4.Items.Add(i["BookName"]);

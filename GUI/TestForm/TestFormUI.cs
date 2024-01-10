@@ -347,9 +347,15 @@ namespace GUI.MainFormQuizApp
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (timeTaken <= 0)
-            {
-                timer1.Stop();
+            {        
                 forceSent = 1;
+                this.Close();
+                MessageBox.Show(
+                        "Bạn đã hết thời gian làm bài, hệ thống sẽ tự động lưu lại kết quả làm bài của bạn",
+                        "Tự động lưu",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                );
                 return;
             }
             --timeTaken;

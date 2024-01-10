@@ -103,13 +103,13 @@ namespace GUI.MainForm.Practice.TrainingPage
                 if (!guna2CheckBox1.Checked && !guna2CheckBox2.Checked)
                     throw new Exception("Phải chọn 1 trong 2");
 
-                if(guna2CheckBox1.Checked)
+                if (guna2CheckBox1.Checked)
                 {
                     string subjectString = guna2ComboBox3.Text;
                     string questionCountString = guna2ComboBox2.Text;
                     string timeString = guna2ComboBox1.Text;
 
-                    if(subjectString == "--Chủ đề--" 
+                    if (subjectString == "--Chủ đề--"
                         || questionCountString == "--Số câu hỏi--"
                         || timeString == "--Thời gian--")
                         throw new Exception("Không được để trống trường thông tin");
@@ -185,7 +185,7 @@ namespace GUI.MainForm.Practice.TrainingPage
                     this.Refresh();
                 }
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 MessageBox.Show(
                     $"Đã có lỗi xảy ra: {Ex.Message}",
