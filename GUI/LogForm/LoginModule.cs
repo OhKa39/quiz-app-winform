@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace GUI
     {
         private int passwordShowState = 1;
         private int isUnvalid = -1;
+        private int isNotRender = -1;
         public LoginModule()
         {
             SetStyle(
@@ -222,37 +224,40 @@ namespace GUI
 
         private void LoginModule_Load(object sender, EventArgs e)
         {
-            //if (Properties.Settings.Default.RememberMe == "true")
-            //{
-            //    guna2TextBox1.Text = Properties.Settings.Default.UserName;
-            //    guna2TextBox2.Text = Properties.Settings.Default.PassWord;
-            //    guna2ToggleSwitch1.Checked = true;
-            //}
-            //else
-            //{
-            //    guna2TextBox1.Text = "";
-            //    guna2TextBox2.Text = "";
-            //    guna2ToggleSwitch1.Checked = false;
-            //}
+            if (Properties.Settings.Default.RememberMe == "true")
+            {
+                guna2TextBox1.Text = Properties.Settings.Default.UserName;
+                guna2TextBox2.Text = Properties.Settings.Default.PassWord;
+                guna2ToggleSwitch1.Checked = true;
+            }
+            else
+            {
+                guna2TextBox1.Text = "";
+                guna2TextBox2.Text = "";
+                guna2ToggleSwitch1.Checked = false;
+            }
+            isNotRender = 1;
         }
 
         private void guna2ToggleSwitch1_CheckedChanged(object sender, EventArgs e)
         {
-            //bool check = guna2ToggleSwitch1.Checked;
-            //if (check)
-            //{
-            //    Properties.Settings.Default.RememberMe = guna2TextBox1.Text;
-            //    Properties.Settings.Default.UserName = guna2TextBox2.Text;
-            //    Properties.Settings.Default.RememberMe = "true";
-            //    Properties.Settings.Default.Save();
-            //}
-            //else
-            //{
-            //    Properties.Settings.Default.UserName = "";
-            //    Properties.Settings.Default.UserName = "";
-            //    Properties.Settings.Default.RememberMe = "false";
-            //    Properties.Settings.Default.Save();
-            //}
+            bool check = guna2ToggleSwitch1.Checked;
+            if (check)
+            {
+                Properties.Settings.Default.UserName = guna2TextBox1.Text;
+                Properties.Settings.Default.PassWord = guna2TextBox2.Text;
+                Properties.Settings.Default.RememberMe = "true";
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                if (isNotRender == -1)
+                    return;
+                Properties.Settings.Default.UserName = "";
+                Properties.Settings.Default.PassWord = "";
+                Properties.Settings.Default.RememberMe = "false";
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }
