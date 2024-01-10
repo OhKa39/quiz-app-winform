@@ -38,6 +38,10 @@ namespace GUI.TestForm
             // guna2Button1
             // 
             guna2Button1.BorderThickness = 1;
+            guna2Button1.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            guna2Button1.CheckedState.FillColor = Color.Fuchsia;
+            guna2Button1.CheckedState.ForeColor = Color.White;
+            guna2Button1.Cursor = Cursors.Hand;
             guna2Button1.CustomizableEdges = customizableEdges1;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -52,7 +56,7 @@ namespace GUI.TestForm
             guna2Button1.Size = new Size(50, 50);
             guna2Button1.TabIndex = 0;
             guna2Button1.Text = "40";
-            guna2Button1.Click += guna2Button1_Click;
+            guna2Button1.CheckedChanged += guna2Button1_CheckedChanged;
             // 
             // QuestionButton
             // 

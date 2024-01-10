@@ -92,18 +92,32 @@ namespace ValidateRules
 
         private static async Task<bool> checkAlreadyUsername(string username)
         {
-            if (username == null)
-                username = "a";
-            var result = await LoginBus.Instance.getUsername(username) == 0;
-            return result;
+            try
+            {
+                if (username == null)
+                    username = "a";
+                var result = await LoginBus.Instance.getUsername(username) == 0;
+                return result;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 
         private static async Task<bool> checkAlreadyEmail(string email)
         {
-            if (email == null)
-                email = "a";
-            var result = await LoginBus.Instance.getEmail(email) == 0;
-            return result;
+            try
+            {
+                if (email == null)
+                    email = "a";
+                var result = await LoginBus.Instance.getEmail(email) == 0;
+                return result;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

@@ -196,10 +196,6 @@ namespace GUI.MainFormQuizApp
                     guna2Button1.Visible = true;
                     guna2Panel2.Visible = true;
                     guna2HtmlLabel1.Text = TestSetName;
-                    QuestionButtonList uc = new QuestionButtonList();
-                    uc.QuestionCount = questionCount;
-                    uc.Dock = DockStyle.Fill;
-                    guna2Panel1.Controls.Add(uc);
 
                     if (questions == null)
                         questions = await MainFormQuizAppBus
@@ -248,7 +244,10 @@ namespace GUI.MainFormQuizApp
                         answerOfAnswer.Add(ans);
                     }
 
-                    updateGUI();
+                    QuestionButtonList uc = new QuestionButtonList();
+                    uc.QuestionCount = questionCount;
+                    uc.Dock = DockStyle.Fill;
+                    guna2Panel1.Controls.Add(uc);
                 }
                 catch (Exception ex)
                 {
@@ -285,7 +284,7 @@ namespace GUI.MainFormQuizApp
                     guna2HtmlLabel1.Text = TestSetName;
 
                     QuestionButtonList uc = new QuestionButtonList();
-                    uc.IsTest = 1;
+                    uc.IsAnswer = 1;
                     uc.QuestionCount = questionCount;
                     uc.UserChoices = UserChoices;
                     uc.AnswerOfAnswer = answerOfAnswer;
@@ -311,6 +310,17 @@ namespace GUI.MainFormQuizApp
                 return;
             ++CurrentQuestion;
 
+            FlowLayoutPanel fl = null;
+            QuestionButtonList qbl = null;
+            foreach (Control temp in Guna2Panel1.Controls)
+                if (temp is QuestionButtonList)
+                {
+                    qbl = (QuestionButtonList)temp;
+                    break;
+                }
+            QuestionButton qb = (QuestionButton)qbl.FlowLayoutPanel1.Controls[CurrentQuestion];
+            qb.IsChecked = true;
+
             updateGUI();
         }
 
@@ -319,6 +329,17 @@ namespace GUI.MainFormQuizApp
             if (CurrentQuestion == 0)
                 return;
             --CurrentQuestion;
+
+            FlowLayoutPanel fl = null;
+            QuestionButtonList qbl = null;
+            foreach (Control temp in Guna2Panel1.Controls)
+                if (temp is QuestionButtonList)
+                {
+                    qbl = (QuestionButtonList)temp;
+                    break;
+                }
+            QuestionButton qb = (QuestionButton)qbl.FlowLayoutPanel1.Controls[CurrentQuestion];
+            qb.IsChecked = true;
 
             updateGUI();
         }
@@ -344,21 +365,18 @@ namespace GUI.MainFormQuizApp
             if (!Flags[currentQuestion])
             {
                 Flags[currentQuestion] = true;
-                qb.Guna2Button1.FillColor = Color.IndianRed;
-                qb.Guna2Button1.ForeColor = Color.White;
+                qb.State = 3;
                 return;
             }
 
             Flags[currentQuestion] = false;
             if (userChoices[currentQuestion] != 0)
             {
-                qb.Guna2Button1.FillColor = Color.Lime;
-                qb.Guna2Button1.ForeColor = Color.White;
+                qb.State = 2;
                 return;
             }
 
-            qb.Guna2Button1.FillColor = Color.White;
-            qb.Guna2Button1.ForeColor = Color.Black;
+            qb.State = 1;
         }
 
         private void TestFormUI_FormClosing(object sender, FormClosingEventArgs e)

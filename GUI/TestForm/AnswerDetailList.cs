@@ -85,8 +85,7 @@ namespace GUI.TestForm
 
                     if (!tfUI.Flags[tfUI.CurrentQuestion])
                     {
-                        qb.Guna2Button1.FillColor = Color.Lime;
-                        qb.Guna2Button1.ForeColor = Color.White;
+                        qb.State = 2; 
                     }
                 }
                 foreach (AnswerDetailList fk in Parent.Controls)

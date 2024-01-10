@@ -19,7 +19,7 @@ namespace GUI.TestForm
     public partial class QuestionButtonList : UserControl
     {
         private int questionCount;
-        private int isTest = -1;
+        private int isAnswer = -1;
         private List<int> userChoices;
         private List<List<Answer>> answerOfAnswer = new List<List<Answer>>();
         public QuestionButtonList()
@@ -51,11 +51,12 @@ namespace GUI.TestForm
         public int QuestionCount { get => questionCount; set => questionCount = value; }
         public List<int> UserChoices { get => userChoices; set => userChoices = value; }
         public List<List<Answer>> AnswerOfAnswer { get => answerOfAnswer; set => answerOfAnswer = value; }
-        public int IsTest { get => isTest; set => isTest = value; }
+        public int IsAnswer { get => isAnswer; set => isAnswer = value; }
+
 
         private void QuestionButtonList_Load(object sender, EventArgs e)
         {
-            if (IsTest == 1)
+            if (IsAnswer == 1)
                 guna2Button1.Visible = false;
 
             PanelScrollHelper flowpan1 = new PanelScrollHelper(
@@ -65,7 +66,7 @@ namespace GUI.TestForm
             for (int i = 0; i < questionCount; ++i)
             {
                 bool isOK = false;
-                if (IsTest == 1)
+                if (IsAnswer == 1)
                 {
                     int numAnswerIndex0 = answerOfAnswer[i].Count;
                     for (int j = 0; j < numAnswerIndex0; ++j)
@@ -79,13 +80,15 @@ namespace GUI.TestForm
                 var questionbtn = new QuestionButton()
                 {
                     Index = i,
+                    IsAnswer = IsAnswer
                 };
-                if (IsTest == 1)
+                if (IsAnswer == 1)
                     questionbtn.IsTrue = isOK;
                 btnList.Add(questionbtn);
             }
 
             flowLayoutPanel1.Controls.AddRange(btnList.ToArray());
+            ((QuestionButton)flowLayoutPanel1.Controls[0]).IsChecked = true;
             AddButtonBelowLastItem();
         }
 
