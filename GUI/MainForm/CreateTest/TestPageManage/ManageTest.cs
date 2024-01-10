@@ -186,7 +186,7 @@ namespace GUI.MainForm.CreateTest.TestPageManage
                 return;
             }
 
-            foreach (TeacherQuestionList tpb in flowLayoutPanel1.Controls)
+            foreach (TestPageButtonComponent tpb in flowLayoutPanel1.Controls)
             {
                 tpb.Choose = false;
             }

@@ -132,7 +132,7 @@ namespace GUI
                     return;
                 }
 
-                Panel formPanel = (Panel)(this.Parent);
+                Guna2Panel formPanel = (Guna2Panel)(this.Parent);
                 LogForm parent = (LogForm)formPanel.Parent;
                 parent.Opacity = 0;
                 parent.ShowInTaskbar = false;
@@ -155,7 +155,7 @@ namespace GUI
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            Panel formPanel = (Panel)(this.Parent);
+            Guna2Panel formPanel = (Guna2Panel)(this.Parent);
             formPanel.Controls.Clear();
             Control uc = new RegisterComponentStep1();
             uc.Dock = DockStyle.Fill;
@@ -213,11 +213,46 @@ namespace GUI
 
         private void label2_Click(object sender, EventArgs e)
         {
-            Panel formPanel = (Panel)(this.Parent);
+            Guna2Panel formPanel = (Guna2Panel)(this.Parent);
             formPanel.Controls.Clear();
             Control uc = new ForgetPasswordStep1();
             uc.Dock = DockStyle.Fill;
             formPanel.Controls.Add(uc);
+        }
+
+        private void LoginModule_Load(object sender, EventArgs e)
+        {
+            //if (Properties.Settings.Default.RememberMe == "true")
+            //{
+            //    guna2TextBox1.Text = Properties.Settings.Default.UserName;
+            //    guna2TextBox2.Text = Properties.Settings.Default.PassWord;
+            //    guna2ToggleSwitch1.Checked = true;
+            //}
+            //else
+            //{
+            //    guna2TextBox1.Text = "";
+            //    guna2TextBox2.Text = "";
+            //    guna2ToggleSwitch1.Checked = false;
+            //}
+        }
+
+        private void guna2ToggleSwitch1_CheckedChanged(object sender, EventArgs e)
+        {
+            //bool check = guna2ToggleSwitch1.Checked;
+            //if (check)
+            //{
+            //    Properties.Settings.Default.RememberMe = guna2TextBox1.Text;
+            //    Properties.Settings.Default.UserName = guna2TextBox2.Text;
+            //    Properties.Settings.Default.RememberMe = "true";
+            //    Properties.Settings.Default.Save();
+            //}
+            //else
+            //{
+            //    Properties.Settings.Default.UserName = "";
+            //    Properties.Settings.Default.UserName = "";
+            //    Properties.Settings.Default.RememberMe = "false";
+            //    Properties.Settings.Default.Save();
+            //}
         }
     }
 }

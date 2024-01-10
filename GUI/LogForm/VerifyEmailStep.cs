@@ -191,7 +191,7 @@ namespace GUI
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            Panel formPanel = (Panel)(this.Parent);
+            Guna2Panel formPanel = (Guna2Panel)(this.Parent);
             formPanel.Controls.Clear();
             Control uc = new RegisterComponentStep2(tempAccount, allOK);
             uc.Dock = DockStyle.Fill;
@@ -292,7 +292,7 @@ namespace GUI
                 if (confirm == verifyCode)
                 {
                     Control uc;
-                    Panel formPanel;
+                    Guna2Panel formPanel;
                     if (type == 1)
                     {
                         string alert = "";
@@ -307,7 +307,7 @@ namespace GUI
                             alert = "Đăng ký không thành công. Hãy thử lại";
                         else
                             alert = "Chúc mừng bạn đã đăng ký thành công. Hãy nhấn nút để quay về trang chủ";
-                        formPanel = (Panel)(this.Parent);
+                        formPanel = (Guna2Panel)(this.Parent);
                         formPanel.Controls.Clear();
                         uc = new NotificationForm(IsSuccess, alert);
                         uc.Dock = DockStyle.Fill;
@@ -315,7 +315,7 @@ namespace GUI
                         return;
                     }
 
-                    formPanel = (Panel)(this.Parent);
+                    formPanel = (Guna2Panel)(this.Parent);
                     formPanel.Controls.Clear();
                     uc = new ForgetPasswordStep2();
                     ((ForgetPasswordStep2)uc).Email = tempAccount.Email;

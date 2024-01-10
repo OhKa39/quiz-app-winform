@@ -32,31 +32,12 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
         private void FilterTestManage_Load(object sender, EventArgs e)
         {
 
-
             guna2ComboBox1.DataBindings.Add("SelectedItem", FilterMember, "Time", false, DataSourceUpdateMode.OnPropertyChanged);
             guna2ComboBox4.DataBindings.Add("SelectedItem", FilterMember, "IsOK", false, DataSourceUpdateMode.OnPropertyChanged);
             guna2ComboBox5.DataBindings.Add("SelectedItem", FilterMember, "IsTest", false, DataSourceUpdateMode.OnPropertyChanged);
             guna2DateTimePicker1.DataBindings.Add("Value", FilterMember, "From", false, DataSourceUpdateMode.OnPropertyChanged);
             guna2DateTimePicker2.DataBindings.Add("Value", FilterMember, "To", false, DataSourceUpdateMode.OnPropertyChanged);
             guna2ComboBox2.DataBindings.Add("SelectedItem", FilterMember, "TotalQuestion", false, DataSourceUpdateMode.OnPropertyChanged);
-            //guna2Button6.Checked = FilterMember.UpdateTimeSort1;
-            //guna2Button7.Checked = FilterMember.IsTestSort;
-            //guna2Button8.Checked = FilterMember.IsOKSort;
-        }
-
-        private void guna2Button6_CheckedChanged(object sender, EventArgs e)
-        {
-            //FilterMember.UpdateTimeSort1 = guna2Button6.Checked;
-        }
-
-        private void guna2Button7_CheckedChanged(object sender, EventArgs e)
-        {
-            //FilterMember.IsTestSort = guna2Button7.Checked;
-        }
-
-        private void guna2Button8_CheckedChanged(object sender, EventArgs e)
-        {
-            //FilterMember.IsOKSort = guna2Button8.Checked;
         }
 
 

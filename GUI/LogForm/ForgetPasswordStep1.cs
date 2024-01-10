@@ -74,7 +74,7 @@ namespace GUI
                     return;
                 }
 
-                Panel formPanel = (Panel)(this.Parent);
+                Guna2Panel formPanel = (Guna2Panel)(this.Parent);
                 formPanel.Controls.Clear();
                 Control uc = new VerifyEmailStep(tempAccount);
                 ((VerifyEmailStep)uc).Type = 2;
@@ -110,7 +110,7 @@ namespace GUI
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            Panel formPanel = (Panel)(this.Parent);
+            Guna2Panel formPanel = (Guna2Panel)(this.Parent);
             formPanel.Controls.Clear();
             Control uc = new LoginModule();
             uc.Dock = DockStyle.Fill;

@@ -158,6 +158,7 @@
             guna2ToggleSwitch1.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
             guna2ToggleSwitch1.UncheckedState.InnerBorderColor = Color.White;
             guna2ToggleSwitch1.UncheckedState.InnerColor = Color.White;
+            guna2ToggleSwitch1.CheckedChanged += guna2ToggleSwitch1_CheckedChanged;
             // 
             // label1
             // 
@@ -314,6 +315,7 @@
             Controls.Add(guna2TextBox1);
             Name = "LoginModule";
             Size = new Size(320, 720);
+            Load += LoginModule_Load;
             Click += LoginModule_Click;
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).EndInit();

@@ -215,7 +215,7 @@ namespace GUI
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            Panel formPanel = (Panel)(this.Parent);
+            Guna2Panel formPanel = (Guna2Panel)(this.Parent);
             formPanel.Controls.Clear();
             Control uc = new RegisterComponentStep1(tempAccount, allOK);
             uc.Dock = DockStyle.Fill;
@@ -243,7 +243,7 @@ namespace GUI
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            Panel formPanel = (Panel)(this.Parent);
+            Guna2Panel formPanel = (Guna2Panel)(this.Parent);
             formPanel.Controls.Clear();
             Control uc = new VerifyEmailStep(tempAccount, allOK);
             uc.Dock = DockStyle.Fill;

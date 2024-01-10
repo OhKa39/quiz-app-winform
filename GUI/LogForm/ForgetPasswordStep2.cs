@@ -102,7 +102,7 @@ namespace GUI
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            Panel formPanel = (Panel)(this.Parent);
+            Guna2Panel formPanel = (Guna2Panel)(this.Parent);
             formPanel.Controls.Clear();
             Control uc = new LoginModule();
             uc.Dock = DockStyle.Fill;
@@ -152,7 +152,7 @@ namespace GUI
                         alert = "Quá trình khôi phục tài khoản thất bại. Hãy thử lại";
                     else
                         alert = "Quá trình khôi phục tài khoản thành công. Hãy đăng nhập lại nào";
-                    Panel formPanel = (Panel)(this.Parent);
+                    Guna2Panel formPanel = (Guna2Panel)(this.Parent);
                     formPanel.Controls.Clear();
                     Control uc = new NotificationForm(IsSuccess, alert);
                     uc.Dock = DockStyle.Fill;

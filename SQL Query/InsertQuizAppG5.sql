@@ -942,4 +942,12 @@ begin
 					   @AccountID = @AccountID
 end
 go
-getPercentTestLogHasDone 2
+
+create proc updateUserPassword(
+	@email nvarchar(MAX),
+	@password varbinary(MAX)
+)
+as
+	update [Account] set [Password] = @password
+	where [Email] = @email
+go

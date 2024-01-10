@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS;
 using DTO;
+using Guna.UI2.WinForms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
@@ -41,7 +42,7 @@ namespace GUI
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            Panel formPanel = (Panel)(this.Parent);
+            Guna2Panel formPanel = (Guna2Panel)(this.Parent);
             formPanel.Controls.Clear();
             Control uc = new LoginModule();
             uc.Dock = DockStyle.Fill;
