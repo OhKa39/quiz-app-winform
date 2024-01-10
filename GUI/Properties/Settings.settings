@@ -6,7 +6,7 @@
       <Value Profile="(Default)">false</Value>
     </Setting>
     <Setting Name="UserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Group5</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="PassWord" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
