@@ -236,7 +236,6 @@ namespace GUI
                 guna2TextBox2.Text = "";
                 guna2ToggleSwitch1.Checked = false;
             }
-            isNotRender = 1;
         }
 
         private void guna2ToggleSwitch1_CheckedChanged(object sender, EventArgs e)
@@ -244,15 +243,15 @@ namespace GUI
             bool check = guna2ToggleSwitch1.Checked;
             if (check)
             {
-                Properties.Settings.Default.UserName = guna2TextBox1.Text;
-                Properties.Settings.Default.PassWord = guna2TextBox2.Text;
+                string username = guna2TextBox1.Text;
+                string password = guna2TextBox2.Text;
+                Properties.Settings.Default.UserName = username;
+                Properties.Settings.Default.PassWord = password;
                 Properties.Settings.Default.RememberMe = "true";
                 Properties.Settings.Default.Save();
             }
             else
             {
-                if (isNotRender == -1)
-                    return;
                 Properties.Settings.Default.UserName = "";
                 Properties.Settings.Default.PassWord = "";
                 Properties.Settings.Default.RememberMe = "false";

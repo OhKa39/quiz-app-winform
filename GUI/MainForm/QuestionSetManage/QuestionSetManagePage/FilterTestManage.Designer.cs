@@ -152,9 +152,9 @@ namespace GUI.MainForm.QuestionSetManage.QuestionSetManagePage
             guna2HtmlLabel6.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel6.Location = new Point(42, 135);
             guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            guna2HtmlLabel6.Size = new Size(80, 19);
+            guna2HtmlLabel6.Size = new Size(73, 19);
             guna2HtmlLabel6.TabIndex = 35;
-            guna2HtmlLabel6.Text = "Dạng câu hỏi";
+            guna2HtmlLabel6.Text = "Dạng bộ đề";
             // 
             // guna2ComboBox5
             // 
