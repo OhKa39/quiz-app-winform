@@ -444,5 +444,10 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button6;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private Guna.UI2.WinForms.Guna2Button guna2Button7;
+
+        public Guna.UI2.WinForms.Guna2CustomGradientPanel Guna2CustomGradientPanel1
+        {
+            get => guna2CustomGradientPanel1;
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace GUI.MainForm.Home
 
         private async void Home_Load(object sender, EventArgs e)
         {
+
             try
             {
                 guna2HtmlLabel1.Text = $"Xin chào, {acc.Fullname}";
@@ -62,6 +63,17 @@ namespace GUI.MainForm.Home
                     MessageBoxIcon.Error
                 );
             }
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+            Control uc = new UserInformation(acc);
+            uc.Dock = DockStyle.Fill;
+            Parent.Controls.Add(uc);
+            Parent.Controls.RemoveAt(0);
+
+            //Parent.Controls.BringtoFont
         }
     }
 }
